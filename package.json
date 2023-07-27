@@ -4,6 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "build": "swc src --out-dir dist",
+    "start": "node dist/index.js",
+    "start:dev": "ts-node src/index.ts",
     "test": "jest"
   },
   "keywords": [],
