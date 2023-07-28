@@ -8,7 +8,7 @@ export class Login {
   ) {}
 
   async execute(email: string, password: string): Promise<string | null> {
-    const user = await this.userRepository.findByEmail(email);
+    const user = await this.userRepository.findBy("email", email);
 
     if (!user) {
       throw new Error("User not found");
@@ -22,7 +22,6 @@ export class Login {
     if (!isPasswordCorrect) {
       throw new Error("Password does not match");
     }
-
     const token = this.jwtRepository.generateToken(user.getId());
     return token;
   }

@@ -1,7 +1,7 @@
 import { Entity } from "../../core/domain/Entity";
 import { PaymentEnum } from "./payment-enum";
 
-type PaymentProps = {
+export type PaymentProps = {
   event_id: string;
   user_account_id: string;
   value: number;

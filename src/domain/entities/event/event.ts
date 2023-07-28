@@ -16,6 +16,7 @@ type EventProps = {
   participants_limit: number;
   unitary_price: number;
   status: EventStatus;
+  available_tickets: number;
 };
 
 export class Event extends Entity<EventProps> {
@@ -25,5 +26,20 @@ export class Event extends Entity<EventProps> {
 
   static create(props: EventProps, id?: string): Event {
     return new Event(props, id);
+  }
+
+  hasAvailableTickets(quantity?: number): boolean {
+    return (
+      this.props.available_tickets > 0 &&
+      this.props.status === EventStatus.OPEN &&
+      this.props.participants_limit >= quantity!
+    );
+  }
+
+  decrementAvailableTickets(quantity: number): void {
+    if (!this.hasAvailableTickets(quantity)) {
+      return;
+    }
+    this.props.available_tickets -= quantity;
   }
 }
