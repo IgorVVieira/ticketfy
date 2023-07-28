@@ -4,7 +4,7 @@ import {
   findAllProps,
 } from "../../../domain/repositories/event/event.repository";
 
-export class GetEvents {
+export class GetEventsConsumer {
   constructor(private readonly eventRepository: IEventRepository) {}
 
   async execute(findAllProps?: findAllProps): Promise<Event[]> {
