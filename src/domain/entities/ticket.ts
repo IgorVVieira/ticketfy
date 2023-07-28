@@ -1,6 +1,6 @@
 import { Entity } from "../../core/domain/Entity";
 
-type TicketProps = {
+export type TicketProps = {
   event_id: string;
   consumer_id: string;
   payment_id: string;

@@ -1,7 +1,7 @@
 import { Ticket } from "../entities/ticket";
-import { IGenericCreateRepository } from "./generic-create.repository";
 
-export interface ITicketRepository extends IGenericCreateRepository<Ticket> {
+export interface ITicketRepository {
+  createMany(ticket: Ticket[]): Promise<Ticket[]>;
   getByConsumerId(consumer_id: string): Promise<Ticket[]>;
   getByEventId(event_id: string): Promise<Ticket[]>;
 }
