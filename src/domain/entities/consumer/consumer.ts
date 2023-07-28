@@ -1,4 +1,4 @@
-import { User, UserProps } from "./user";
+import { User, UserProps } from "../user";
 
 export class Consumer extends User {
   private constructor(props: UserProps, id?: string) {

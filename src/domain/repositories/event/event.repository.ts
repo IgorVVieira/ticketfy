@@ -1,5 +1,5 @@
-import { Event } from "../entities/event";
-import { IGenericCreateRepository } from "./generic-create.repository";
+import { Event } from "../../entities/event/event";
+import { IGenericCreateRepository } from "../generic-create.repository";
 
 export type findAllProps = {
   name?: string;

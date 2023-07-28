@@ -1,4 +1,4 @@
-import { Event, EventStatus } from "../event";
+import { Event, EventStatus } from "../event/event";
 
 describe("Event", () => {
   it("should create a valid event", () => {

@@ -1,5 +1,5 @@
-import { Entity } from "../../core/domain/Entity";
-import { PaymentEnum } from "./payment-enum";
+import { Entity } from "../../../core/domain/Entity";
+import { PaymentEnum } from "../payment-enum";
 
 type ConsumerAccountProps = {
   consumer_id: string;

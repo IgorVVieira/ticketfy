@@ -1,4 +1,4 @@
-import { EventOwner, EventOwnerType } from "../event-owners";
+import { EventOwner, EventOwnerType } from "../event/event-owners";
 import { UserProps } from "../user";
 
 describe("EventOwner", () => {

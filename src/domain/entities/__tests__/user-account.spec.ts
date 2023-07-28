@@ -1,5 +1,5 @@
 import { PaymentEnum } from "../payment-enum";
-import { ConsumerAccount } from "../consumer-accounts";
+import { ConsumerAccount } from "../consumer/consumer-accounts";
 
 describe("ConsumerAccount", () => {
   it("should create a valid user account", () => {

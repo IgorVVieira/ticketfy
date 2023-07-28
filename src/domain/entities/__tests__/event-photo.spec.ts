@@ -1,4 +1,4 @@
-import { EventPhoto } from "../event-photo";
+import { EventPhoto } from "../event/event-photo";
 
 describe("EventPhoto", () => {
   it("should create a valid event photo", () => {

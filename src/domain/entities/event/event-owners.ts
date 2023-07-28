@@ -1,4 +1,4 @@
-import { User, UserProps } from "./user";
+import { User, UserProps } from "../user";
 
 export enum EventOwnerType {
   EMPRESA = "empresa",

@@ -1,4 +1,4 @@
-import { Consumer } from "../consumer";
+import { Consumer } from "../consumer/consumer";
 import { UserProps } from "../user";
 
 describe("Consumer", () => {

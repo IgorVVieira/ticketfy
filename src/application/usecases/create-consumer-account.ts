@@ -1,4 +1,4 @@
-import { ConsumerAccount } from "../../domain/entities/consumer-accounts";
+import { ConsumerAccount } from "../../domain/entities/consumer/consumer-accounts";
 import { IConsumerAccountRepository } from "../../domain/repositories/consumer-account.repository";
 import { PaymentEnum } from "../../domain/entities/payment-enum";
 

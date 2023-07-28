@@ -1,4 +1,4 @@
-import { Entity } from "../../core/domain/Entity";
+import { Entity } from "../../../core/domain/Entity";
 
 type UserPermissionProps = {
   user_id: string;

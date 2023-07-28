@@ -1,4 +1,4 @@
-import { UserPermission } from "../entities/user-permission";
+import { UserPermission } from "../entities/permission/user-permission";
 import { IGenericCreateRepository } from "./generic-create.repository";
 
 export interface IUserPermissionRepository
