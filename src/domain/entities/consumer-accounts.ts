@@ -1,15 +1,15 @@
 import { Entity } from "../../core/domain/Entity";
 import { PaymentEnum } from "./payment-enum";
 
-type UserAccountProps = {
-  user_id: string;
+type ConsumerAccountProps = {
+  consumer_id: string;
   name: string;
   amount: number;
   type: PaymentEnum;
 };
 
-export class UserAccount extends Entity<UserAccountProps> {
-  private constructor(props: UserAccountProps, id?: string) {
+export class ConsumerAccount extends Entity<ConsumerAccountProps> {
+  private constructor(props: ConsumerAccountProps, id?: string) {
     super(props, id);
 
     if (!this.isValidAmount(props.amount)) {
@@ -17,8 +17,8 @@ export class UserAccount extends Entity<UserAccountProps> {
     }
   }
 
-  static create(props: UserAccountProps, id?: string): UserAccount {
-    return new UserAccount(props, id);
+  static create(props: ConsumerAccountProps, id?: string): ConsumerAccount {
+    return new ConsumerAccount(props, id);
   }
 
   private isValidAmount(amount: number): boolean {

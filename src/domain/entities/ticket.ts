@@ -2,7 +2,7 @@ import { Entity } from "../../core/domain/Entity";
 
 type TicketProps = {
   event_id: string;
-  user_id: string;
+  consumer_id: string;
   payment_id: string;
 };
 
