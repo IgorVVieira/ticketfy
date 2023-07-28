@@ -30,4 +30,8 @@ export abstract class User extends Entity<UserProps> {
   private isvalidPassword(password: string): boolean {
     return this.passwordRegex.test(password);
   }
+
+  public getPassword(): string {
+    return this.props.password;
+  }
 }
