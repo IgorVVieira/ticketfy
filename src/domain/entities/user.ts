@@ -4,6 +4,7 @@ export type UserProps = {
   name: string;
   email: string;
   password: string;
+  picture?: string;
 };
 
 export abstract class User extends Entity<UserProps> {
