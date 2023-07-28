@@ -6,7 +6,7 @@ export class CreateConsumer {
   constructor(private readonly consumerRepository: IUserRepository) {}
 
   async execute(input: UserProps) {
-    let consumer = await this.consumerRepository.findByEmail(input.email);
+    let consumer = await this.consumerRepository.findBy("email", input.email);
 
     if (consumer) {
       throw new Error("Email already in use");

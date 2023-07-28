@@ -12,5 +12,5 @@ export interface IEventRepository extends IGenericCreateRepository<Event> {
   findAll(props?: findAllProps): Promise<Event[]>;
   findById(id: string): Promise<Event | null>;
   findByOwner(owner_id: string): Promise<Event[]>;
-  update(event: Event): Promise<Event>;
+  update(id: string, event: Event): Promise<Event>;
 }

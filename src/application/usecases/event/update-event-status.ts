@@ -12,7 +12,6 @@ export class UpdateEventStatus {
     }
 
     event.props.status = EventStatus[status as keyof typeof EventStatus];
-
-    return this.eventRepository.update(event);
+    return this.eventRepository.update(event.getId(), event);
   }
 }
