@@ -1,4 +1,4 @@
-import { Event } from "../event";
+import { Event, EventStatus } from "../event";
 
 describe("Event", () => {
   it("should create a valid event", () => {
@@ -10,6 +10,7 @@ describe("Event", () => {
       location: "Test",
       participants_limit: 10,
       unitary_price: 10,
+      status: EventStatus.OPEN,
     });
 
     expect(event).toBeTruthy();

@@ -1,5 +1,12 @@
 import { Entity } from "../../core/domain/Entity";
 
+export enum EventStatus {
+  CANCELED = "CANCELED",
+  FINISHED = "FINISHED",
+  OPEN = "OPEN",
+  SOLD_OUT = "SOLD_OUT",
+}
+
 type EventProps = {
   event_owner_id: string;
   name: string;
@@ -8,6 +15,7 @@ type EventProps = {
   location: string;
   participants_limit: number;
   unitary_price: number;
+  status: EventStatus;
 };
 
 export class Event extends Entity<EventProps> {
