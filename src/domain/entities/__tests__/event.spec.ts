@@ -11,6 +11,7 @@ describe("Event", () => {
       participants_limit: 10,
       unitary_price: 10,
       status: EventStatus.OPEN,
+      available_tickets: 10,
     });
 
     expect(event).toBeTruthy();
@@ -20,5 +21,43 @@ describe("Event", () => {
     expect(event.props.location).toBe("Test");
     expect(event.props.participants_limit).toBe(10);
     expect(event.props.unitary_price).toBe(10);
+    expect(event.props.status).toBe(EventStatus.OPEN);
+    expect(event.props.available_tickets).toBe(10);
+  });
+
+  it("should decrement available tickets", () => {
+    const event = Event.create({
+      event_owner_id: "1",
+      name: "Igor",
+      datetime: "2021-10-10T10:00:00",
+      description: "Test",
+      location: "Test",
+      participants_limit: 10,
+      unitary_price: 10,
+      status: EventStatus.OPEN,
+      available_tickets: 10,
+    });
+
+    event.decrementAvailableTickets(3);
+
+    expect(event.props.available_tickets).toBe(7);
+  });
+
+  it("should not decrement available tickets", () => {
+    const event = Event.create({
+      event_owner_id: "1",
+      name: "Igor",
+      datetime: "2021-10-10T10:00:00",
+      description: "Test",
+      location: "Test",
+      participants_limit: 10,
+      unitary_price: 10,
+      status: EventStatus.OPEN,
+      available_tickets: 10,
+    });
+
+    event.decrementAvailableTickets(11);
+
+    expect(event.props.available_tickets).toBe(10);
   });
 });
