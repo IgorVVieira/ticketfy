@@ -10,6 +10,7 @@ export class AuthController {
 
   async login(req: Request, res: Response) {
     try {
+      console.log("login");
       const { email, password } = req.body;
 
       const user = await this.findUser.execute(email);
