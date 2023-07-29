@@ -1,4 +1,4 @@
-import { EventOwner } from "../../entities/event/event-owners";
+import { EventOwner } from "../../entities/event/event-owner";
 import { IGenericCreateRepository } from "../generic-create.repository";
 
 export interface IEventOwnerRepository

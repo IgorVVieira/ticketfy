@@ -1,5 +1,5 @@
 import { Event, EventProps } from "../../../domain/entities/event/event";
-import { EventOwner } from "../../../domain/entities/event/event-owners";
+import { EventOwner } from "../../../domain/entities/event/event-owner";
 import { IEventRepository } from "../../../domain/repositories/event/event.repository";
 
 export class CreateEvent {
