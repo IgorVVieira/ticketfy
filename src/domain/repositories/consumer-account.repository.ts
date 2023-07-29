@@ -1,4 +1,4 @@
-import { ConsumerAccount } from "../entities/consumer/consumer-accounts";
+import { ConsumerAccount } from "../entities/user/user-account";
 import { IGenericCreateRepository } from "./generic-create.repository";
 
 export interface IConsumerAccountRepository

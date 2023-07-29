@@ -3,12 +3,12 @@ import { UserPermission } from "../permission/user-permission";
 describe("UserPermission", () => {
   it("should create a valid user permission", () => {
     const userPermission = UserPermission.create({
-      user_id: "1",
-      permission_id: "1",
+      userId: "1",
+      permissionId: "1",
     });
 
     expect(userPermission).toBeTruthy();
-    expect(userPermission.props.user_id).toBe("1");
-    expect(userPermission.props.permission_id).toBe("1");
+    expect(userPermission.userId).toBe("1");
+    expect(userPermission.permissionId).toBe("1");
   });
 });

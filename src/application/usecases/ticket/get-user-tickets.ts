@@ -1,9 +1,9 @@
 import { ITicketRepository } from "../../../domain/repositories/ticket.repository";
 
-export class GetConsumerTickets {
+export class GetUserTickets {
   constructor(private readonly ticketRepository: ITicketRepository) {}
 
-  async execute(consumerId: string) {
-    return this.ticketRepository.getByConsumerId(consumerId);
+  async execute(userId: string) {
+    return this.ticketRepository.getByConsumerId(userId);
   }
 }

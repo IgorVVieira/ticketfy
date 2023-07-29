@@ -8,7 +8,7 @@ describe("Permission", () => {
     });
 
     expect(permission).toBeTruthy();
-    expect(permission.props.name).toBe("ADMIN");
-    expect(permission.props.description).toBe("Administrador");
+    expect(permission.name).toBe("ADMIN");
+    expect(permission.description).toBe("Administrador");
   });
 });

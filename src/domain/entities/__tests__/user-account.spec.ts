@@ -1,30 +1,30 @@
 import { PaymentEnum } from "../payment-enum";
-import { ConsumerAccount } from "../consumer/consumer-accounts";
+import { UserAccount } from "../user/user-account";
 
-describe("ConsumerAccount", () => {
+describe("UserAccount", () => {
+  const userAccount = UserAccount.create("1", "Igor", 10, PaymentEnum.DEBIT);
   it("should create a valid user account", () => {
-    const consumerAccount = ConsumerAccount.create({
-      consumer_id: "1",
-      amount: 10,
-      name: "Igor",
-      type: PaymentEnum.DEBIT,
-    });
+    expect(userAccount).toBeTruthy();
+    expect(userAccount.userId).toBe("1");
+    expect(userAccount.getAmount()).toBe(10);
+    expect(userAccount.name).toBe("Igor");
+    expect(userAccount.type).toBe(PaymentEnum.DEBIT);
+  });
 
-    expect(consumerAccount).toBeTruthy();
-    expect(consumerAccount.props.consumer_id).toBe("1");
-    expect(consumerAccount.props.amount).toBe(10);
-    expect(consumerAccount.props.name).toBe("Igor");
-    expect(consumerAccount.props.type).toBe(PaymentEnum.DEBIT);
+  it("should throw an error if amount is negative", () => {
+    expect(() => userAccount.updateAmount(-10)).toThrowError(
+      "Amount cannot be negative"
+    );
+  });
+
+  it("should update amount", () => {
+    userAccount.updateAmount(20);
+    expect(userAccount.getAmount()).toBe(20);
   });
 
   it("should throw an error if amount is negative", () => {
     expect(() =>
-      ConsumerAccount.create({
-        consumer_id: "1",
-        amount: -10,
-        name: "Igor",
-        type: PaymentEnum.DEBIT,
-      })
+      UserAccount.create("1", "Igor", -10, PaymentEnum.DEBIT)
     ).toThrowError("Amount cannot be negative");
   });
 });

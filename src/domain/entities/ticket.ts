@@ -1,17 +1,23 @@
 import { Entity } from "../../core/domain/Entity";
 
 export type TicketProps = {
-  event_id: string;
-  consumer_id: string;
-  payment_id: string;
+  eventId: string;
+  consumerId: string;
+  paymentId: string;
+  id?: string;
 };
 
-export class Ticket extends Entity<TicketProps> {
-  private constructor(props: TicketProps, id?: string) {
-    super(props, id);
+export class Ticket extends Entity {
+  private constructor(
+    public readonly eventId: string,
+    public readonly consumerId: string,
+    public readonly paymentId: string,
+    id?: string
+  ) {
+    super(id);
   }
 
-  static create(props: TicketProps, id?: string): Ticket {
-    return new Ticket(props, id);
+  static create({ eventId, consumerId, paymentId, id }: TicketProps): Ticket {
+    return new Ticket(eventId, consumerId, paymentId, id);
   }
 }

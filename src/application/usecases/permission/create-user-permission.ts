@@ -22,10 +22,10 @@ export class CreateUserPermission {
     }
 
     const props: UserPermissionProps = {
-      user_id: user.getId(),
-      permission_id: permission.getId(),
+      userId: user.getId(),
+      permissionId: permission.getId(),
     };
-    const userPermission = UserPermission.create(props);
+    const userPermission = UserPermission.create({ ...props });
     return this.userPermissionRepository.create(userPermission);
   }
 }

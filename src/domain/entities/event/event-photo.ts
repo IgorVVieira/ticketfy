@@ -1,16 +1,21 @@
 import { Entity } from "../../../core/domain/Entity";
 
 export type EventPhotoProps = {
-  event_id: string;
+  eventId: string;
   url: string;
+  id?: string;
 };
 
-export class EventPhoto extends Entity<EventPhotoProps> {
-  private constructor(props: EventPhotoProps, id?: string) {
-    super(props, id);
+export class EventPhoto extends Entity {
+  private constructor(
+    public readonly eventId: string,
+    public readonly url: string,
+    id?: string
+  ) {
+    super(id);
   }
 
-  static create(props: EventPhotoProps, id?: string): EventPhoto {
-    return new EventPhoto(props, id);
+  static create({ eventId, url, id }: EventPhotoProps): EventPhoto {
+    return new EventPhoto(eventId, url, id);
   }
 }

@@ -5,22 +5,41 @@ export type UserProps = {
   email: string;
   password: string;
   picture?: string;
+  type?: UserType;
+  id?: string;
 };
 
-export abstract class User extends Entity<UserProps> {
+export enum UserType {
+  EMPRESA = "empresa",
+  UNIVERSIDADE = "universidade",
+  COMPRADOR = "comprador",
+}
+
+export class User extends Entity {
   private emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
   private passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/;
 
-  constructor(props: UserProps, id?: string) {
-    super(props, id);
+  private constructor(
+    public readonly name: string,
+    public readonly email: string,
+    public readonly password: string,
+    private picture?: string,
+    public readonly type: UserType = UserType.COMPRADOR,
+    id?: string
+  ) {
+    super(id);
 
-    if (!this.isvalidEmail(props.email)) {
+    if (!this.isvalidEmail(email)) {
       throw new Error("Invalid email");
     }
 
-    if (!this.isvalidPassword(props.password)) {
+    if (!this.isvalidPassword(password)) {
       throw new Error("Invalid password");
     }
+  }
+
+  static create({ name, email, password, picture, type, id }: UserProps): User {
+    return new User(name, email, password, picture, type, id);
   }
 
   private isvalidEmail(email: string): boolean {
@@ -32,10 +51,18 @@ export abstract class User extends Entity<UserProps> {
   }
 
   public getPassword(): string {
-    return this.props.password;
+    return this.password;
   }
 
   public getEmail(): string {
-    return this.props.email;
+    return this.email;
+  }
+
+  public getPicture(): string | undefined {
+    return this.picture;
+  }
+
+  public updatePicture(picture: string): void {
+    this.picture = picture;
   }
 }

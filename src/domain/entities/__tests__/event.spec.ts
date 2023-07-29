@@ -1,63 +1,37 @@
 import { Event, EventStatus } from "../event/event";
 
 describe("Event", () => {
-  it("should create a valid event", () => {
-    const event = Event.create({
-      event_owner_id: "1",
-      name: "Igor",
-      datetime: "2021-10-10T10:00:00",
-      description: "Test",
-      location: "Test",
-      participants_limit: 10,
-      unitary_price: 10,
-      status: EventStatus.OPEN,
-      available_tickets: 10,
-    });
+  const event = Event.create({
+    userId: "1",
+    name: "Igor",
+    datetime: "2021-10-10T10:00:00",
+    description: "Test",
+    location: "Test",
+    participantsLimit: 10,
+    unitaryPrice: 10,
+    status: EventStatus.OPEN,
+    avaliableTickets: 10,
+  });
 
+  it("should create a valid event", () => {
     expect(event).toBeTruthy();
-    expect(event.props.name).toBe("Igor");
-    expect(event.props.datetime).toBe("2021-10-10T10:00:00");
-    expect(event.props.description).toBe("Test");
-    expect(event.props.location).toBe("Test");
-    expect(event.props.participants_limit).toBe(10);
-    expect(event.props.unitary_price).toBe(10);
-    expect(event.props.status).toBe(EventStatus.OPEN);
-    expect(event.props.available_tickets).toBe(10);
+    expect(event.name).toBe("Igor");
+    expect(event.datetime).toBe("2021-10-10T10:00:00");
+    expect(event.description).toBe("Test");
+    expect(event.location).toBe("Test");
+    expect(event.participantsLimit).toBe(10);
+    expect(event.unitaryPrice).toBe(10);
+    expect(event.getStatus()).toBe(EventStatus.OPEN);
+    expect(event.avaliableTickets).toBe(10);
   });
 
   it("should decrement available tickets", () => {
-    const event = Event.create({
-      event_owner_id: "1",
-      name: "Igor",
-      datetime: "2021-10-10T10:00:00",
-      description: "Test",
-      location: "Test",
-      participants_limit: 10,
-      unitary_price: 10,
-      status: EventStatus.OPEN,
-      available_tickets: 10,
-    });
-
     event.decrementAvailableTickets(3);
-
-    expect(event.props.available_tickets).toBe(7);
+    expect(event.avaliableTickets).toBe(7);
   });
 
   it("should not decrement available tickets", () => {
-    const event = Event.create({
-      event_owner_id: "1",
-      name: "Igor",
-      datetime: "2021-10-10T10:00:00",
-      description: "Test",
-      location: "Test",
-      participants_limit: 10,
-      unitary_price: 10,
-      status: EventStatus.OPEN,
-      available_tickets: 10,
-    });
-
     event.decrementAvailableTickets(11);
-
-    expect(event.props.available_tickets).toBe(10);
+    expect(event.avaliableTickets).toBe(7);
   });
 });

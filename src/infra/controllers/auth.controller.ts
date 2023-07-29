@@ -22,7 +22,7 @@ export class AuthController {
       if (!isValidPassword) {
         return res.status(401).json({ message: "Password does not match" });
       }
-      const token = this.jwtService.generateToken(user.id);
+      const token = this.jwtService.generateToken(user.getId());
 
       return res.json({ token });
     } catch (error: any) {

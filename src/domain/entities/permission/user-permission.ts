@@ -1,16 +1,25 @@
 import { Entity } from "../../../core/domain/Entity";
 
 export type UserPermissionProps = {
-  user_id: string;
-  permission_id: string;
+  userId: string;
+  permissionId: string;
+  id?: string;
 };
 
-export class UserPermission extends Entity<UserPermissionProps> {
-  private constructor(props: UserPermissionProps, id?: string) {
-    super(props, id);
+export class UserPermission extends Entity {
+  private constructor(
+    public readonly userId: string,
+    public readonly permissionId: string,
+    id?: string
+  ) {
+    super(id);
   }
 
-  static create(props: UserPermissionProps, id?: string): UserPermission {
-    return new UserPermission(props, id);
+  static create({
+    userId,
+    permissionId,
+    id,
+  }: UserPermissionProps): UserPermission {
+    return new UserPermission(userId, permissionId, id);
   }
 }

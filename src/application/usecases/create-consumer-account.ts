@@ -1,8 +1,8 @@
-import { Consumer } from "../../domain/entities/consumer/consumer";
+import { Consumer } from "../../domain/entities/user/consumer";
 import {
   ConsumerAccount,
   ConsumerAccountProps,
-} from "../../domain/entities/consumer/consumer-accounts";
+} from "../../domain/entities/user/user-account";
 import { IConsumerAccountRepository } from "../../domain/repositories/consumer-account.repository";
 
 export class CreateConsumerAccount {

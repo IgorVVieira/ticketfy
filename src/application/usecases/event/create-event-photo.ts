@@ -20,7 +20,7 @@ export class CreateEventPhoto {
       eventPhotos.push(
         EventPhoto.create({
           ...input[i],
-          event_id: eventId,
+          eventId,
         })
       );
     }

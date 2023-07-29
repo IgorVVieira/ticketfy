@@ -1,12 +1,12 @@
 import { Event, EventProps } from "../../../domain/entities/event/event";
-import { EventOwner } from "../../../domain/entities/event/event-owner";
+import { User } from "../../../domain/entities/user";
 import { IEventRepository } from "../../../domain/repositories/event/event.repository";
 
 export class CreateEvent {
   constructor(private readonly eventRepository: IEventRepository) {}
 
-  async execute(eventOwner: EventOwner, input: EventProps): Promise<Event> {
-    input.event_owner_id = eventOwner.getId();
+  async execute(user: User, input: EventProps): Promise<Event> {
+    input.userId = user.getId();
     const event = Event.create(input);
     return this.eventRepository.create(event);
   }

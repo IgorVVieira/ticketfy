@@ -8,20 +8,43 @@ export type PaymentProps = {
   type: PaymentEnum;
 };
 
-export class Payment extends Entity<PaymentProps> {
-  private constructor(props: PaymentProps, id?: string) {
-    super(props, id);
+export class Payment extends Entity {
+  private constructor(
+    public readonly eventId: string,
+    public readonly userAccountId: string,
+    private value: number,
+    public readonly type: PaymentEnum,
+    id?: string
+  ) {
+    super(id);
 
-    if (!this.isValidValue(props.value)) {
+    if (!this.isValidValue(value)) {
       throw new Error("Value cannot be negative");
     }
   }
 
-  static create(props: PaymentProps, id?: string): Payment {
-    return new Payment(props, id);
+  static create(
+    eventId: string,
+    userAccountId: string,
+    value: number,
+    type: PaymentEnum,
+    id?: string
+  ): Payment {
+    return new Payment(eventId, userAccountId, value, type, id);
   }
 
   private isValidValue(value: number): boolean {
     return value >= 0;
+  }
+
+  public updateValue(value: number): void {
+    if (!this.isValidValue(value)) {
+      throw new Error("Value cannot be negative");
+    }
+    this.value = value;
+  }
+
+  public getValue(): number {
+    return this.value;
   }
 }
