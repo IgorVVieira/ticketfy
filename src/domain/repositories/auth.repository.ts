@@ -1,6 +1,5 @@
 export interface IAuthRepository {
-  generateToken(payload: string): string;
-  isValidPassword(password: string, hash: string): boolean;
-  verifyToken(token: string): object;
+  generateToken(userId: string): string;
+  isValidPassword(password: string, hash: string): Promise<boolean>;
   logout(): void;
 }

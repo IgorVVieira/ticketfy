@@ -34,4 +34,8 @@ export abstract class User extends Entity<UserProps> {
   public getPassword(): string {
     return this.props.password;
   }
+
+  public getEmail(): string {
+    return this.props.email;
+  }
 }
