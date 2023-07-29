@@ -7,7 +7,7 @@ export enum EventStatus {
   SOLD_OUT = "SOLD_OUT",
 }
 
-type EventProps = {
+export type EventProps = {
   event_owner_id: string;
   name: string;
   datetime: string;

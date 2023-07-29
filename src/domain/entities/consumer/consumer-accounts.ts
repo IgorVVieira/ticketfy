@@ -1,7 +1,7 @@
 import { Entity } from "../../../core/domain/Entity";
 import { PaymentEnum } from "../payment-enum";
 
-type ConsumerAccountProps = {
+export type ConsumerAccountProps = {
   consumer_id: string;
   name: string;
   amount: number;

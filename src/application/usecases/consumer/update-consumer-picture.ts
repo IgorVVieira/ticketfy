@@ -6,7 +6,6 @@ export class UpdateConsumerPicture {
 
   async execute(consumerId: string, picture: string): Promise<Consumer> {
     let consumer = await this.consumerRepository.findBy("id", consumerId);
-
     if (!consumer) {
       throw new Error("Consumer not found");
     }

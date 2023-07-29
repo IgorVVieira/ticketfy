@@ -4,13 +4,7 @@ import { IEventRepository } from "../../../domain/repositories/event/event.repos
 export class UpdateEventStatus {
   constructor(private readonly eventRepository: IEventRepository) {}
 
-  async execute(id: string, status: string): Promise<Event> {
-    const event = await this.eventRepository.findById(id);
-
-    if (!event) {
-      throw new Error("Event not found");
-    }
-
+  async execute(event: Event, status: string): Promise<Event> {
     event.props.status = EventStatus[status as keyof typeof EventStatus];
     return this.eventRepository.update(event.getId(), event);
   }

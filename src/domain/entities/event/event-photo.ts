@@ -1,6 +1,6 @@
 import { Entity } from "../../../core/domain/Entity";
 
-type EventPhotoProps = {
+export type EventPhotoProps = {
   event_id: string;
   url: string;
 };

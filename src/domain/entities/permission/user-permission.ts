@@ -1,6 +1,6 @@
 import { Entity } from "../../../core/domain/Entity";
 
-type UserPermissionProps = {
+export type UserPermissionProps = {
   user_id: string;
   permission_id: string;
 };
