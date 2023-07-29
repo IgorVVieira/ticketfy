@@ -1,10 +1,10 @@
-import { IJwtRepository } from "../../domain/repositories/jwt.repository";
+import { IAuthRepository } from "../../domain/repositories/auth.repository";
 import { IUserRepository } from "../../domain/repositories/user.repository";
 
 export class Login {
   constructor(
     private readonly userRepository: IUserRepository,
-    private readonly jwtRepository: IJwtRepository
+    private readonly authRepository: IAuthRepository
   ) {}
 
   async execute(email: string, password: string): Promise<string | null> {
@@ -14,7 +14,7 @@ export class Login {
       throw new Error("User not found");
     }
 
-    const isPasswordCorrect = this.jwtRepository.isValidPassword(
+    const isPasswordCorrect = this.authRepository.isValidPassword(
       password,
       user.getPassword()
     );
@@ -22,7 +22,7 @@ export class Login {
     if (!isPasswordCorrect) {
       throw new Error("Password does not match");
     }
-    const token = this.jwtRepository.generateToken(user.getId());
+    const token = this.authRepository.generateToken(user.getId());
     return token;
   }
 }

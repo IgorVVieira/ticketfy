@@ -1,3 +1,4 @@
+import { Consumer } from "../../domain/entities/consumer/consumer";
 import {
   ConsumerAccount,
   ConsumerAccountProps,
@@ -9,7 +10,11 @@ export class CreateConsumerAccount {
     private readonly consumerAccountRepo: IConsumerAccountRepository
   ) {}
 
-  async execute(input: ConsumerAccountProps): Promise<ConsumerAccount> {
+  async execute(
+    consumer: Consumer,
+    input: ConsumerAccountProps
+  ): Promise<ConsumerAccount> {
+    input.consumer_id = consumer.getId();
     const consumerAccount = ConsumerAccount.create(input);
     return this.consumerAccountRepo.create(consumerAccount);
   }
