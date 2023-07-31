@@ -22,8 +22,8 @@ export class CreateUserPermission {
     }
 
     const props: UserPermissionProps = {
-      userId: user.getId(),
-      permissionId: permission.getId(),
+      user_id: user.getId(),
+      permission_id: permission.getId(),
     };
     const userPermission = UserPermission.create({ ...props });
     return this.userPermissionRepository.create(userPermission);

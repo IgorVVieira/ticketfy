@@ -15,5 +15,3 @@ app.use(routes);
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
-
-// npx typeorm-ts-node-esm migration:run -d src/data-source.ts
