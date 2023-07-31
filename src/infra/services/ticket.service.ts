@@ -11,7 +11,10 @@ export class TicketService {
     private readonly getUserTickets: GetUserTickets,
     private readonly eventService: EventService,
     private readonly userService: UserService
-  ) {}
+  ) {
+    this.create = this.create.bind(this);
+    this.get = this.get.bind(this);
+  }
 
   async create(
     createTicketDto: CreateTicketDto,
@@ -21,7 +24,7 @@ export class TicketService {
     const user = await this.userService.findById(createTicketDto.user_id);
     if (!event) throw new Error("Event not found");
     if (!user) throw new Error("User not found");
-    
+
     await this.createTicket.execute(createTicketDto, quantity, event);
   }
 

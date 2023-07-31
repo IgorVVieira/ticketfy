@@ -7,7 +7,9 @@ export class UserAccountService {
   constructor(
     private readonly createUserAccount: CreateUserAccount,
     private readonly userService: UserService
-  ) {}
+  ) {
+    this.create = this.create.bind(this);
+  }
 
   async create(userDto: CreateUserAccountDto): Promise<UserAccount> {
     const user = await this.userService.findById(userDto.user_id);

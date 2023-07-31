@@ -1,6 +1,3 @@
-import { CreateUser } from "../../application/usecases/create-user";
-import { FindUser } from "../../application/usecases/find-user";
-import { UpdateUserPicture } from "../../application/usecases/update-user-picture";
 import { Request, Response } from "express";
 import { UserService } from "../services/user.service";
 

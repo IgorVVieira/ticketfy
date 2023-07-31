@@ -14,6 +14,7 @@ export class EventService {
   ) {
     this.create = this.create.bind(this);
     this.findById = this.findById.bind(this);
+    this.decrementAvailableTickets = this.decrementAvailableTickets.bind(this);
   }
 
   async create(createEventDto: CreateEventDto): Promise<Event> {
