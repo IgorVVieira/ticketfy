@@ -3,5 +3,5 @@ import { IGenericCreateRepository } from "./generic-create.repository";
 
 export interface IUserAccountRepository
   extends IGenericCreateRepository<UserAccount> {
-  findByUserId(consumer_id: string): Promise<UserAccount | null>;
+  findByUserId(userId: string): Promise<UserAccount | null>;
 }

@@ -1,7 +1,7 @@
 import { Ticket } from "../entities/ticket";
 
 export interface ITicketRepository {
-  createMany(ticket: Ticket[]): Promise<Ticket[]>;
-  getByUserId(consumer_id: string): Promise<Ticket[]>;
-  getByEventId(event_id: string): Promise<Ticket[]>;
+  createMany(ticket: Ticket[]): Promise<void>;
+  getByUserId(userId: string): Promise<Ticket[]>;
+  getByEventId(eventId: string): Promise<Ticket[]>;
 }

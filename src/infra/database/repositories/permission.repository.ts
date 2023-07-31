@@ -1,16 +1,22 @@
 import { Repository } from "typeorm";
-import { Permission } from "../../../domain/entities/permission/permission";
 import { IPermissionRepository } from "../../../domain/repositories/permission.repository";
-import { getRepository } from "typeorm";
+import { PermissionDB } from "../entities/permission";
+import { Permission } from "../../../domain/entities/permission/permission";
+import { PermissionMapper } from "../../mapper/permission.mapper";
 
 export class PermissionRepository implements IPermissionRepository {
-  constructor(private readonly repository: Repository<Permission>) {}
+  constructor(private readonly repository: Repository<PermissionDB>) {}
 
   async findByName(name: string): Promise<Permission | null> {
-    // return this.repository.findOneBy({ name });
-    throw new Error("Method not implemented.");
+    const permissionDB = await this.repository.findOne({ where: { name } });
+    if (!permissionDB) return null;
+    return PermissionMapper.toDomain(permissionDB);
   }
-  create(entity: Permission): Promise<Permission> {
-    return this.repository.save(entity);
+
+  async create(entity: Permission): Promise<Permission> {
+    const permissionDB = PermissionMapper.toPersistence(entity);
+    const createdPermission = this.repository.create(permissionDB);
+    await this.repository.save(createdPermission);
+    return PermissionMapper.toDomain(createdPermission);
   }
 }
