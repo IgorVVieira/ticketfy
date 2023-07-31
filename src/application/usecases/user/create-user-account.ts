@@ -1,9 +1,9 @@
-import { User } from "../../domain/entities/user";
+import { User } from "../../../domain/entities/users/user";
 import {
   UserAccount,
   UserAccountProps,
-} from "../../domain/entities/user/user-account";
-import { IUserAccountRepository } from "../../domain/repositories/user-account.repository";
+} from "../../../domain/entities/users/user-account";
+import { IUserAccountRepository } from "../../../domain/repositories/users/user-account.repository";
 
 export class CreateUserAccount {
   constructor(private readonly UserAccountRepo: IUserAccountRepository) {}

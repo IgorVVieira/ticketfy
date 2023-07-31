@@ -1,7 +1,7 @@
 import { CreateEvent } from "../../application/usecases/event/create-event";
 import { DecrementAvaliableTickets } from "../../application/usecases/event/decrement-avaliable-tickets";
 import { FindEvent } from "../../application/usecases/event/find-event";
-import { Event } from "../../domain/entities/event/event";
+import { Event } from "../../domain/entities/events/event";
 import { CreateEventDto } from "../dto/create-event-dto";
 import { UserService } from "./user.service";
 

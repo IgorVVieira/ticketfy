@@ -2,9 +2,9 @@ import { Repository } from "typeorm";
 import {
   IEventRepository,
   findAllProps,
-} from "../../../domain/repositories/event/event.repository";
+} from "../../../domain/repositories/events/event.repository";
 import { EventDB } from "../entities/event";
-import { Event } from "../../../domain/entities/event/event";
+import { Event } from "../../../domain/entities/events/event";
 import { EventMapper } from "../../mapper/event.mapper";
 
 export class EventRepository implements IEventRepository {

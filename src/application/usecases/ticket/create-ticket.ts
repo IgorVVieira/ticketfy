@@ -1,6 +1,6 @@
 import { ITicketRepository } from "../../../domain/repositories/ticket.repository";
 import { Ticket, TicketProps } from "../../../domain/entities/ticket";
-import { Event } from "../../../domain/entities/event/event";
+import { Event } from "../../../domain/entities/events/event";
 
 export class CreateTicket {
   constructor(private readonly ticketRepository: ITicketRepository) {}

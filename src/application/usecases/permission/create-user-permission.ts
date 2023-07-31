@@ -1,10 +1,10 @@
-import { Permission } from "../../../domain/entities/permission/permission";
+import { Permission } from "../../../domain/entities/permissions/permission";
 import {
   UserPermission,
   UserPermissionProps,
-} from "../../../domain/entities/permission/user-permission";
-import { User } from "../../../domain/entities/user";
-import { IUserPermissionRepository } from "../../../domain/repositories/user-permission.repository";
+} from "../../../domain/entities/permissions/user-permission";
+import { User } from "../../../domain/entities/users/user";
+import { IUserPermissionRepository } from "../../../domain/repositories/users/user-permission.repository";
 
 export class CreateUserPermission {
   constructor(

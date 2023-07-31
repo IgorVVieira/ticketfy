@@ -1,5 +1,5 @@
 import { PaymentEnum } from "../payment-enum";
-import { UserAccount } from "../user/user-account";
+import { UserAccount } from "../users/user-account";
 
 describe("UserAccount", () => {
   const userAccount = UserAccount.create({

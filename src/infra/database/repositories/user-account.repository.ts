@@ -1,6 +1,6 @@
 import { Repository } from "typeorm";
-import { UserAccount } from "../../../domain/entities/user/user-account";
-import { IUserAccountRepository } from "../../../domain/repositories/user-account.repository";
+import { UserAccount } from "../../../domain/entities/users/user-account";
+import { IUserAccountRepository } from "../../../domain/repositories/users/user-account.repository";
 import { UserAccountDB } from "../entities/user-account";
 import { UserAccountMapper } from "../../mapper/user-account.mapper";
 
@@ -29,5 +29,11 @@ export class UserAccountRepository implements IUserAccountRepository {
     await this.repository.save(createdUserAccount);
 
     return UserAccountMapper.toDomain(createdUserAccount);
+  }
+
+  async update(id: string, entity: UserAccount): Promise<UserAccount | null> {
+    const userAccountDB = UserAccountMapper.toPersistence(entity);
+    await this.repository.update(id, userAccountDB);
+    return UserAccountMapper.toDomain(userAccountDB);
   }
 }

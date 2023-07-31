@@ -1,7 +1,7 @@
 import { Repository } from "typeorm";
-import { IUserPermissionRepository } from "../../../domain/repositories/user-permission.repository";
+import { IUserPermissionRepository } from "../../../domain/repositories/users/user-permission.repository";
 import { UserPermissionDB } from "../entities/user-permission";
-import { UserPermission } from "../../../domain/entities/permission/user-permission";
+import { UserPermission } from "../../../domain/entities/permissions/user-permission";
 import { UserPermissionMapper } from "../../mapper/user-permission.mapper";
 
 export class UserPermissionRepository implements IUserPermissionRepository {

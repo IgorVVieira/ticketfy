@@ -1,4 +1,4 @@
-import { Entity } from "../../core/domain/Entity";
+import { Entity } from "../../../core/domain/Entity";
 
 export type UserProps = {
   name: string;

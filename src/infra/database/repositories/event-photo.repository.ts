@@ -1,7 +1,7 @@
 import { Repository } from "typeorm";
-import { IEventPhotoRepository } from "../../../domain/repositories/event/event-photo.repository";
+import { IEventPhotoRepository } from "../../../domain/repositories/events/event-photo.repository";
 import { EventPhotoDB } from "../entities/event-photo";
-import { EventPhoto } from "../../../domain/entities/event/event-photo";
+import { EventPhoto } from "../../../domain/entities/events/event-photo";
 import { EventPhotoMapper } from "../../mapper/event-photo.mapper";
 
 export class EventPhotoRepository implements IEventPhotoRepository {

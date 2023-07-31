@@ -1,19 +1,19 @@
-import { Event } from "../../domain/entities/event/event";
+import { Event } from "../../domain/entities/events/event";
 import { EventDB } from "../database/entities/event";
 
 export class EventMapper {
   static toDomain(eventDB: EventDB): Event {
     return Event.create({
       id: eventDB.id,
-      userId: eventDB.user_id,
+      user_id: eventDB.user_id,
       name: eventDB.name,
       datetime: eventDB.datetime,
       description: eventDB.description,
       location: eventDB.location,
-      participantsLimit: eventDB.participants_limit,
-      unitaryPrice: eventDB.unitary_price,
+      participants_limit: eventDB.participants_limit,
+      unitary_price: eventDB.unitary_price,
       status: eventDB.eventStatus,
-      avaliableTickets: eventDB.avaliable_tickets,
+      avaliable_tickets: eventDB.avaliable_tickets,
     });
   }
 

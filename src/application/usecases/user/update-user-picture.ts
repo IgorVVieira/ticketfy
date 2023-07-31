@@ -1,5 +1,5 @@
-import { User } from "../../domain/entities/user";
-import { IUserRepository } from "../../domain/repositories/user.repository";
+import { User } from "../../../domain/entities/users/user";
+import { IUserRepository } from "../../../domain/repositories/users/user.repository";
 
 export class UpdateUserPicture {
   constructor(private readonly userRepository: IUserRepository) {}

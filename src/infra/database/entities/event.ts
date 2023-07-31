@@ -5,7 +5,7 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from "typeorm";
-import { EventStatus } from "../../../domain/entities/event/event";
+import { EventStatus } from "../../../domain/entities/events/event";
 
 @Entity("events")
 export class EventDB {

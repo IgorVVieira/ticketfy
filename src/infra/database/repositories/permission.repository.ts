@@ -1,7 +1,7 @@
 import { Repository } from "typeorm";
 import { IPermissionRepository } from "../../../domain/repositories/permission.repository";
 import { PermissionDB } from "../entities/permission";
-import { Permission } from "../../../domain/entities/permission/permission";
+import { Permission } from "../../../domain/entities/permissions/permission";
 import { PermissionMapper } from "../../mapper/permission.mapper";
 
 export class PermissionRepository implements IPermissionRepository {

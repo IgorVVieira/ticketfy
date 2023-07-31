@@ -1,4 +1,4 @@
-import { Event } from "../../../domain/entities/event/event";
+import { Event } from "../../../domain/entities/events/event";
 import { Payment, PaymentProps } from "../../../domain/entities/payment";
 import { IPaymentRepository } from "../../../domain/repositories/payment.repository";
 
@@ -12,9 +12,9 @@ export class CreatePayment {
   ): Promise<Payment> {
     const avaliableTickets = event.hasAvailableTickets(quantity);
     if (!avaliableTickets) {
-      throw new Error("Not enough tickets");
+      throw new Error("Not enough tickets avaliable");
     }
-    input.eventId = event.getId();
+    input.event_id = event.getId();
     const payment = Payment.create(input);
 
     return this.paymentRepository.create(payment);

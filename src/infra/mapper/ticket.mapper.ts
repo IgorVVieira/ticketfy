@@ -5,9 +5,9 @@ export class TicketMapper {
   static toDomain(ticketDB: TicketDB): Ticket {
     return Ticket.create({
       id: ticketDB.id,
-      eventId: ticketDB.event_id,
-      userId: ticketDB.user_id,
-      paymentId: ticketDB.payment_id,
+      event_id: ticketDB.event_id,
+      user_id: ticketDB.user_id,
+      payment_id: ticketDB.payment_id,
     });
   }
 

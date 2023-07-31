@@ -1,7 +1,7 @@
 import {
   Permission,
   PermissionProps,
-} from "../../../domain/entities/permission/permission";
+} from "../../../domain/entities/permissions/permission";
 import { IPermissionRepository } from "../../../domain/repositories/permission.repository";
 
 export class CreatePermission {

@@ -1,6 +1,6 @@
-import { Event, EventProps } from "../../../domain/entities/event/event";
-import { User } from "../../../domain/entities/user";
-import { IEventRepository } from "../../../domain/repositories/event/event.repository";
+import { Event, EventProps } from "../../../domain/entities/events/event";
+import { User } from "../../../domain/entities/users/user";
+import { IEventRepository } from "../../../domain/repositories/events/event.repository";
 
 export class CreateEvent {
   constructor(private readonly eventRepository: IEventRepository) {}

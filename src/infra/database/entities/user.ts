@@ -28,10 +28,4 @@ export class UserDB {
 
   @UpdateDateColumn({ type: "timestamp" })
   updated_at: Date;
-
-  // @BeforeInsert()
-  // @BeforeUpdate()
-  // hashPassword() {
-  //   this.password = bcrypt.hashSync(this.password, 8);
-  // }
 }

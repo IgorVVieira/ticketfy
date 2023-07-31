@@ -1,4 +1,4 @@
-import { Event, EventStatus } from "../event/event";
+import { Event, EventStatus } from "../events/event";
 
 describe("Event", () => {
   const event = Event.create({

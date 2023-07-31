@@ -1,4 +1,4 @@
-import { IUserAccountRepository } from "../../domain/repositories/user-account.repository";
+import { IUserAccountRepository } from "../../../domain/repositories/users/user-account.repository";
 
 export class FindUserAccount {
   constructor(private readonly userAccountRepository: IUserAccountRepository) {}

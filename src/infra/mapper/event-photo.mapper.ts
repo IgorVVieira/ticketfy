@@ -1,11 +1,11 @@
-import { EventPhoto } from "../../domain/entities/event/event-photo";
+import { EventPhoto } from "../../domain/entities/events/event-photo";
 import { EventPhotoDB } from "../database/entities/event-photo";
 
 export class EventPhotoMapper {
   static toDomain(eventPhotoDB: EventPhotoDB): EventPhoto {
     return EventPhoto.create({
       id: eventPhotoDB.id,
-      eventId: eventPhotoDB.event_id,
+      event_id: eventPhotoDB.event_id,
       url: eventPhotoDB.url,
     });
   }

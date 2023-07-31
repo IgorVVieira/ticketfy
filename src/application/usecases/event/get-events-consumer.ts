@@ -1,8 +1,8 @@
-import { Event } from "../../../domain/entities/event/event";
+import { Event } from "../../../domain/entities/events/event";
 import {
   IEventRepository,
   findAllProps,
-} from "../../../domain/repositories/event/event.repository";
+} from "../../../domain/repositories/events/event.repository";
 
 export class GetEventsConsumer {
   constructor(private readonly eventRepository: IEventRepository) {}

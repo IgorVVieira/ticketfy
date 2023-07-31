@@ -1,6 +1,6 @@
 import { Repository } from "typeorm";
-import { User } from "../../../domain/entities/user";
-import { IUserRepository } from "../../../domain/repositories/user.repository";
+import { User } from "../../../domain/entities/users/user";
+import { IUserRepository } from "../../../domain/repositories/users/user.repository";
 import { UserMapper } from "../../mapper/user.mapper";
 import { UserDB } from "../entities/user";
 

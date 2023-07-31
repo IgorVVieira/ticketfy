@@ -1,5 +1,5 @@
 import { IAuthRepository } from "../../domain/repositories/auth.repository";
-import { IUserRepository } from "../../domain/repositories/user.repository";
+import { IUserRepository } from "../../domain/repositories/users/user.repository";
 
 export class Login {
   constructor(

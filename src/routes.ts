@@ -6,9 +6,9 @@ import { Login } from "./application/usecases/login";
 import { UserRepository } from "./infra/database/repositories/user.repository";
 import { JwtService } from "./infra/jwt/jwt.service";
 import { UserController } from "./infra/controllers/user.controller";
-import { CreateUser } from "./application/usecases/create-user";
-import { FindUser } from "./application/usecases/find-user";
-import { UpdateUserPicture } from "./application/usecases/update-user-picture";
+import { CreateUser } from "./application/usecases/user/create-user";
+import { FindUser } from "./application/usecases/user/find-user";
+import { UpdateUserPicture } from "./application/usecases/user/update-user-picture";
 import { authMiddleware } from "./infra/middlewares/auth.middleware";
 import { UserService } from "./infra/services/user.service";
 

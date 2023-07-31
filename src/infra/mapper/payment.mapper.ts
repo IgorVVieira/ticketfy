@@ -5,8 +5,8 @@ export class PaymentMapper {
   static toDomain(paymentDB: PaymentDB): Payment {
     return Payment.create({
       id: paymentDB.id,
-      eventId: paymentDB.event_id,
-      userAccountId: paymentDB.user_account_id,
+      event_id: paymentDB.event_id,
+      user_account_id: paymentDB.user_account_id,
       value: paymentDB.value,
       type: paymentDB.paymentType,
     });

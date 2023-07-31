@@ -1,9 +1,9 @@
-import { Event } from "../../../domain/entities/event/event";
+import { Event } from "../../../domain/entities/events/event";
 import {
   EventPhoto,
   EventPhotoProps,
-} from "../../../domain/entities/event/event-photo";
-import { IEventPhotoRepository } from "../../../domain/repositories/event/event-photo.repository";
+} from "../../../domain/entities/events/event-photo";
+import { IEventPhotoRepository } from "../../../domain/repositories/events/event-photo.repository";
 
 export class CreateEventPhoto {
   constructor(private readonly eventPhotoRepository: IEventPhotoRepository) {}

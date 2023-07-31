@@ -1,4 +1,4 @@
-import { Permission } from "../permission/permission";
+import { Permission } from "../permissions/permission";
 
 describe("Permission", () => {
   it("should create a valid permission", () => {

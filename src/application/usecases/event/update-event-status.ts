@@ -1,5 +1,5 @@
-import { Event, EventStatus } from "../../../domain/entities/event/event";
-import { IEventRepository } from "../../../domain/repositories/event/event.repository";
+import { Event, EventStatus } from "../../../domain/entities/events/event";
+import { IEventRepository } from "../../../domain/repositories/events/event.repository";
 
 export class UpdateEventStatus {
   constructor(private readonly eventRepository: IEventRepository) {}

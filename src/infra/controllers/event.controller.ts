@@ -4,7 +4,6 @@ import { Request, Response } from "express";
 export class EventController {
   constructor(private readonly eventService: EventService) {
     this.create = this.create.bind(this);
-    // this.findById = this.findById.bind(this);
   }
 
   async create(req: Request, res: Response): Promise<Response> {

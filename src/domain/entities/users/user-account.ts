@@ -45,6 +45,13 @@ export class UserAccount extends Entity {
     this.amount = amount;
   }
 
+  public decrementAmount(amount: number): void {
+    if (!this.isValidAmount(amount)) {
+      throw new Error("Amount cannot be negative");
+    }
+    this.amount -= amount;
+  }
+
   public getAmount(): number {
     return this.amount;
   }
