@@ -2,7 +2,12 @@ import { PaymentEnum } from "../payment-enum";
 import { UserAccount } from "../user/user-account";
 
 describe("UserAccount", () => {
-  const userAccount = UserAccount.create("1", "Igor", 10, PaymentEnum.DEBIT);
+  const userAccount = UserAccount.create({
+    userId: "1",
+    name: "Igor",
+    amount: 10,
+    type: PaymentEnum.DEBIT,
+  });
   it("should create a valid user account", () => {
     expect(userAccount).toBeTruthy();
     expect(userAccount.userId).toBe("1");
@@ -24,7 +29,12 @@ describe("UserAccount", () => {
 
   it("should throw an error if amount is negative", () => {
     expect(() =>
-      UserAccount.create("1", "Igor", -10, PaymentEnum.DEBIT)
+      UserAccount.create({
+        userId: "1",
+        name: "Igor",
+        amount: -10,
+        type: PaymentEnum.DEBIT,
+      })
     ).toThrowError("Amount cannot be negative");
   });
 });

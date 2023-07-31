@@ -14,7 +14,7 @@ export class Login {
       throw new Error("User not found");
     }
 
-    const isPasswordCorrect = this.authRepository.isValidPassword(
+    const isPasswordCorrect = await this.authRepository.isValidPassword(
       password,
       user.getPassword()
     );

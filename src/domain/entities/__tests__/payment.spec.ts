@@ -2,7 +2,12 @@ import { Payment } from "../payment";
 import { PaymentEnum } from "../payment-enum";
 
 describe("Payment", () => {
-  const payment = Payment.create("1", "1", 10, PaymentEnum.CREDIT);
+  const payment = Payment.create({
+    eventId: "1",
+    userAccountId: "1",
+    value: 10,
+    type: PaymentEnum.CREDIT,
+  });
   it("should create a valid payment", () => {
     expect(payment).toBeTruthy();
 
@@ -25,7 +30,12 @@ describe("Payment", () => {
 
   it("should throw an error if value is negative", () => {
     expect(() =>
-      Payment.create("1", "1", -10, PaymentEnum.CREDIT)
+      Payment.create({
+        eventId: "1",
+        userAccountId: "1",
+        value: -10,
+        type: PaymentEnum.CREDIT,
+      })
     ).toThrowError("Value cannot be negative");
   });
 });

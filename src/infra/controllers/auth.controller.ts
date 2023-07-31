@@ -1,34 +1,26 @@
-import { FindUser } from "../../application/usecases/find-user";
-import { JwtService } from "../jwt";
 import { Request, Response } from "express";
+import { Login } from "../../application/usecases/login";
 
 export class AuthController {
-  constructor(
-    private readonly jwtService: JwtService,
-    private readonly findUser: FindUser
-  ) {}
+  constructor(private readonly loginUseCase: Login) {
+    this.login = this.login.bind(this);
+    this.logout = this.logout.bind(this);
+  }
 
   async login(req: Request, res: Response) {
     try {
-      console.log("login");
       const { email, password } = req.body;
-
-      const user = await this.findUser.execute(email);
-      const isValidPassword = this.jwtService.isValidPassword(
-        password,
-        user.password
-      );
-
-      if (!isValidPassword) {
-        return res.status(401).json({ message: "Password does not match" });
-      }
-      const token = this.jwtService.generateToken(user.getId());
+      const token = await this.loginUseCase.execute(email, password);
 
       return res.json({ token });
     } catch (error: any) {
-      if (error.mesaage === "User not found") {
+      if (
+        error.mesaage === "User not found" ||
+        error.message === "Password does not match"
+      ) {
         return res.status(404).json({ message: error.message });
       }
+      return res.status(500).json({ message: error.message });
     }
   }
 

@@ -1,21 +1,16 @@
-import { Consumer } from "../../domain/entities/user/consumer";
+import { User } from "../../domain/entities/user";
 import {
-  ConsumerAccount,
-  ConsumerAccountProps,
+  UserAccount,
+  UserAccountProps,
 } from "../../domain/entities/user/user-account";
-import { IConsumerAccountRepository } from "../../domain/repositories/consumer-account.repository";
+import { IUserAccountRepository } from "../../domain/repositories/user-account.repository";
 
-export class CreateConsumerAccount {
-  constructor(
-    private readonly consumerAccountRepo: IConsumerAccountRepository
-  ) {}
+export class CreateUserAccount {
+  constructor(private readonly UserAccountRepo: IUserAccountRepository) {}
 
-  async execute(
-    consumer: Consumer,
-    input: ConsumerAccountProps
-  ): Promise<ConsumerAccount> {
-    input.consumer_id = consumer.getId();
-    const consumerAccount = ConsumerAccount.create(input);
-    return this.consumerAccountRepo.create(consumerAccount);
+  async execute(user: User, input: UserAccountProps): Promise<UserAccount> {
+    input.userId = user.getId();
+    const userAccount = UserAccount.create(input);
+    return this.UserAccountRepo.create(userAccount);
   }
 }

@@ -6,6 +6,7 @@ export type UserAccountProps = {
   name: string;
   amount: number;
   type: PaymentEnum;
+  id?: string;
 };
 
 export class UserAccount extends Entity {
@@ -23,13 +24,13 @@ export class UserAccount extends Entity {
     }
   }
 
-  static create(
-    userId: string,
-    name: string,
-    amount: number,
-    type: PaymentEnum,
-    id?: string
-  ): UserAccount {
+  static create({
+    userId,
+    name,
+    amount,
+    type,
+    id,
+  }: UserAccountProps): UserAccount {
     return new UserAccount(userId, name, amount, type, id);
   }
 

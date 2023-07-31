@@ -1,11 +1,20 @@
 import { Router } from "express";
-import { authController } from "./infra/module-manager/instances";
+import { AppDataSource } from "./infra/database/data-source";
+import { UserDB } from "./infra/database/entities/user";
+import { AuthController } from "./infra/controllers/auth.controller";
+import { Login } from "./application/usecases/login";
+import { UserRepository } from "./infra/database/repositories/user.repository";
+import { JwtService } from "./infra/jwt/jwt.service";
+
+const authController = new AuthController(
+  new Login(
+    new UserRepository(AppDataSource.getRepository(UserDB)),
+    new JwtService()
+  )
+);
 
 const router = Router();
 
-// router.get("/users", authMiddleware, UserController.index);
-// router.post("/users", UserController.store);
 router.post("/login", authController.login);
-router.post("/logout", authController.logout);
 
 export default router;
