@@ -1,4 +1,11 @@
-import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import {
+  Column,
+  CreateDateColumn,
+  Entity,
+  PrimaryGeneratedColumn,
+  UpdateDateColumn,
+} from "typeorm";
+import { PaymentEnum } from "../../../domain/entities/payment-enum";
 
 @Entity("payments")
 export class PaymentDB {
@@ -17,9 +24,17 @@ export class PaymentDB {
   @Column()
   type: string;
 
-  @CreateDateColumn({ type: 'timestamp' })
+  @CreateDateColumn({ type: "timestamp" })
   created_at: Date;
 
-  @UpdateDateColumn({ type: 'timestamp' })
+  @UpdateDateColumn({ type: "timestamp" })
   updated_at: Date;
+
+  get paymentType(): PaymentEnum {
+    return this.type as PaymentEnum;
+  }
+
+  set paymentType(type: PaymentEnum) {
+    this.type = type;
+  }
 }

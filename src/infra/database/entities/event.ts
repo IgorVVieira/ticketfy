@@ -1,4 +1,11 @@
-import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import {
+  Column,
+  CreateDateColumn,
+  Entity,
+  PrimaryGeneratedColumn,
+  UpdateDateColumn,
+} from "typeorm";
+import { EventStatus } from "../../../domain/entities/event/event";
 
 @Entity("events")
 export class EventDB {
@@ -32,9 +39,17 @@ export class EventDB {
   @Column("int", { default: 0 })
   avaliable_tickets: number;
 
-  @CreateDateColumn({ type: 'timestamp' })
+  @CreateDateColumn({ type: "timestamp" })
   created_at: Date;
 
-  @UpdateDateColumn({ type: 'timestamp' })
+  @UpdateDateColumn({ type: "timestamp" })
   updated_at: Date;
+
+  get eventStatus(): EventStatus {
+    return this.status as EventStatus;
+  }
+
+  set eventStatus(status: EventStatus) {
+    this.status = status;
+  }
 }

@@ -11,12 +11,12 @@ export type EventProps = {
   userId: string;
   name: string;
   datetime: string;
-  description: string;
   location: string;
   participantsLimit: number;
   unitaryPrice: number;
   status: EventStatus;
   avaliableTickets: number;
+  description?: string;
   id?: string;
 };
 
@@ -25,12 +25,12 @@ export class Event extends Entity {
     public readonly userId: string,
     public readonly name: string,
     public readonly datetime: string,
-    public readonly description: string,
     public readonly location: string,
     public readonly participantsLimit: number,
     public readonly unitaryPrice: number,
     private status: EventStatus = EventStatus.OPEN,
     public avaliableTickets: number,
+    public readonly description?: string,
     id?: string
   ) {
     super(id);
@@ -52,12 +52,12 @@ export class Event extends Entity {
       userId,
       name,
       datetime,
-      description,
       location,
       participantsLimit,
       unitaryPrice,
       status,
       avaliableTickets,
+      description,
       id
     );
   }
