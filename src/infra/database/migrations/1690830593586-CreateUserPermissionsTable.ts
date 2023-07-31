@@ -13,6 +13,7 @@ export class CreateUserPermissionsTable1690830593586
             name: "id",
             type: "uuid",
             isPrimary: true,
+            generationStrategy: "uuid",
             default: "uuid_generate_v4()",
           },
           {
@@ -36,13 +37,13 @@ export class CreateUserPermissionsTable1690830593586
         ],
         foreignKeys: [
           {
-            name: "user_permissions_user",
+            name: "user_permissions_users",
             referencedTableName: "users",
             referencedColumnNames: ["id"],
             columnNames: ["user_id"],
           },
           {
-            name: "user_permissions_permission",
+            name: "user_permissions_permissions",
             referencedTableName: "permissions",
             referencedColumnNames: ["id"],
             columnNames: ["permission_id"],
