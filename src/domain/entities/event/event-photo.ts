@@ -1,7 +1,7 @@
 import { Entity } from "../../../core/domain/Entity";
 
 export type EventPhotoProps = {
-  eventId: string;
+  event_id: string;
   url: string;
   id?: string;
 };
@@ -15,7 +15,7 @@ export class EventPhoto extends Entity {
     super(id);
   }
 
-  static create({ eventId, url, id }: EventPhotoProps): EventPhoto {
+  static create({ event_id: eventId, url, id }: EventPhotoProps): EventPhoto {
     return new EventPhoto(eventId, url, id);
   }
 }

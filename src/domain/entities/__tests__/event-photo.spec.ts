@@ -3,7 +3,7 @@ import { EventPhoto } from "../event/event-photo";
 describe("EventPhoto", () => {
   it("should create a valid event photo", () => {
     const eventPhoto = EventPhoto.create({
-      eventId: "1",
+      event_id: "1",
       url: "https://www.google.com",
     });
 

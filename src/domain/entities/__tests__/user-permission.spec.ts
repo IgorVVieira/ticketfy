@@ -3,8 +3,8 @@ import { UserPermission } from "../permission/user-permission";
 describe("UserPermission", () => {
   it("should create a valid user permission", () => {
     const userPermission = UserPermission.create({
-      userId: "1",
-      permissionId: "1",
+      user_id: "1",
+      permission_id: "1",
     });
 
     expect(userPermission).toBeTruthy();

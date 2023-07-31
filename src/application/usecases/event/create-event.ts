@@ -6,7 +6,7 @@ export class CreateEvent {
   constructor(private readonly eventRepository: IEventRepository) {}
 
   async execute(user: User, input: EventProps): Promise<Event> {
-    input.userId = user.getId();
+    input.user_id = user.getId();
     const event = Event.create(input);
     return this.eventRepository.create(event);
   }

@@ -2,8 +2,8 @@ import { Entity } from "../../core/domain/Entity";
 import { PaymentEnum } from "./payment-enum";
 
 export type PaymentProps = {
-  eventId: string;
-  userAccountId: string;
+  event_id: string;
+  user_account_id: string;
   value: number;
   type: PaymentEnum;
   id?: string;
@@ -25,8 +25,8 @@ export class Payment extends Entity {
   }
 
   static create({
-    eventId,
-    userAccountId,
+    event_id: eventId,
+    user_account_id: userAccountId,
     value,
     type,
     id,

@@ -2,15 +2,15 @@ import { Event, EventStatus } from "../event/event";
 
 describe("Event", () => {
   const event = Event.create({
-    userId: "1",
+    user_id: "1",
     name: "Igor",
     datetime: "2021-10-10T10:00:00",
     description: "Test",
     location: "Test",
-    participantsLimit: 10,
-    unitaryPrice: 10,
+    participants_limit: 10,
+    unitary_price: 10,
     status: EventStatus.OPEN,
-    avaliableTickets: 10,
+    avaliable_tickets: 10,
   });
 
   it("should create a valid event", () => {

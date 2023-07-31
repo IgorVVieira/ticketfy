@@ -1,8 +1,8 @@
 import { Entity } from "../../../core/domain/Entity";
 
 export type UserPermissionProps = {
-  userId: string;
-  permissionId: string;
+  user_id: string;
+  permission_id: string;
   id?: string;
 };
 
@@ -16,8 +16,8 @@ export class UserPermission extends Entity {
   }
 
   static create({
-    userId,
-    permissionId,
+    user_id: userId,
+    permission_id: permissionId,
     id,
   }: UserPermissionProps): UserPermission {
     return new UserPermission(userId, permissionId, id);

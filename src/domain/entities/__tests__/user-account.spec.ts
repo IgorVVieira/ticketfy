@@ -3,7 +3,7 @@ import { UserAccount } from "../user/user-account";
 
 describe("UserAccount", () => {
   const userAccount = UserAccount.create({
-    userId: "1",
+    user_id: "1",
     name: "Igor",
     amount: 10,
     type: PaymentEnum.DEBIT,
@@ -30,7 +30,7 @@ describe("UserAccount", () => {
   it("should throw an error if amount is negative", () => {
     expect(() =>
       UserAccount.create({
-        userId: "1",
+        user_id: "1",
         name: "Igor",
         amount: -10,
         type: PaymentEnum.DEBIT,

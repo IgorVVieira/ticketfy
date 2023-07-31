@@ -3,9 +3,9 @@ import { Ticket } from "../ticket";
 describe("Ticket", () => {
   it("should create a valid ticket", () => {
     const ticket = Ticket.create({
-      eventId: "1",
-      userId: "1",
-      paymentId: "1",
+      event_id: "1",
+      user_id: "1",
+      payment_id: "1",
     });
 
     expect(ticket).toBeTruthy();

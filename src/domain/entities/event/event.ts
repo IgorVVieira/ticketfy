@@ -8,15 +8,15 @@ export enum EventStatus {
 }
 
 export type EventProps = {
-  userId: string;
+  user_id: string;
   name: string;
   datetime: string;
   location: string;
-  participantsLimit: number;
-  unitaryPrice: number;
-  status: EventStatus;
-  avaliableTickets: number;
+  participants_limit: number;
+  unitary_price: number;
+  avaliable_tickets: number;
   description?: string;
+  status?: EventStatus;
   id?: string;
 };
 
@@ -37,15 +37,15 @@ export class Event extends Entity {
   }
 
   static create({
-    userId,
+    user_id: userId,
     name,
     datetime,
     description,
     location,
-    participantsLimit,
-    unitaryPrice,
+    participants_limit: participantsLimit,
+    unitary_price: unitaryPrice,
     status,
-    avaliableTickets,
+    avaliable_tickets: avaliableTickets,
     id,
   }: EventProps): Event {
     return new Event(
