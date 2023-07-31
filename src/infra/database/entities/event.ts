@@ -18,7 +18,7 @@ export class EventDB {
   @Column()
   name: string;
 
-  @Column("datetime")
+  @Column("timestamp")
   datetime: string;
 
   @Column({ nullable: true })
@@ -30,7 +30,7 @@ export class EventDB {
   @Column("int", { default: 0 })
   participants_limit: number;
 
-  @Column("double", { default: 0 })
+  @Column("decimal", { default: 0 })
   unitary_price: number;
 
   @Column()

@@ -18,7 +18,7 @@ export class PaymentDB {
   @Column()
   user_account_id: string;
 
-  @Column("double", { default: 0 })
+  @Column("decimal", { default: 0 })
   value: number;
 
   @Column()
