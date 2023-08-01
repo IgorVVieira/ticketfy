@@ -7,8 +7,10 @@ import { PermissionMapper } from "../../mapper/permission.mapper";
 export class PermissionRepository implements IPermissionRepository {
   constructor(private readonly repository: Repository<PermissionDB>) {}
 
-  async findByName(name: string): Promise<Permission | null> {
-    const permissionDB = await this.repository.findOne({ where: { name } });
+  async findBy(key: string, value: string): Promise<Permission | null> {
+    const permissionDB = await this.repository.findOne({
+      where: { [key]: value },
+    });
     if (!permissionDB) return null;
     return PermissionMapper.toDomain(permissionDB);
   }

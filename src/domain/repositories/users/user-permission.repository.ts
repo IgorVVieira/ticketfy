@@ -7,4 +7,9 @@ export interface IUserPermissionRepository
     userId: string,
     permissionId: string
   ): Promise<UserPermission | null>;
+
+  findByUserIdAndName(
+    userId: string,
+    name: string
+  ): Promise<UserPermission | null>;
 }

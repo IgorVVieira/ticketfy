@@ -8,7 +8,6 @@ export class FindAllEvents {
   constructor(private readonly eventRepository: IEventRepository) {}
 
   async execute(findAllProps?: findAllProps): Promise<Event[]> {
-    console.log(findAllProps);
     return this.eventRepository.findAll(findAllProps);
   }
 }

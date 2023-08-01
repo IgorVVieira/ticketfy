@@ -32,7 +32,6 @@ export class UserAccountRepository implements IUserAccountRepository {
 
   async create(entity: UserAccount): Promise<UserAccount> {
     const userAccountDB = UserAccountMapper.toPersistence(entity);
-    console.log(userAccountDB);
     const createdUserAccount = this.repository.create(userAccountDB);
     await this.repository.save(createdUserAccount);
 

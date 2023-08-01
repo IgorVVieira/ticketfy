@@ -15,7 +15,17 @@ export class UserPermissionRepository implements IUserPermissionRepository {
       where: { userId, permissionId },
     });
     if (!userPermissionDB) return null;
+    return UserPermissionMapper.toDomain(userPermissionDB);
+  }
 
+  async findByUserIdAndName(
+    userId: string,
+    name: string
+  ): Promise<UserPermission | null> {
+    const userPermissionDB = await this.repository.findOne({
+      where: { userId, permission: { name } },
+    });
+    if (!userPermissionDB) return null;
     return UserPermissionMapper.toDomain(userPermissionDB);
   }
 

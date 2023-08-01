@@ -8,7 +8,8 @@ export class CreatePermission {
   constructor(private readonly permissionRepository: IPermissionRepository) {}
 
   async execute(input: PermissionProps): Promise<Permission> {
-    const permissionExists = await this.permissionRepository.findByName(
+    const permissionExists = await this.permissionRepository.findBy(
+      "name",
       input.name
     );
     if (permissionExists) {

@@ -3,5 +3,5 @@ import { IGenericCreateRepository } from "./generic-create.repository";
 
 export interface IPermissionRepository
   extends IGenericCreateRepository<Permission> {
-  findByName(name: string): Promise<Permission | null>;
+  findBy(key: string, value: string): Promise<Permission | null>;
 }
