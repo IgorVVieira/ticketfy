@@ -20,8 +20,10 @@ import { UpdateUserPicture } from "../../../application/usecases/user/update-use
 import { AuthController } from "../../controllers/auth.controller";
 import { EventController } from "../../controllers/event.controller";
 import { PaymentController } from "../../controllers/payment.controller";
+import { PermissionController } from "../../controllers/permission.controller";
 import { TicketControler } from "../../controllers/ticket.controller";
 import { UserAccountController } from "../../controllers/user-account.controller";
+import { UserPermissionController } from "../../controllers/user-permission.controller";
 import { UserController } from "../../controllers/user.controller";
 import { AppDataSource } from "../../database/data-source";
 import { EventDB } from "../../database/entities/event";
@@ -92,22 +94,20 @@ const permissionService = new PermissionService(
   new CreatePermission(permissionRepository),
   new FindPermission(permissionRepository)
 );
-export const userPermissionService = new UserPermissionService(
+const userPermissionService = new UserPermissionService(
   new CreateUserPermission(userPermissionRepository),
   new FindUserPermission(userPermissionRepository),
   userService,
   permissionService
 );
 
-export const authController = new AuthController(
+const authController = new AuthController(
   new Login(userRepository, new JwtService())
 );
-export const userController = new UserController(userService);
-export const eventController = new EventController(eventService);
-export const userAccountController = new UserAccountController(
-  userAccountService
-);
-export const paymentController = new PaymentController(
+const userController = new UserController(userService);
+const eventController = new EventController(eventService);
+const userAccountController = new UserAccountController(userAccountService);
+const paymentController = new PaymentController(
   new PaymentService(
     new CreatePayment(paymentRepository),
     userService,
@@ -117,4 +117,20 @@ export const paymentController = new PaymentController(
   ),
   eventService
 );
-export const ticketController = new TicketControler(ticketService);
+const ticketController = new TicketControler(ticketService);
+const permissionController = new PermissionController(permissionService);
+const userPermissionController = new UserPermissionController(
+  userPermissionService
+);
+
+export {
+  userPermissionService,
+  authController,
+  userController,
+  eventController,
+  userAccountController,
+  paymentController,
+  ticketController,
+  permissionController,
+  userPermissionController,
+};

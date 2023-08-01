@@ -64,6 +64,94 @@
         }
       }
     },
+    "/permissions": {
+      "post": {
+        "summary": "Cadastro de permissões",
+        "description": "Cadastra uma nova permissão no sistema",
+        "tags": [
+          "Permissions"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Permission"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Permissão cadastrada com sucesso",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Permission"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Erro interno do servidor"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden access"
+          }
+        }
+      }
+    },
+    "/user-permissions": {
+      "post": {
+        "summary": "Cadastro de permissões do usuário",
+        "description": "Cadastra uma nova permissão do usuário no sistema",
+        "tags": [
+          "UserPermissions"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UserPermission"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Permissão cadastrada com sucesso",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserPermission"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Erro interno do servidor"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden access"
+          }
+        }
+      }
+    },
     "/users": {
       "post": {
         "summary": "Cadastro de usuário",
@@ -635,6 +723,30 @@
           "quantity": {
             "type": "number",
             "example": "1"
+          }
+        }
+      },
+      "Permission": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "example": "ADMIN"
+          },
+          "description": {
+            "type": "string",
+            "example": "Administrador"
+          }
+        }
+      },
+      "UserPermission": {
+        "type": "object",
+        "properties": {
+          "userId": {
+            "type": "string"
+          },
+          "permissionId": {
+            "type": "string"
           }
         }
       }

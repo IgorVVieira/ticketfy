@@ -3,6 +3,7 @@ import { authMiddleware } from "./infra/middlewares/auth.middleware";
 import { checkUserIdMatch } from "./infra/middlewares/check-user-id-match.middleware";
 import { can } from "./infra/middlewares/permissions.middleware";
 import multerConfig from "./infra/config/multer";
+import multer from "multer";
 
 import {
   authController,
@@ -11,8 +12,9 @@ import {
   userAccountController,
   paymentController,
   ticketController,
+  permissionController,
+  userPermissionController,
 } from "./infra/shared/container/injection";
-import multer from "multer";
 
 const router = Router();
 router.post("/login", authController.login);
@@ -45,6 +47,13 @@ router.get(
   "/tickets/:userId",
   [authMiddleware, checkUserIdMatch],
   ticketController.get
+);
+
+router.post("/permissions", authMiddleware, permissionController.create);
+router.post(
+  "/user-permissions",
+  authMiddleware,
+  userPermissionController.create
 );
 
 export default router;
