@@ -35,6 +35,7 @@ import { TicketRepository } from "./infra/database/repositories/ticket.repositor
 import { TicketService } from "./infra/services/ticket.service";
 import { CreateTicket } from "./application/usecases/ticket/create-ticket";
 import { GetUserTickets } from "./application/usecases/ticket/get-user-tickets";
+import { FindAllEvents } from "./application/usecases/event/find-all-events";
 
 const userDb = AppDataSource.getRepository(UserDB);
 const eventDb = AppDataSource.getRepository(EventDB);
@@ -60,6 +61,7 @@ const eventService = new EventService(
   new CreateEvent(eventRepository),
   new FindEvent(eventRepository),
   new DecrementAvaliableTickets(eventRepository),
+  new FindAllEvents(eventRepository),
   userService
 );
 const userAccountService = new UserAccountService(
@@ -99,6 +101,7 @@ router.get("/users/:id", authMiddleware, userController.findById);
 router.get("/user-accounts/:id", authMiddleware, userAccountController.find);
 router.post("/user-accounts", authMiddleware, userAccountController.create);
 
+router.get("/events", eventController.findAll);
 router.post("/events", authMiddleware, eventController.create);
 router.get("/events/:id", authMiddleware, eventController.findById);
 

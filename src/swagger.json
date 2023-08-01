@@ -1,0 +1,155 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Desafio MB Labs | Aplicativo de eventos",
+    "description": "Essa API tem como objetivo desenvolver um aplicativo de eventos, onde o usuário pode se cadastrar, comprar ingressos e acompanhar os eventos que irá participar.",
+    "version": "1.0.0",
+    "contact": {
+      "name": "Igor Vitor Vieira",
+      "email": "igor.gutoo63@gmail.com"
+    }
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3000/api",
+      "description": "Servidor local"
+    }
+  ],
+  "paths": {
+    "/users": {
+      "post": {
+        "summary": "Cadastro de usuário",
+        "description": "Cadastra um novo usuário no sistema",
+        "tags": [
+          "Users"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/User"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Usuário cadastrado com sucesso",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Erro ao cadastrar usuário"
+          },
+          "500": {
+            "description": "Erro interno do servidor"
+          },
+          "409": {
+            "description": "Email already in use"
+          }
+        }
+      }
+    },
+    "/events": {
+      "get": {
+        "summary": "Busca de eventos",
+        "description": "Busca de eventos utilizando filtro de data e nome",
+        "tags": [
+          "Events"
+        ],
+        "parameters": [
+          {
+            "name": "name",
+            "in": "query",
+            "description": "Nome do evento",
+            "required": false
+          },
+          {
+            "name": "type",
+            "in": "query",
+            "description": "Tipo do evento (empresa, universidade)",
+            "required": false
+          },
+          {
+            "name": "datetime",
+            "in": "query",
+            "description": "Hora do evento",
+            "required": false
+          },
+          {
+            "name": "status",
+            "in": "query",
+            "description": "Status do evento (...)",
+            "required": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Event"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "User": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "example": "Igor Vitor Vieira"
+          },
+          "email": {
+            "type": "string",
+            "example": "igor.gutoo63@gmail.com"
+          },
+          "password": {
+            "type": "string",
+            "example": "$Teste123"
+          }
+        }
+      },
+      "Event": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "example": "Igor Vitor Vieira"
+          },
+          "email": {
+            "type": "string",
+            "example": "igor.gutoo63@gmail.com"
+          },
+          "password": {
+            "type": "string",
+            "example": "$Teste123"
+          }
+        }
+      }
+    },
+    "schemes": [
+      "https",
+      "http"
+    ],
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    }
+  }
+}
