@@ -17,14 +17,14 @@ export class TicketRepository implements ITicketRepository {
 
   async getByUserId(userId: string): Promise<Ticket[]> {
     const ticketsDB = await this.repository.find({
-      where: { user_id: userId },
+      where: { userId },
     });
     return ticketsDB.map((ticketDB) => TicketMapper.toDomain(ticketDB));
   }
 
   async getByEventId(eventId: string): Promise<Ticket[]> {
     const ticketsDB = await this.repository.find({
-      where: { event_id: eventId },
+      where: { eventId },
     });
     return ticketsDB.map((ticketDB) => TicketMapper.toDomain(ticketDB));
   }

@@ -17,7 +17,7 @@ export class CreateUserAccountsTable1690830846731
             default: "uuid_generate_v4()",
           },
           {
-            name: "user_id",
+            name: "userId",
             type: "uuid",
           },
           {
@@ -52,7 +52,7 @@ export class CreateUserAccountsTable1690830846731
             name: "user_accounts_user",
             referencedTableName: "users",
             referencedColumnNames: ["id"],
-            columnNames: ["user_id"],
+            columnNames: ["userId"],
           },
         ],
       })

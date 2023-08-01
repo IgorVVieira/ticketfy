@@ -9,7 +9,7 @@ export class UserAccountRepository implements IUserAccountRepository {
 
   async findByUserId(userId: string): Promise<UserAccount | null> {
     const userAccountDB = await this.repository.findOne({
-      where: { user_id: userId },
+      where: { userId },
     });
     if (!userAccountDB) return null;
     return UserAccountMapper.toDomain(userAccountDB);
@@ -25,13 +25,14 @@ export class UserAccountRepository implements IUserAccountRepository {
 
   async findAll(userId: string): Promise<UserAccount[]> {
     const userAccountsDB = await this.repository.find({
-      where: { user_id: userId },
+      where: { userId },
     });
     return userAccountsDB.map(UserAccountMapper.toDomain);
   }
 
   async create(entity: UserAccount): Promise<UserAccount> {
     const userAccountDB = UserAccountMapper.toPersistence(entity);
+    console.log(userAccountDB);
     const createdUserAccount = this.repository.create(userAccountDB);
     await this.repository.save(createdUserAccount);
 

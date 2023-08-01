@@ -2,7 +2,7 @@ import { Event, EventStatus } from "../events/event";
 
 describe("Event", () => {
   const event = Event.create({
-    user_id: "1",
+    userId: "1",
     name: "Igor",
     datetime: "2021-10-10T10:00:00",
     description: "Test",

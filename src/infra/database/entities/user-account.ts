@@ -13,7 +13,7 @@ export class UserAccountDB {
   id: string;
 
   @Column()
-  user_id: string;
+  userId: string;
 
   @Column()
   name: string;
@@ -29,12 +29,6 @@ export class UserAccountDB {
 
   @UpdateDateColumn({ type: "timestamp" })
   updated_at: Date;
-
-  // @BeforeInsert()
-  // @BeforeUpdate()
-  // hashPassword() {
-  //   this.password = bcrypt.hashSync(this.password, 8);
-  // }
 
   get paymentType(): PaymentEnum {
     return this.type as PaymentEnum;

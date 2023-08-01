@@ -15,15 +15,15 @@ export class CreateTicketstable1690831575777 implements MigrationInterface {
             default: "uuid_generate_v4()",
           },
           {
-            name: "event_id",
+            name: "eventId",
             type: "uuid",
           },
           {
-            name: "user_id",
+            name: "userId",
             type: "uuid",
           },
           {
-            name: "payment_id",
+            name: "paymentId",
             type: "uuid",
           },
           {
@@ -42,19 +42,19 @@ export class CreateTicketstable1690831575777 implements MigrationInterface {
             name: "tickets_events",
             referencedTableName: "events",
             referencedColumnNames: ["id"],
-            columnNames: ["event_id"],
+            columnNames: ["eventId"],
           },
           {
             name: "tickets_users",
             referencedTableName: "users",
             referencedColumnNames: ["id"],
-            columnNames: ["user_id"],
+            columnNames: ["userId"],
           },
           {
             name: "tickets_payments",
             referencedTableName: "payments",
             referencedColumnNames: ["id"],
-            columnNames: ["payment_id"],
+            columnNames: ["paymentId"],
           },
         ],
       })

@@ -5,7 +5,7 @@ export class EventMapper {
   static toDomain(eventDB: EventDB): Event {
     return Event.create({
       id: eventDB.id,
-      user_id: eventDB.user_id,
+      userId: eventDB.userId,
       name: eventDB.name,
       datetime: eventDB.datetime,
       description: eventDB.description,
@@ -20,7 +20,7 @@ export class EventMapper {
   static toPersistence(event: Event): EventDB {
     const eventDB = new EventDB();
     eventDB.id = event.getId();
-    eventDB.user_id = event.userId;
+    eventDB.userId = event.userId;
     eventDB.name = event.name;
     eventDB.datetime = event.datetime;
     eventDB.description = event.description;

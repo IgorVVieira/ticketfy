@@ -14,7 +14,7 @@ export class CreatePayment {
     if (!avaliableTickets) {
       throw new Error("Not enough tickets avaliable");
     }
-    input.event_id = event.getId();
+    input.eventId = event.getId();
     const payment = Payment.create(input);
 
     return this.paymentRepository.create(payment);

@@ -14,9 +14,9 @@ export class PaymentController {
   async create(req: Request, res: Response): Promise<Response> {
     try {
       const userId = req.userId;
-      const { event_id, user_account_id, type, quantity } = req.body;
+      const { eventId, userAccountId, type, quantity } = req.body;
 
-      const event = await this.eventService.findById(event_id);
+      const event = await this.eventService.findById(eventId);
       if (!event) {
         return res.status(404).json({ message: "Event not found" });
       }
@@ -24,8 +24,8 @@ export class PaymentController {
       const payment = await this.paymentService.create(
         userId,
         {
-          event_id,
-          user_account_id,
+          eventId,
+          userAccountId,
           value: event.unitaryPrice,
           type: type as PaymentEnum,
         },

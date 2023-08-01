@@ -5,7 +5,7 @@ export class EventPhotoMapper {
   static toDomain(eventPhotoDB: EventPhotoDB): EventPhoto {
     return EventPhoto.create({
       id: eventPhotoDB.id,
-      event_id: eventPhotoDB.event_id,
+      eventId: eventPhotoDB.eventId,
       url: eventPhotoDB.url,
     });
   }
@@ -13,7 +13,7 @@ export class EventPhotoMapper {
   static toPersistence(eventPhoto: EventPhoto): EventPhotoDB {
     const eventPhotoDB = new EventPhotoDB();
     eventPhotoDB.id = eventPhoto.getId();
-    eventPhotoDB.event_id = eventPhoto.eventId;
+    eventPhotoDB.eventId = eventPhoto.eventId;
     eventPhotoDB.url = eventPhoto.url;
     return eventPhotoDB;
   }

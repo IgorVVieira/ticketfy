@@ -413,6 +413,46 @@
           }
         }
       }
+    },
+    "/tickets/{userId}": {
+      "get": {
+        "summary": "Busca de ingressos do usuário",
+        "description": "Lista todos ingressos comprados pelo usuário",
+        "tags": [
+          "Tickets"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "description": "ID do usuário"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "$ref": "#/components/schemas/Ticket"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "User not found"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
+      }
     }
   },
   "components": {
@@ -437,7 +477,7 @@
       "UserAccount": {
         "type": "object",
         "properties": {
-          "user_id": {
+          "userId": {
             "type": "string"
           },
           "name": {
@@ -462,7 +502,7 @@
       "Event": {
         "type": "object",
         "properties": {
-          "user_id": {
+          "userId": {
             "type": "string"
           },
           "name": {
@@ -504,13 +544,27 @@
           }
         }
       },
+      "Ticket": {
+        "type": "object",
+        "properties": {
+          "eventId": {
+            "type": "string"
+          },
+          "userId": {
+            "type": "string"
+          },
+          "paymentId": {
+            "type": "string"
+          }
+        }
+      },
       "Payment": {
         "type": "object",
         "properties": {
-          "event_id": {
+          "eventId": {
             "type": "string"
           },
-          "user_account_id": {
+          "userAccountId": {
             "type": "string"
           },
           "type": {

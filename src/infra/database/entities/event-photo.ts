@@ -12,7 +12,7 @@ export class EventPhotoDB {
   id: string;
 
   @Column()
-  event_id: string;
+  eventId: string;
 
   @Column()
   url: string;

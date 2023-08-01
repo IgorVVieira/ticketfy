@@ -1,5 +1,5 @@
 export class CreateEventDto {
-  readonly user_id: string;
+  readonly userId: string;
   readonly name: string;
   readonly datetime: string;
   readonly location: string;

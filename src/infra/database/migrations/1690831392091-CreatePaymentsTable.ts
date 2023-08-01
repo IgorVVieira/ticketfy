@@ -15,11 +15,11 @@ export class CreatePaymentsTable1690831392091 implements MigrationInterface {
             default: "uuid_generate_v4()",
           },
           {
-            name: "event_id",
+            name: "eventId",
             type: "uuid",
           },
           {
-            name: "user_account_id",
+            name: "userAccountId",
             type: "uuid",
           },
           {
@@ -50,13 +50,13 @@ export class CreatePaymentsTable1690831392091 implements MigrationInterface {
             name: "payments_events",
             referencedTableName: "events",
             referencedColumnNames: ["id"],
-            columnNames: ["event_id"],
+            columnNames: ["eventId"],
           },
           {
             name: "payments_user_accounts",
             referencedTableName: "user_accounts",
             referencedColumnNames: ["id"],
-            columnNames: ["user_account_id"],
+            columnNames: ["userAccountId"],
           },
         ],
       })

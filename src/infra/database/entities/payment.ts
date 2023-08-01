@@ -13,10 +13,10 @@ export class PaymentDB {
   id: string;
 
   @Column()
-  event_id: string;
+  eventId: string;
 
   @Column()
-  user_account_id: string;
+  userAccountId: string;
 
   @Column("decimal", { default: 0 })
   value: number;

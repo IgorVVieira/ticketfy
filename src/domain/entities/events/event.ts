@@ -8,7 +8,7 @@ export enum EventStatus {
 }
 
 export type EventProps = {
-  user_id: string;
+  userId: string;
   name: string;
   datetime: string;
   location: string;
@@ -37,7 +37,7 @@ export class Event extends Entity {
   }
 
   static create({
-    user_id: userId,
+    userId,
     name,
     datetime,
     description,

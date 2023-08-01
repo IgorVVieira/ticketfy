@@ -17,11 +17,11 @@ export class CreateUserPermissionsTable1690830593586
             default: "uuid_generate_v4()",
           },
           {
-            name: "user_id",
+            name: "userId",
             type: "uuid",
           },
           {
-            name: "permission_id",
+            name: "permissionId",
             type: "uuid",
           },
           {
@@ -40,13 +40,13 @@ export class CreateUserPermissionsTable1690830593586
             name: "user_permissions_users",
             referencedTableName: "users",
             referencedColumnNames: ["id"],
-            columnNames: ["user_id"],
+            columnNames: ["userId"],
           },
           {
             name: "user_permissions_permissions",
             referencedTableName: "permissions",
             referencedColumnNames: ["id"],
-            columnNames: ["permission_id"],
+            columnNames: ["permissionId"],
           },
         ],
       })

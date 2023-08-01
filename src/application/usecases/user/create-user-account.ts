@@ -9,7 +9,7 @@ export class CreateUserAccount {
   constructor(private readonly UserAccountRepo: IUserAccountRepository) {}
 
   async execute(user: User, input: UserAccountProps): Promise<UserAccount> {
-    input.user_id = user.getId();
+    input.userId = user.getId();
     const userAccount = UserAccount.create(input);
     return this.UserAccountRepo.create(userAccount);
   }

@@ -1,5 +1,5 @@
 export class CreateTicketDto {
-  readonly event_id: string;
-  readonly user_id: string;
-  readonly payment_id: string;
+  readonly eventId: string;
+  readonly userId: string;
+  readonly paymentId: string;
 }

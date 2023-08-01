@@ -15,7 +15,7 @@ export class CreateEventstable1690831104725 implements MigrationInterface {
             default: "uuid_generate_v4()",
           },
           {
-            name: "user_id",
+            name: "userId",
             type: "uuid",
           },
           {
@@ -73,7 +73,7 @@ export class CreateEventstable1690831104725 implements MigrationInterface {
             name: "events_users",
             referencedTableName: "users",
             referencedColumnNames: ["id"],
-            columnNames: ["user_id"],
+            columnNames: ["userId"],
           },
         ],
       })

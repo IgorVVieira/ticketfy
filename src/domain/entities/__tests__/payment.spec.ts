@@ -3,8 +3,8 @@ import { PaymentEnum } from "../payment-enum";
 
 describe("Payment", () => {
   const payment = Payment.create({
-    event_id: "1",
-    user_account_id: "1",
+    eventId: "1",
+    userAccountId: "1",
     value: 10,
     type: PaymentEnum.CREDIT,
   });
@@ -31,8 +31,8 @@ describe("Payment", () => {
   it("should throw an error if value is negative", () => {
     expect(() =>
       Payment.create({
-        event_id: "1",
-        user_account_id: "1",
+        eventId: "1",
+        userAccountId: "1",
         value: -10,
         type: PaymentEnum.CREDIT,
       })

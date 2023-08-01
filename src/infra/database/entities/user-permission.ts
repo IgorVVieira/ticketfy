@@ -6,10 +6,10 @@ export class UserPermissionDB {
   id: string;
 
   @Column()
-  user_id: string;
+  userId: string;
 
   @Column()
-  permission_id: string;
+  permissionId: string;
 
   @CreateDateColumn({ type: 'timestamp' })
   created_at: Date;

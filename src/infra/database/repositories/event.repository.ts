@@ -40,7 +40,7 @@ export class EventRepository implements IEventRepository {
   }
 
   async findByOwner(userId: string): Promise<Event[]> {
-    const eventsDB = await this.repository.find({ where: { user_id: userId } });
+    const eventsDB = await this.repository.find({ where: { userId: userId } });
     return eventsDB.map((eventDB) => EventMapper.toDomain(eventDB));
   }
 

@@ -30,7 +30,7 @@ export class UserAccountService {
   }
 
   async create(userDto: CreateUserAccountDto): Promise<UserAccount> {
-    const user = await this.userService.findById("id", userDto.user_id);
+    const user = await this.userService.findById("id", userDto.userId);
     if (!user) throw new Error("User not found");
     return this.createUserAccount.execute(user, userDto);
   }

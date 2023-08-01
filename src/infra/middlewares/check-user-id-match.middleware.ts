@@ -6,7 +6,7 @@ export function checkUserIdMatch(
   next: NextFunction
 ) {
   const userId = req.userId;
-  const paramUserId = req.params.userId || (req.body.user_id as string);
+  const paramUserId = req.params.userId || (req.body.userId as string);
 
   try {
     if (userId !== paramUserId) {

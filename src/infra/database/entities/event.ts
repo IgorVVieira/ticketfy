@@ -13,7 +13,7 @@ export class EventDB {
   id: string;
 
   @Column()
-  user_id: string;
+  userId: string;
 
   @Column()
   name: string;

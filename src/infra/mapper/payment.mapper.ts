@@ -5,8 +5,8 @@ export class PaymentMapper {
   static toDomain(paymentDB: PaymentDB): Payment {
     return Payment.create({
       id: paymentDB.id,
-      event_id: paymentDB.event_id,
-      user_account_id: paymentDB.user_account_id,
+      eventId: paymentDB.eventId,
+      userAccountId: paymentDB.userAccountId,
       value: paymentDB.value,
       type: paymentDB.paymentType,
     });
@@ -15,8 +15,8 @@ export class PaymentMapper {
   static toPersistence(payment: Payment): PaymentDB {
     const paymentDB = new PaymentDB();
     paymentDB.id = payment.getId();
-    paymentDB.event_id = payment.eventId;
-    paymentDB.user_account_id = payment.userAccountId;
+    paymentDB.eventId = payment.eventId;
+    paymentDB.userAccountId = payment.userAccountId;
     paymentDB.value = payment.getValue();
     paymentDB.paymentType = payment.type;
     return paymentDB;

@@ -15,7 +15,7 @@ export class CreateEventPhotosTable1690831759219 implements MigrationInterface {
             default: "uuid_generate_v4()",
           },
           {
-            name: "event_id",
+            name: "eventId",
             type: "uuid",
           },
           {
@@ -28,7 +28,7 @@ export class CreateEventPhotosTable1690831759219 implements MigrationInterface {
             name: "event_photos_events",
             referencedTableName: "events",
             referencedColumnNames: ["id"],
-            columnNames: ["event_id"],
+            columnNames: ["eventId"],
           },
         ],
       })

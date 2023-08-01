@@ -12,7 +12,7 @@ export class UserPermissionRepository implements IUserPermissionRepository {
     permissionId: string
   ): Promise<UserPermission | null> {
     const userPermissionDB = await this.repository.findOne({
-      where: { user_id: userId, permission_id: permissionId },
+      where: { userId, permissionId },
     });
     if (!userPermissionDB) return null;
 
