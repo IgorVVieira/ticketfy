@@ -10,11 +10,26 @@ import { EventMapper } from "../../mapper/event.mapper";
 export class EventRepository implements IEventRepository {
   constructor(private readonly repository: Repository<EventDB>) {}
 
-  async findAll(props?: findAllProps | undefined): Promise<Event[]> {
-    const eventsDB = await this.repository.find({
-      where: { ...props },
-    });
+  async findAll(props?: findAllProps): Promise<Event[]> {
+    const queryBuilder = this.repository.createQueryBuilder("event");
 
+    if (props?.name) {
+      queryBuilder.where("event.name LIKE :name", { name: `%${props.name}%`});
+    }
+    if (props?.type) {
+      queryBuilder.andWhere("event.type = :type", { type: props.type });
+    }
+    if (props?.datetime) {
+      queryBuilder.andWhere("event.datetime = :datetime", {
+        datetime: props.datetime,
+      });
+    }
+    if (props?.status) {
+      queryBuilder.andWhere("event.status = :status", {
+        status: props.status,
+      });
+    }
+    const eventsDB = await queryBuilder.getMany();
     return eventsDB.map((eventDB) => EventMapper.toDomain(eventDB));
   }
 
