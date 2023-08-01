@@ -144,6 +144,62 @@
         }
       }
     },
+    "/users/{id}/picture": {
+      "patch": {
+        "summary": "Upload de imagem",
+        "description": "Upload de imagem de perfil do usuário",
+        "tags": [
+          "Users"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID do usuário",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "file": {
+                    "type": "string",
+                    "format": "binary"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Imagem de perfil atualizada com sucesso",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "User not found"
+          },
+          "409": {
+            "description": "Unauthorized"
+          }
+        }
+      }
+    },
     "/user-accounts": {
       "post": {
         "summary": "Cadastro de contas do usuário",

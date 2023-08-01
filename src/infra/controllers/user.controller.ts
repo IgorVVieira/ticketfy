@@ -23,8 +23,9 @@ export class UserController {
 
   async update(req: Request, res: Response): Promise<Response> {
     const { id } = req.params;
-    const { picture } = req.body;
-    const user = await this.userService.update(id, picture);
+    // @ts-ignore
+    const { location } = req.file;
+    const user = await this.userService.update(id, location);
     return res.status(200).json(user);
   }
 

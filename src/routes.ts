@@ -2,6 +2,7 @@ import { Router } from "express";
 import { authMiddleware } from "./infra/middlewares/auth.middleware";
 import { checkUserIdMatch } from "./infra/middlewares/check-user-id-match.middleware";
 import { can } from "./infra/middlewares/permissions.middleware";
+import multerConfig from "./infra/config/multer";
 
 import {
   authController,
@@ -11,11 +12,17 @@ import {
   paymentController,
   ticketController,
 } from "./infra/shared/container/injection";
+import multer from "multer";
 
 const router = Router();
 router.post("/login", authController.login);
 router.post("/users", userController.create);
 router.get("/users/:id", authMiddleware, userController.findById);
+router.patch(
+  "/users/:id/picture",
+  [multer(multerConfig).single("file"), authMiddleware],
+  userController.update
+);
 
 router.get(
   "/user-accounts/:userId",
