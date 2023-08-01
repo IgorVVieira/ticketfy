@@ -6,13 +6,13 @@ export function checkUserIdMatch(
   next: NextFunction
 ) {
   const userId = req.userId;
-  const paramUserId = req.params.userId;
+  const paramUserId = req.params.userId || (req.body.user_id as string);
 
   console.log(userId, paramUserId);
 
   try {
     if (userId !== paramUserId) {
-      return res.status(403).json({ message: "Unauthorized" });
+      return res.status(403).json({ message: "Forbidden access" });
     }
     return next();
   } catch (error: any) {

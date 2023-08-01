@@ -14,6 +14,9 @@ export class EventController {
       const event = await this.eventService.create(req.body);
       return res.status(201).json(event);
     } catch (error: any) {
+      if (error.message === "User not found") {
+        return res.status(404).json({ error: error.message });
+      }
       return res.status(500).json({ error: error.message });
     }
   }

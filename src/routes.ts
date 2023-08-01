@@ -1,4 +1,5 @@
 import { Router } from "express";
+import "express-group-routes";
 import { AppDataSource } from "./infra/database/data-source";
 import { UserDB } from "./infra/database/entities/user";
 import { AuthController } from "./infra/controllers/auth.controller";
@@ -38,6 +39,7 @@ import { GetUserTickets } from "./application/usecases/ticket/get-user-tickets";
 import { FindAllEvents } from "./application/usecases/event/find-all-events";
 import { checkUserIdMatch } from "./infra/middlewares/check-user-id-match.middleware";
 import { GetAllUserAccounts } from "./application/usecases/user/get-all-user-accounts";
+import { TicketControler } from "./infra/controllers/ticket.controller";
 
 const userDb = AppDataSource.getRepository(UserDB);
 const eventDb = AppDataSource.getRepository(EventDB);
@@ -83,7 +85,6 @@ const ticketService = new TicketService(
 const userController = new UserController(userService);
 const eventController = new EventController(eventService);
 const userAccountController = new UserAccountController(userAccountService);
-
 const paymentController = new PaymentController(
   new PaymentService(
     new CreatePayment(paymentRepository),
@@ -94,9 +95,9 @@ const paymentController = new PaymentController(
   ),
   eventService
 );
+const ticketController = new TicketControler(ticketService);
 
 const router = Router();
-
 router.post("/login", authController.login);
 router.post("/users", userController.create);
 router.get("/users/:id", authMiddleware, userController.findById);
@@ -109,9 +110,23 @@ router.get(
 router.post("/user-accounts", authMiddleware, userAccountController.create);
 
 router.get("/events", eventController.findAll);
-router.post("/events", authMiddleware, eventController.create);
+router.post(
+  "/events",
+  [authMiddleware, checkUserIdMatch],
+  eventController.create
+);
 router.get("/events/:id", authMiddleware, eventController.findById);
 
-router.post("/payments", authMiddleware, paymentController.create);
+router.post(
+  "/payments",
+  [authMiddleware, checkUserIdMatch],
+  paymentController.create
+);
+
+router.get(
+  "/tickets/:userId",
+  [authMiddleware, checkUserIdMatch],
+  ticketController.get
+);
 
 export default router;

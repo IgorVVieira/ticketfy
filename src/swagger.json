@@ -225,6 +225,45 @@
             "description": "Invalid token"
           },
           "403": {
+            "description": "Forbidden access"
+          }
+        }
+      }
+    },
+    "/events/{id}": {
+      "get": {
+        "summary": "Busca de eventos por id",
+        "description": "Ver detalhes do evento",
+        "tags": [
+          "Events"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID do evento"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Event"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Event not found"
+          },
+          "401": {
             "description": "Unauthorized"
           }
         }
@@ -241,26 +280,31 @@
           {
             "name": "name",
             "in": "query",
-            "description": "Nome do evento",
-            "required": false
+            "description": "Nome do evento"
           },
           {
             "name": "type",
             "in": "query",
-            "description": "Tipo do evento (empresa, universidade)",
-            "required": false
+            "description": "Tipo do evento (empresa, universidade)"
           },
           {
             "name": "datetime",
             "in": "query",
-            "description": "Hora do evento",
-            "required": false
+            "description": "Hora do evento"
           },
           {
             "name": "status",
             "in": "query",
-            "description": "Status do evento (...)",
-            "required": false
+            "description": "Status do evento",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "CANCELED",
+                "FINISHED",
+                "OPEN",
+                "SOLD_OUT"
+              ]
+            }
           }
         ],
         "responses": {
@@ -274,6 +318,51 @@
                 }
               }
             }
+          }
+        }
+      },
+      "post": {
+        "summary": "Cadastro de eventos",
+        "description": "Cadastra um novo evento no sistema",
+        "tags": [
+          "Events"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Event"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Evento criado com sucesso",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Event"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "User not found"
+          },
+          "500": {
+            "description": "Erro interno do servidor"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden access"
           }
         }
       }
@@ -326,17 +415,45 @@
       "Event": {
         "type": "object",
         "properties": {
+          "user_id": {
+            "type": "string"
+          },
           "name": {
             "type": "string",
-            "example": "Igor Vitor Vieira"
+            "example": "Evento teste"
           },
-          "email": {
-            "type": "string",
-            "example": "igor.gutoo63@gmail.com"
+          "datetime": {
+            "type": "timestamp",
+            "example": "2023-07-31 14:30:00.000"
           },
-          "password": {
+          "location": {
             "type": "string",
-            "example": "$Teste123"
+            "example": "São Paulo"
+          },
+          "participants_limit": {
+            "type": "number",
+            "example": "100"
+          },
+          "unitary_price": {
+            "type": "number",
+            "example": "100.00"
+          },
+          "avaliable_tickets": {
+            "type": "number",
+            "example": "100"
+          },
+          "description": {
+            "type": "string",
+            "example": "Evento teste"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "CANCELED",
+              "FINISHED",
+              "OPEN",
+              "SOLD_OUT"
+            ]
           }
         }
       }

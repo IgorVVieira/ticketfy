@@ -22,7 +22,7 @@ export class EventService {
   }
 
   async create(createEventDto: CreateEventDto): Promise<Event> {
-    const user = await this.userService.findById('id', createEventDto.user_id);
+    const user = await this.userService.findById("id", createEventDto.user_id);
     return this.createEvent.execute(user, createEventDto);
   }
 
