@@ -8,8 +8,6 @@ export function checkUserIdMatch(
   const userId = req.userId;
   const paramUserId = req.params.userId || (req.body.user_id as string);
 
-  console.log(userId, paramUserId);
-
   try {
     if (userId !== paramUserId) {
       return res.status(403).json({ message: "Forbidden access" });

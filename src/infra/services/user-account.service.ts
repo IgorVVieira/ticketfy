@@ -20,7 +20,7 @@ export class UserAccountService {
     this.decrementValue = this.decrementValue.bind(this);
   }
 
-  async find(id: string, userId: string): Promise<UserAccount | null> {
+  async find(id: string): Promise<UserAccount | null> {
     const userAccount = await this.findUserAccount.execute(id);
     return userAccount;
   }

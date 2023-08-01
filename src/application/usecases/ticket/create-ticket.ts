@@ -12,7 +12,7 @@ export class CreateTicket {
   ): Promise<void> {
     const avaliableTickets = event.hasAvailableTickets(quantity);
     if (!avaliableTickets) {
-      throw new Error("Not enough tickets");
+      throw new Error("Not enough tickets available");
     }
 
     const tickets = [];

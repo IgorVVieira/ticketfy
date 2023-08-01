@@ -19,7 +19,7 @@ export class EventMapper {
 
   static toPersistence(event: Event): EventDB {
     const eventDB = new EventDB();
-    eventDB.id = event.getStatus();
+    eventDB.id = event.getId();
     eventDB.user_id = event.userId;
     eventDB.name = event.name;
     eventDB.datetime = event.datetime;

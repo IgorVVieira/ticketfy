@@ -7,13 +7,14 @@ export class PaymentController {
   constructor(
     private readonly paymentService: PaymentService,
     private readonly eventService: EventService
-  ) {}
+  ) {
+    this.create = this.create.bind(this);
+  }
 
   async create(req: Request, res: Response): Promise<Response> {
     try {
       const userId = req.userId;
-      const { event_id, user_account_id, type } = req.params;
-      const { quantity } = req.body;
+      const { event_id, user_account_id, type, quantity } = req.body;
 
       const event = await this.eventService.findById(event_id);
       if (!event) {

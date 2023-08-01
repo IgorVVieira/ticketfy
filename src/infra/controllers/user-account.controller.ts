@@ -10,10 +10,7 @@ export class UserAccountController {
 
   async find(req: Request, res: Response): Promise<Response> {
     try {
-      const userAccount = await this.userAccountService.find(
-        req.params.userId,
-        req.userId
-      );
+      const userAccount = await this.userAccountService.find(req.params.userId);
       return res.status(200).json(userAccount);
     } catch (error: any) {
       return res.status(500).json({ error: error.message });

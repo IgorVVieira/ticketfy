@@ -1,5 +1,4 @@
 import { Router } from "express";
-import "express-group-routes";
 import { AppDataSource } from "./infra/database/data-source";
 import { UserDB } from "./infra/database/entities/user";
 import { AuthController } from "./infra/controllers/auth.controller";
@@ -117,11 +116,7 @@ router.post(
 );
 router.get("/events/:id", authMiddleware, eventController.findById);
 
-router.post(
-  "/payments",
-  [authMiddleware, checkUserIdMatch],
-  paymentController.create
-);
+router.post("/payments", [authMiddleware], paymentController.create);
 
 router.get(
   "/tickets/:userId",

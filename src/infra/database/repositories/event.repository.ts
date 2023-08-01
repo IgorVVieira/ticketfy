@@ -14,7 +14,7 @@ export class EventRepository implements IEventRepository {
     const queryBuilder = this.repository.createQueryBuilder("event");
 
     if (props?.name) {
-      queryBuilder.where("event.name LIKE :name", { name: `%${props.name}%`});
+      queryBuilder.where("event.name LIKE :name", { name: `%${props.name}%` });
     }
     if (props?.type) {
       queryBuilder.andWhere("event.type = :type", { type: props.type });

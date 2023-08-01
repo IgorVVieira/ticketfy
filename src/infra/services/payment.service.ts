@@ -30,10 +30,11 @@ export class PaymentService {
     if (!event) throw new Error("Event not found");
 
     const userAccount = await this.userAccountService.find(
-      createPaymentDto.user_account_id,
-      userId
+      createPaymentDto.user_account_id
     );
     if (!userAccount) throw new Error("User account not found");
+
+    const eventId = event.getId();
 
     const payment = await this.createPayment.execute(
       createPaymentDto,
@@ -47,11 +48,11 @@ export class PaymentService {
     );
 
     await this.ticketService.create(
-      { event_id: event.getId(), user_id: userId, payment_id: payment.getId() },
+      { event_id: eventId, user_id: userId, payment_id: payment.getId() },
       quantity
     );
 
-    this.eventService.decrementAvailableTickets(event.getId(), quantity);
+    await this.eventService.decrementAvailableTickets(eventId, quantity);
 
     return payment;
   }

@@ -7,8 +7,8 @@ import { TicketMapper } from "../../mapper/ticket.mapper";
 export class TicketRepository implements ITicketRepository {
   constructor(private readonly repository: Repository<TicketDB>) {}
 
-  async createMany(ticket: Ticket[]): Promise<void> {
-    const ticketsDB = ticket.map((ticket) =>
+  async createMany(tickets: Ticket[]): Promise<void> {
+    const ticketsDB = tickets.map((ticket) =>
       TicketMapper.toPersistence(ticket)
     );
     const createdTickets = this.repository.create(ticketsDB);
