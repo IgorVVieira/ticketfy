@@ -23,7 +23,7 @@ export class UserService {
     return this.updateUser.execute(id, picture);
   }
 
-  async findById(id: string): Promise<User> {
-    return this.findUser.execute(id);
+  async findById(key: string, value: string): Promise<User> {
+    return this.findUser.execute(key, value);
   }
 }

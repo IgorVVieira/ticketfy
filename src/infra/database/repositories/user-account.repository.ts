@@ -23,6 +23,13 @@ export class UserAccountRepository implements IUserAccountRepository {
     return UserAccountMapper.toDomain(userAccountDB);
   }
 
+  async findAll(userId: string): Promise<UserAccount[]> {
+    const userAccountsDB = await this.repository.find({
+      where: { user_id: userId },
+    });
+    return userAccountsDB.map(UserAccountMapper.toDomain);
+  }
+
   async create(entity: UserAccount): Promise<UserAccount> {
     const userAccountDB = UserAccountMapper.toPersistence(entity);
     const createdUserAccount = this.repository.create(userAccountDB);

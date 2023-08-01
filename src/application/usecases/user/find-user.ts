@@ -4,8 +4,8 @@ import { IUserRepository } from "../../../domain/repositories/users/user.reposit
 export class FindUser {
   constructor(private readonly userRepository: IUserRepository) {}
 
-  async execute(email: string): Promise<User> {
-    const user = await this.userRepository.findBy("email", email);
+  async execute(key: string, value: string): Promise<User> {
+    const user = await this.userRepository.findBy(key, value);
     if (!user) throw new Error("User not found");
 
     return user;

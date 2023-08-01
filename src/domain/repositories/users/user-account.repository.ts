@@ -5,5 +5,6 @@ export interface IUserAccountRepository
   extends IGenericCreateRepository<UserAccount> {
   findByUserId(userId: string): Promise<UserAccount | null>;
   findById(id: string): Promise<UserAccount | null>;
+  findAll(userId: string): Promise<UserAccount[]>;
   update(id: string, userAccount: UserAccount): Promise<UserAccount | null>;
 }

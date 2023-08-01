@@ -29,8 +29,15 @@ export class UserController {
   }
 
   async findById(req: Request, res: Response): Promise<Response> {
-    const { id } = req.params;
-    const user = await this.userService.findById(id);
-    return res.status(200).json(user);
+    try {
+      const { id } = req.params;
+      const user = await this.userService.findById("id", id);
+      return res.status(200).json(user);
+    } catch (error: any) {
+      if (error.message === "User not found") {
+        return res.status(404).json({ message: error.message });
+      }
+      return res.status(500).json({ message: error.message });
+    }
   }
 }

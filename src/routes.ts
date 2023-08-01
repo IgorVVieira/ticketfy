@@ -36,6 +36,8 @@ import { TicketService } from "./infra/services/ticket.service";
 import { CreateTicket } from "./application/usecases/ticket/create-ticket";
 import { GetUserTickets } from "./application/usecases/ticket/get-user-tickets";
 import { FindAllEvents } from "./application/usecases/event/find-all-events";
+import { checkUserIdMatch } from "./infra/middlewares/check-user-id-match.middleware";
+import { GetAllUserAccounts } from "./application/usecases/user/get-all-user-accounts";
 
 const userDb = AppDataSource.getRepository(UserDB);
 const eventDb = AppDataSource.getRepository(EventDB);
@@ -67,6 +69,7 @@ const eventService = new EventService(
 const userAccountService = new UserAccountService(
   new CreateUserAccount(userAccountRepository),
   new FindUserAccount(userAccountRepository),
+  new GetAllUserAccounts(userAccountRepository),
   new DecrementUserAccountValue(userAccountRepository),
   userService
 );
@@ -98,7 +101,11 @@ router.post("/login", authController.login);
 router.post("/users", userController.create);
 router.get("/users/:id", authMiddleware, userController.findById);
 
-router.get("/user-accounts/:id", authMiddleware, userAccountController.find);
+router.get(
+  "/user-accounts/:userId",
+  [authMiddleware, checkUserIdMatch],
+  userAccountController.findAll
+);
 router.post("/user-accounts", authMiddleware, userAccountController.create);
 
 router.get("/events", eventController.findAll);

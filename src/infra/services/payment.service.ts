@@ -22,7 +22,7 @@ export class PaymentService {
     createPaymentDto: CreatePaymentDto,
     quantity: number
   ): Promise<Payment | null> {
-    const user = await this.userService.findById(userId);
+    const user = await this.userService.findById("id", userId);
 
     if (!user) throw new Error("User not found");
 

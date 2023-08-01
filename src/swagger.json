@@ -23,28 +23,31 @@
         "tags": [
           "Auth"
         ],
-        "parameters": [
-          {
-            "name": "email",
-            "in": "body",
-            "description": "Email do usuário",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "password",
-            "in": "body",
-            "description": "Senha do usuário",
-            "required": true,
-            "type": "string"
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "email": {
+                    "type": "string",
+                    "example": "igor.gutoo63@gmail.com"
+                  },
+                  "password": {
+                    "type": "string",
+                    "example": "$Teste123"
+                  }
+                }
+              }
+            }
           }
-        ],
+        },
         "responses": {
           "200": {
             "description": "OK",
             "headers": {
               "token": {
-                "type": "string",
+                "type": "object",
                 "description": "Token de autenticação"
               }
             }
@@ -96,6 +99,133 @@
           },
           "409": {
             "description": "Email already in use"
+          }
+        }
+      }
+    },
+    "/users/{id}": {
+      "get": {
+        "summary": "Perfil de usuário",
+        "description": "Busca o perfil de um usuário",
+        "tags": [
+          "Users"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID do usuário",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Usuário encontrado com sucesso",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "User not found"
+          },
+          "409": {
+            "description": "Unauthorized"
+          }
+        }
+      }
+    },
+    "/user-accounts": {
+      "post": {
+        "summary": "Cadastro de contas do usuário",
+        "description": "Cadastra uma nova conta do usuário no sistema",
+        "tags": [
+          "UserAccounts"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UserAccount"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Conta cadastrada com sucesso",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserAccount"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "User not found"
+          },
+          "409": {
+            "description": "Email already in use"
+          }
+        }
+      }
+    },
+    "/user-accounts/{userId}": {
+      "get": {
+        "summary": "Busca de contas do usuário",
+        "description": "Busca as contas do usuário",
+        "tags": [
+          "UserAccounts"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "description": "ID do usuário",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "$ref": "#/components/schemas/UserAccount"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "402": {
+            "description": "Invalid token"
+          },
+          "403": {
+            "description": "Unauthorized"
           }
         }
       }
@@ -165,6 +295,31 @@
           "password": {
             "type": "string",
             "example": "$Teste123"
+          }
+        }
+      },
+      "UserAccount": {
+        "type": "object",
+        "properties": {
+          "user_id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string",
+            "example": "Nubank"
+          },
+          "amount": {
+            "type": "number",
+            "example": "1000.00"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "debit",
+              "credit",
+              "pix",
+              "boleto"
+            ]
           }
         }
       },
