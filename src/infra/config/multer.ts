@@ -5,8 +5,11 @@ import { S3Client } from "@aws-sdk/client-s3";
 import "dotenv/config";
 import multerS3 from "multer-s3";
 
+type StorageTypes = {
+  [key: string]: multer.StorageEngine;
+};
+
 const MAX_SIZE_TWO_MEGABYTES = 2 * 1024 * 1024;
-const STORAGE_TYPES = ["local", "s3"];
 
 const s3 = new S3Client({
   region: process.env.AWS_DEFAULT_REGION || "",
@@ -16,7 +19,7 @@ const s3 = new S3Client({
   },
 });
 
-const storageTypes = {
+const storageTypes: StorageTypes = {
   local: multer.diskStorage({
     destination: (req, file, cb) => {
       cb(null, path.resolve(__dirname, "..", "..", "tmp", "uploads"));
@@ -46,7 +49,7 @@ const storageTypes = {
 
 export default {
   dest: path.resolve(__dirname, "..", "..", "tmp", "uploads"),
-  storage: storageTypes["s3"],
+  storage: storageTypes[process.env.STORAGE_TYPE || "local"],
   limits: {
     fileSize: MAX_SIZE_TWO_MEGABYTES,
   },
