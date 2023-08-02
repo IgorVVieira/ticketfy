@@ -14,6 +14,7 @@ import {
   ticketController,
   permissionController,
   userPermissionController,
+  eventPhotoController,
 } from "./infra/shared/container/injection";
 
 const router = Router();
@@ -40,6 +41,11 @@ router.post(
   eventController.create
 );
 router.get("/events/:id", authMiddleware, eventController.findById);
+router.post(
+  "/event-photos/:id/photos",
+  [authMiddleware, multer(multerConfig).array("files")],
+  eventPhotoController.create
+);
 
 router.post("/payments", [authMiddleware], paymentController.create);
 

@@ -1,4 +1,5 @@
 import { CreateEvent } from "../../../application/usecases/event/create-event";
+import { CreateEventPhoto } from "../../../application/usecases/event/create-event-photo";
 import { DecrementAvaliableTickets } from "../../../application/usecases/event/decrement-avaliable-tickets";
 import { FindAllEvents } from "../../../application/usecases/event/find-all-events";
 import { FindEvent } from "../../../application/usecases/event/find-event";
@@ -18,6 +19,7 @@ import { FindUserAccount } from "../../../application/usecases/user/find-user-ac
 import { GetAllUserAccounts } from "../../../application/usecases/user/get-all-user-accounts";
 import { UpdateUserPicture } from "../../../application/usecases/user/update-user-picture";
 import { AuthController } from "../../controllers/auth.controller";
+import { EventPhotoController } from "../../controllers/event-photo.controller";
 import { EventController } from "../../controllers/event.controller";
 import { PaymentController } from "../../controllers/payment.controller";
 import { PermissionController } from "../../controllers/permission.controller";
@@ -27,12 +29,14 @@ import { UserPermissionController } from "../../controllers/user-permission.cont
 import { UserController } from "../../controllers/user.controller";
 import { AppDataSource } from "../../database/data-source";
 import { EventDB } from "../../database/entities/event";
+import { EventPhotoDB } from "../../database/entities/event-photo";
 import { PaymentDB } from "../../database/entities/payment";
 import { PermissionDB } from "../../database/entities/permission";
 import { TicketDB } from "../../database/entities/ticket";
 import { UserDB } from "../../database/entities/user";
 import { UserAccountDB } from "../../database/entities/user-account";
 import { UserPermissionDB } from "../../database/entities/user-permission";
+import { EventPhotoRepository } from "../../database/repositories/event-photo.repository";
 import { EventRepository } from "../../database/repositories/event.repository";
 import { PaymentRepository } from "../../database/repositories/payment.repository";
 import { PermissionRepository } from "../../database/repositories/permission.repository";
@@ -41,6 +45,7 @@ import { UserAccountRepository } from "../../database/repositories/user-account.
 import { UserPermissionRepository } from "../../database/repositories/user-permission.repository";
 import { UserRepository } from "../../database/repositories/user.repository";
 import { JwtService } from "../../jwt/jwt.service";
+import { EventPhotoService } from "../../services/event-photo.service";
 import { EventService } from "../../services/event.service";
 import { PaymentService } from "../../services/payment.service";
 import { PermissionService } from "../../services/permission.service";
@@ -56,6 +61,7 @@ const paymentDb = AppDataSource.getRepository(PaymentDB);
 const ticketDb = AppDataSource.getRepository(TicketDB);
 const permissionDb = AppDataSource.getRepository(PermissionDB);
 const userPermissionDb = AppDataSource.getRepository(UserPermissionDB);
+const eventPhotoDB = AppDataSource.getRepository(EventPhotoDB);
 
 const userRepository = new UserRepository(userDb);
 const eventRepository = new EventRepository(eventDb);
@@ -64,6 +70,7 @@ const paymentRepository = new PaymentRepository(paymentDb);
 const ticketRepository = new TicketRepository(ticketDb);
 const permissionRepository = new PermissionRepository(permissionDb);
 const userPermissionRepository = new UserPermissionRepository(userPermissionDb);
+const eventPhotoRepository = new EventPhotoRepository(eventPhotoDB);
 
 const userService = new UserService(
   new CreateUser(userRepository),
@@ -100,6 +107,10 @@ const userPermissionService = new UserPermissionService(
   userService,
   permissionService
 );
+const eventPhotoService = new EventPhotoService(
+  new CreateEventPhoto(eventPhotoRepository),
+  eventService
+);
 
 const authController = new AuthController(
   new Login(userRepository, new JwtService())
@@ -122,6 +133,7 @@ const permissionController = new PermissionController(permissionService);
 const userPermissionController = new UserPermissionController(
   userPermissionService
 );
+const eventPhotoController = new EventPhotoController(eventPhotoService);
 
 export {
   userPermissionService,
@@ -133,4 +145,5 @@ export {
   ticketController,
   permissionController,
   userPermissionController,
+  eventPhotoController,
 };

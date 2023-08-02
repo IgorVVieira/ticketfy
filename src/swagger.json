@@ -511,6 +511,65 @@
         }
       }
     },
+    "/event-photos/{id}/photos": {
+      "post": {
+        "summary": "Upload de imagens do evento",
+        "description": "Upload de imagens do evento",
+        "tags": [
+          "Events"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID do evento",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "file": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "format": "binary"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Fotos do evento atualizadas com sucesso",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Event"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Event not found"
+          },
+          "409": {
+            "description": "Unauthorized"
+          }
+        }
+      }
+    },
     "/payments": {
       "post": {
         "summary": "Criação de pagamento",
