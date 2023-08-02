@@ -37,4 +37,10 @@ describe("UserAccount", () => {
       })
     ).toThrowError("Amount cannot be negative");
   });
+
+  it("should thorw an error on decrement amount if amount is negative", () => {
+    expect(() => userAccount.decrementAmount(-10)).toThrowError(
+      "Amount cannot be negative"
+    );
+  });
 });

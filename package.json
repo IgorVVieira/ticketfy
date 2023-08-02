@@ -11,7 +11,8 @@
     "typeorm": "ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli.js",
     "migrate": "npx typeorm-ts-node-esm migration:run -d src/infra/database/data-source.ts",
     "migrate:docker": "npx typeorm migration:run -d dist/infra/database/data-source.js",
-    "test": "jest"
+    "test": "jest",
+    "test:coverage": "jest --coverage"
   },
   "keywords": [],
   "author": "",
