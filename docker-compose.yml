@@ -21,12 +21,27 @@ services:
       - db:/data/postgres
     ports:
       - "5432:5432"
-    env_file:
-      - .env
     environment:
       POSTGRES_USER: ${POSTGRES_USER}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
       POSTGRES_DB: ${POSTGRES_DB}
+
+  migration:
+    container_name: migrations
+    build: .
+    command:
+      [
+        "./wait-for-it/wait-for-it.sh",
+        "postgres:5432",
+        "--",
+        "npm",
+        "run",
+        "migrate:docker"
+      ]
+    links:
+      - postgres
+    depends_on:
+      - postgres
 
 volumes:
   db:
