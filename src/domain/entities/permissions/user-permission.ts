@@ -16,8 +16,8 @@ export class UserPermission extends Entity {
   }
 
   static create({
-    userId: userId,
-    permissionId: permissionId,
+    userId,
+    permissionId,
     id,
   }: UserPermissionProps): UserPermission {
     return new UserPermission(userId, permissionId, id);
