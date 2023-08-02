@@ -63,16 +63,17 @@ export class Event extends Entity {
   }
 
   hasAvailableTickets(quantity?: number): boolean {
-    return (
-      this.avaliableTickets > 0 &&
-      this.status === EventStatus.OPEN &&
-      this.participantsLimit >= quantity!
+    return Boolean(
+      this.avaliableTickets >= quantity! &&
+        this.status === EventStatus.OPEN &&
+        this.participantsLimit >= quantity!
     );
   }
 
   decrementAvailableTickets(quantity: number): void {
     if (!this.hasAvailableTickets(quantity)) {
-      return;
+      console.log(this.avaliableTickets);
+      throw new Error("Event has no available tickets");
     }
     this.avaliableTickets -= quantity;
   }

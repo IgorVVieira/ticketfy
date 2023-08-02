@@ -65,7 +65,6 @@ describe("CreateUserPermission", () => {
   });
 
   it("should throw an error when user permission already exists", async () => {
-    // Mock input data
     const user = User.create({
       name: "John Doe",
       email: "johndoe@example.com",
@@ -77,28 +76,23 @@ describe("CreateUserPermission", () => {
       description: "Read permission",
     });
 
-    // Mock an existing user permission to be returned by the findByUseridAndPermissionId method
     const existingUserPermission = UserPermission.create({
       userId: user.getId(),
       permissionId: permission.getId(),
     });
 
-    // Mock the findByUseridAndPermissionId method of the user permission repository to return the existing user permission
     (
       mockUserPermissionRepository.findByUseridAndPermissionId as jest.Mock
     ).mockResolvedValueOnce(existingUserPermission);
 
-    // Call the execute method of CreateUserPermission and expect it to throw an error
     await expect(
       createUserPermission.execute(user, permission)
     ).rejects.toThrowError("Permission already exists");
 
-    // Assert that the findByUseridAndPermissionId method was called with the correct arguments (userId, permissionId)
     expect(
       mockUserPermissionRepository.findByUseridAndPermissionId
     ).toHaveBeenCalledWith(user.getId(), permission.getId());
 
-    // Assert that the create method was not called since an error occurred
     expect(mockUserPermissionRepository.create).not.toHaveBeenCalled();
   });
 });

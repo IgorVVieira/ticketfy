@@ -30,8 +30,9 @@ describe("Event", () => {
     expect(event.avaliableTickets).toBe(7);
   });
 
-  it("should not decrement available tickets", () => {
-    event.decrementAvailableTickets(11);
-    expect(event.avaliableTickets).toBe(7);
+  it("should throw an error when decrementing more tickets than available", () => {
+    expect(() => event.decrementAvailableTickets(8)).toThrowError(
+      "Event has no available tickets"
+    );
   });
 });
