@@ -11,7 +11,7 @@
 - [JWT](https://jwt.io/)
 - [TypeORM](https://typeorm.io/)
 
-Resumidamente, este teste foi desenvolvido utilizando Node.js com o framework NestJS e banco de dados SQLITe em memória, seguindo os princípios da clean architecture e do SOLID. O Docker foi utilizado para criar uma imagem padrão, facilitando os testes e garantindo consistência entre os ambientes. Para realizar os testes unitários, foi utilizado o Jest, enquanto o Swagger foi empregado para criar uma documentação e uma forma mais simples de testar a API.
+Resumidamente, este teste foi desenvolvido utilizando Node.js com banco de dados PostgreSQL, seguindo os princípios da clean architecture e do SOLID. O Docker foi utilizado para criar uma imagem padrão, facilitando os testes e garantindo consistência entre os ambientes. Para realizar os testes unitários, foi utilizado o Jest, enquanto o Swagger foi empregado para criar uma documentação e uma forma mais simples de testar a API.
 
 ## 🤔 Enunciado do desafio
 
@@ -79,9 +79,9 @@ docker compose exec app npm run --coverage
 
 - [x] RF01: Visualizar lista de eventos
       O sistema deve exibir uma lista de eventos disponíveis para compra.
-      Os eventos devem ser filtrados por categoria (empresas e universidades) e data.
+      Os eventos devem ser filtrados por nome, categoria (empresas e universidades) data e status.
       O usuário deve ser capaz de pesquisar eventos por palavras-chave.
-      O sistema deve exibir informações básicas do evento, como título, categoria, data e hora.
+      O sistema deve exibir informações básicas do evento, como título, categoria, data, hora e fotos.
 
 - [x] RF02: Visualizar detalhes do evento
       O usuário deve poder ver os detalhes de um evento específico ao selecioná-lo na lista.
@@ -104,24 +104,20 @@ docker compose exec app npm run --coverage
       Os organizadores de eventos devem poder criar novos eventos através do sistema.
       O sistema deve permitir que o organizador forneça informações detalhadas do evento, como título, categoria, data, hora, localização, preço do ingresso e informações adicionais.
 
-- [x] RF07: Acompanhar vendas de ingressos (Para Organizadores de Eventos)
-      Os organizadores de eventos devem poder acessar informações de venda dos ingressos de seus eventos.
-      O sistema deve exibir a quantidade de ingressos vendidos e a quantidade restante para cada evento.
-
-- [x] RF08: Adicionar/alterar e remover foto de usuário
+- [x] RF07: Adicionar/alterar e remover foto de usuário
       Os usuários cadastrados devem poder adicionar ou alterar sua foto de perfil.
       Os usuários devem poder remover sua foto de perfil, se desejarem.
 
-- [x] RF09: Adicionar várias fotos ao eventos (Para Organizadores de Eventos)
+- [x] RF08: Adicionar várias fotos ao eventos (Para Organizadores de Eventos)
       Os organizadores de eventos devem poder adicionar várias fotos para ilustrar seus eventos.
       O sistema deve permitir o upload e gerenciamento das fotos pelo organizador.
 
-- [x] RF10: Encerrar eventos (Para Organizadores de Eventos)
+- [x] RF09: Encerrar eventos (Para Organizadores de Eventos)
       Os organizadores podem encerrar os eventos, impedindo a compra de ingressos.
 
 ## 🎉 Requisitos não funcionais
 
-- [x] Segurança (middleware em rotas necessárias) um usário não pode ver dados de outro usuãrio;
+- [x] Segurança (middleware em rotas necessárias) um usuário não pode ver dados de outro usuário;
 - [x] Permissionamento (middleware em rotas necessárias) para verificar permissionamento, evita que usuários comuns faça tarefas que não são do seu papel;
 - [x] Não permitir compra de ingressos sem vaga ou com eventos finalizados.
 

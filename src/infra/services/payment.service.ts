@@ -44,7 +44,7 @@ export class PaymentService {
 
     await this.userAccountService.decrementValue(
       userAccount,
-      payment.getValue()
+      payment.getValue() * quantity
     );
 
     await this.ticketService.create(
