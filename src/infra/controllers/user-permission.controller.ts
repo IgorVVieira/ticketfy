@@ -2,7 +2,9 @@ import { UserPermissionService } from "../services/user-permission.service";
 import { Request, Response } from "express";
 
 export class UserPermissionController {
-  constructor(private readonly userPermissionService: UserPermissionService) {}
+  constructor(private readonly userPermissionService: UserPermissionService) {
+    this.create = this.create.bind(this);
+  }
 
   async create(req: Request, res: Response): Promise<Response> {
     try {

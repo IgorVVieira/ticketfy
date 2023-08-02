@@ -8,8 +8,8 @@ export class EventPhotoController {
   async create(req: Request, res: Response) {
     try {
       const { id } = req.params;
-      // @ts-ignore
-      const eventPhotos = await this.eventPhotoService.execute(id, req.files);
+      const photos = req.files as Express.Multer.File[];
+      const eventPhotos = await this.eventPhotoService.execute(id, photos);
       return res.status(201).json(eventPhotos);
     } catch (error: any) {
       return res.status(500).json({ message: error.message });

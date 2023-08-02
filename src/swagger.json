@@ -551,15 +551,8 @@
           }
         },
         "responses": {
-          "200": {
-            "description": "Fotos do evento atualizadas com sucesso",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Event"
-                }
-              }
-            }
+          "201": {
+            "description": "Fotos do evento criadas com sucesso"
           },
           "404": {
             "description": "Event not found"
@@ -790,7 +783,7 @@
         "properties": {
           "name": {
             "type": "string",
-            "example": "ADMIN"
+            "example": "admin"
           },
           "description": {
             "type": "string",

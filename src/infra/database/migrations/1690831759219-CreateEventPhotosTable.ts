@@ -22,6 +22,16 @@ export class CreateEventPhotosTable1690831759219 implements MigrationInterface {
             name: "url",
             type: "varchar",
           },
+          {
+            name: "created_at",
+            type: "timestamp",
+            default: "now()",
+          },
+          {
+            name: "updated_at",
+            type: "timestamp",
+            default: "now()",
+          },
         ],
         foreignKeys: [
           {

@@ -43,7 +43,7 @@ router.post(
 router.get("/events/:id", authMiddleware, eventController.findById);
 router.post(
   "/event-photos/:id/photos",
-  [authMiddleware, multer(multerConfig).array("files")],
+  [authMiddleware, multer(multerConfig).array("file")],
   eventPhotoController.create
 );
 
