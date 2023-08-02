@@ -15,10 +15,9 @@ export enum UserType {
   COMPRADOR = "comprador",
 }
 
+const EMAIL_REGEX = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+const PASSWORD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/;
 export class User extends Entity {
-  private emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-  private passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/;
-
   private constructor(
     public readonly name: string,
     public readonly email: string,
@@ -43,11 +42,11 @@ export class User extends Entity {
   }
 
   private isvalidEmail(email: string): boolean {
-    return this.emailRegex.test(email);
+    return EMAIL_REGEX.test(email);
   }
 
   private isvalidPassword(password: string): boolean {
-    return this.passwordRegex.test(password);
+    return PASSWORD_REGEX.test(password);
   }
 
   public getPassword(): string {
