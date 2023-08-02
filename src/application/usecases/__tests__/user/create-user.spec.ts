@@ -1,6 +1,6 @@
-import { User, UserProps } from "../../../domain/entities/users/user";
-import { IUserRepository } from "../../../domain/repositories/users/user.repository";
-import { CreateUser } from "../user/create-user";
+import { User, UserProps } from "../../../../domain/entities/users/user";
+import { IUserRepository } from "../../../../domain/repositories/users/user.repository";
+import { CreateUser } from "../../user/create-user";
 
 class MockUserRepository implements IUserRepository {
   private users: User[] = [];

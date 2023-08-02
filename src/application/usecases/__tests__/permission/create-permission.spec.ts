@@ -1,6 +1,6 @@
-import { Permission } from "../../../domain/entities/permissions/permission";
-import { IPermissionRepository } from "../../../domain/repositories/permission.repository";
-import { CreatePermission } from "../permission/create-permission";
+import { Permission } from "../../../../domain/entities/permissions/permission";
+import { IPermissionRepository } from "../../../../domain/repositories/permission.repository";
+import { CreatePermission } from "../../permission/create-permission";
 
 const mockPermissionRepository: IPermissionRepository = {
   create: jest.fn(),

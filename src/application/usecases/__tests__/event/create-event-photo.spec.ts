@@ -1,10 +1,10 @@
-import { Event } from "../../../domain/entities/events/event";
+import { Event } from "../../../../domain/entities/events/event";
 import {
   EventPhoto,
   EventPhotoProps,
-} from "../../../domain/entities/events/event-photo";
-import { IEventPhotoRepository } from "../../../domain/repositories/events/event-photo.repository";
-import { CreateEventPhoto } from "../event/create-event-photo";
+} from "../../../../domain/entities/events/event-photo";
+import { IEventPhotoRepository } from "../../../../domain/repositories/events/event-photo.repository";
+import { CreateEventPhoto } from "../../event/create-event-photo";
 
 class MockEventPhotoRepository implements IEventPhotoRepository {
   private eventPhotos: EventPhoto[] = [];

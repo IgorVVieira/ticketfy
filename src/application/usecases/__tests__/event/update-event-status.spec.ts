@@ -1,6 +1,6 @@
-import { Event, EventStatus } from "../../../domain/entities/events/event";
-import { IEventRepository } from "../../../domain/repositories/events/event.repository";
-import { UpdateEventStatus } from "../event/update-event-status";
+import { Event, EventStatus } from "../../../../domain/entities/events/event";
+import { IEventRepository } from "../../../../domain/repositories/events/event.repository";
+import { UpdateEventStatus } from "../../event/update-event-status";
 
 const mockEventRepository: IEventRepository = {
   findAll: jest.fn(),

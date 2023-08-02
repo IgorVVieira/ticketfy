@@ -1,6 +1,6 @@
-import { User, UserType } from "../../../domain/entities/users/user";
-import { IUserRepository } from "../../../domain/repositories/users/user.repository";
-import { UpdateUserPicture } from "../user/update-user-picture";
+import { User, UserType } from "../../../../domain/entities/users/user";
+import { IUserRepository } from "../../../../domain/repositories/users/user.repository";
+import { UpdateUserPicture } from "../../user/update-user-picture";
 
 const mockUserRepository: IUserRepository = {
   findBy: jest.fn(),

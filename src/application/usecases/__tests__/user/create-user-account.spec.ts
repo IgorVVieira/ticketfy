@@ -1,8 +1,8 @@
-import { IUserAccountRepository } from "../../../domain/repositories/users/user-account.repository";
-import { User } from "../../../domain/entities/users/user";
-import { CreateUserAccount } from "../user/create-user-account";
-import { PaymentEnum } from "../../../domain/entities/payment-enum";
-import { UserAccount } from "../../../domain/entities/users/user-account";
+import { IUserAccountRepository } from "../../../../domain/repositories/users/user-account.repository";
+import { User } from "../../../../domain/entities/users/user";
+import { CreateUserAccount } from "../../user/create-user-account";
+import { PaymentEnum } from "../../../../domain/entities/payment-enum";
+import { UserAccount } from "../../../../domain/entities/users/user-account";
 
 // Mock the user account repository
 const mockUserAccountRepository: IUserAccountRepository = {

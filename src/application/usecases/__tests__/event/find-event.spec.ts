@@ -1,6 +1,6 @@
-import { Event } from "../../../domain/entities/events/event";
-import { IEventRepository } from "../../../domain/repositories/events/event.repository";
-import { FindEvent } from "../event/find-event";
+import { Event } from "../../../../domain/entities/events/event";
+import { IEventRepository } from "../../../../domain/repositories/events/event.repository";
+import { FindEvent } from "../../event/find-event";
 
 // Mock the event repository
 const mockEventRepository: IEventRepository = {

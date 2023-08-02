@@ -1,6 +1,6 @@
-import { User } from "../../../domain/entities/users/user";
-import { IUserRepository } from "../../../domain/repositories/users/user.repository";
-import { FindUser } from "../user/find-user";
+import { User } from "../../../../domain/entities/users/user";
+import { IUserRepository } from "../../../../domain/repositories/users/user.repository";
+import { FindUser } from "../../user/find-user";
 
 // Mock the user repository
 const mockUserRepository: IUserRepository = {

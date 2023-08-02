@@ -1,6 +1,6 @@
-import { Event, EventStatus } from "../../../domain/entities/events/event";
-import { IEventRepository } from "../../../domain/repositories/events/event.repository";
-import { DecrementAvaliableTickets } from "../event/decrement-avaliable-tickets";
+import { Event, EventStatus } from "../../../../domain/entities/events/event";
+import { IEventRepository } from "../../../../domain/repositories/events/event.repository";
+import { DecrementAvaliableTickets } from "../../event/decrement-avaliable-tickets";
 
 const mockEventRepository: IEventRepository = {
   findAll: jest.fn(),

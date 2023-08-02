@@ -1,8 +1,8 @@
-import { IUserPermissionRepository } from "../../../domain/repositories/users/user-permission.repository";
-import { User } from "../../../domain/entities/users/user";
-import { Permission } from "../../../domain/entities/permissions/permission";
-import { UserPermission } from "../../../domain/entities/permissions/user-permission";
-import { CreateUserPermission } from "../permission/create-user-permission";
+import { IUserPermissionRepository } from "../../../../domain/repositories/users/user-permission.repository";
+import { User } from "../../../../domain/entities/users/user";
+import { Permission } from "../../../../domain/entities/permissions/permission";
+import { UserPermission } from "../../../../domain/entities/permissions/user-permission";
+import { CreateUserPermission } from "../../permission/create-user-permission";
 
 const mockUserPermissionRepository: IUserPermissionRepository = {
   create: jest.fn(),
