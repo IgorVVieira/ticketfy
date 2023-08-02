@@ -34,7 +34,24 @@ export class EventRepository implements IEventRepository {
   }
 
   async findById(id: string): Promise<Event | null> {
-    const eventDB = await this.repository.findOne({ where: { id } });
+    const eventDB = await this.repository
+      .createQueryBuilder("event")
+      .leftJoinAndSelect("event.photos", "url")
+      .where("event.id = :id", { id })
+      .select([
+        "event.id",
+        "event.userId",
+        "event.name",
+        "event.datetime",
+        "event.location",
+        "event.participants_limit",
+        "event.unitary_price",
+        "event.status",
+        "event.avaliable_tickets",
+        "event.description",
+        "url.url",
+      ])
+      .getOne();
     if (!eventDB) return null;
     return EventMapper.toDomain(eventDB);
   }

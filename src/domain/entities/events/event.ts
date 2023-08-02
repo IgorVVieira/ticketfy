@@ -18,6 +18,7 @@ export type EventProps = {
   description?: string;
   status?: EventStatus;
   id?: string;
+  photos?: string[];
 };
 
 export class Event extends Entity {
@@ -31,7 +32,8 @@ export class Event extends Entity {
     private status: EventStatus = EventStatus.OPEN,
     public avaliableTickets: number,
     public readonly description?: string,
-    id?: string
+    id?: string,
+    public readonly photos?: string[]
   ) {
     super(id);
   }
@@ -47,6 +49,7 @@ export class Event extends Entity {
     status,
     avaliable_tickets: avaliableTickets,
     id,
+    photos,
   }: EventProps): Event {
     return new Event(
       userId,
@@ -58,7 +61,8 @@ export class Event extends Entity {
       status,
       avaliableTickets,
       description,
-      id
+      id,
+      photos
     );
   }
 

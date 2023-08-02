@@ -14,6 +14,7 @@ export class EventMapper {
       unitary_price: eventDB.unitary_price,
       status: eventDB.eventStatus,
       avaliable_tickets: eventDB.avaliable_tickets,
+      photos: eventDB.photos ? eventDB.photos.map((photo) => photo.url) : [],
     });
   }
 

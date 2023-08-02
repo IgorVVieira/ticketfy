@@ -13,6 +13,10 @@
     {
       "url": "http://localhost:3000/api",
       "description": "Servidor local"
+    },
+    {
+      "url": "https://desafio-mblabs.herokuapp.com/api",
+      "description": "Servidor de produção"
     }
   ],
   "paths": {

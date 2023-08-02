@@ -2,10 +2,13 @@ import {
   Column,
   CreateDateColumn,
   Entity,
+  JoinTable,
+  OneToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from "typeorm";
 import { EventStatus } from "../../../domain/entities/events/event";
+import { EventPhotoDB } from "./event-photo";
 
 @Entity("events")
 export class EventDB {
@@ -44,6 +47,10 @@ export class EventDB {
 
   @UpdateDateColumn({ type: "timestamp" })
   updated_at: Date;
+
+  @JoinTable({ name: "events_event_photos" })
+  @OneToMany(() => EventPhotoDB, (eventPhoto) => eventPhoto.event)
+  photos?: EventPhotoDB[];
 
   get eventStatus(): EventStatus {
     return this.status as EventStatus;
