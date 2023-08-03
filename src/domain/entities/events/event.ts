@@ -76,7 +76,6 @@ export class Event extends Entity {
 
   decrementAvailableTickets(quantity: number): void {
     if (!this.hasAvailableTickets(quantity)) {
-      console.log(this.avaliableTickets);
       throw new Error("Event has no available tickets");
     }
     this.avaliableTickets -= quantity;

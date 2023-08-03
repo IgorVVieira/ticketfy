@@ -3,7 +3,6 @@ import { DataSource } from "typeorm";
 import "dotenv/config";
 
 const port = parseInt(process.env.DB_PORT || "5432");
-console.log(process.env.DATABASE_URL);
 
 export const AppDataSource = new DataSource({
   type: "postgres",

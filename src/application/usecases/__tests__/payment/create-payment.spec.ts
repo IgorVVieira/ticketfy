@@ -73,7 +73,6 @@ describe("CreatePayment", () => {
 
     const quantity = 1;
 
-    console.log(event.hasAvailableTickets(quantity));
     await expect(
       createPayment.execute(paymentProps, event, quantity)
     ).rejects.toThrowError("Not enough tickets avaliable");
