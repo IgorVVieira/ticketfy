@@ -15,8 +15,8 @@
       "description": "Servidor local"
     },
     {
-      "url": "https://desafio-mblabs.herokuapp.com/api",
-      "description": "Servidor de produção"
+      "url": "https://desafio-mb-labs.onrender.com/api",
+      "description": "Servidor de Dev"
     }
   ],
   "paths": {
