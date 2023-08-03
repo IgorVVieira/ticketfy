@@ -3,14 +3,13 @@ import { DataSource } from "typeorm";
 import "dotenv/config";
 
 const port = parseInt(process.env.DB_PORT || "5432");
+console.log(process.env.DATABASE_URL);
 
 export const AppDataSource = new DataSource({
   type: "postgres",
-  host: process.env.DATABASE_HOST || "postgres_mb_labs",
-  port,
-  username: process.env.POSTGRES_USER,
-  password: process.env.POSTGRES_PASSWORD,
-  database: process.env.POSTGRES_DB,
+  url:
+    process.env.DATABASE_URL ||
+    `postgres://postgres:postgres@localhost:${port}/postgres`,
   logging: false,
   entities: [__dirname + "/entities/*{.ts,.js}"],
   migrations: [__dirname + "/migrations/*{.ts,.js}"],
