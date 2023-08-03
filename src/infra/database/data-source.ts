@@ -6,7 +6,7 @@ const port = parseInt(process.env.DB_PORT || "5432");
 
 export const AppDataSource = new DataSource({
   type: "postgres",
-  host: "postgres_mb_labs",
+  host: process.env.DATABASE_HOST || "postgres_mb_labs",
   port,
   username: process.env.POSTGRES_USER,
   password: process.env.POSTGRES_PASSWORD,
