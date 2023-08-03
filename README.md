@@ -40,13 +40,7 @@ Para rodar este projeto, precisa ter o node ou Docker instalado em sua máquina.
 3. Rode o projeto utilizando Docker Compose:
 
    ```bash
-    docker compose up -d .
-   ```
-
-   3.1 - Rode as migrations:
-
-   ```bash
-   docker compose exec app npm run migrate:docker
+    docker compose up -d
    ```
 
 4. O projeto estará rodando em sua máquina na porta 3000.
@@ -57,7 +51,7 @@ Para facilitar a realização dos testes e torná-los mais visualmente acessíve
 
 ## ✨ Deploy
 
-A aplicação foi implantada utilizando o [Render](https://render.com/), tornando-a disponível em [Produção](https://test-fpass.onrender.com/api/heroes). Agora, é possível realizar todas as operações no endpoint, e os dados são persistidos em um banco em Postgre que também está hospedado no Render. O deploy é feito automaticamente sempre que um novo código é enviado para a branch master, garantindo um processo de implantação contínuo.
+A aplicação foi implantada utilizando o [Render](https://render.com/), tornando-a disponível em [Dev](https://desafio-mb-labs.onrender.com/api-docs). Agora, é possível realizar todas as operações no endpoint, e os dados são persistidos em um banco em Postgre que também está hospedado no Render. O deploy é feito automaticamente sempre que um novo código é enviado para a branch master, garantindo um processo de implantação contínuo.
 
 ## 🧪 Rodar testes de unidade
 
@@ -66,7 +60,7 @@ Por padrão, a cada push em qualquer uma das branches deste projeto, os testes u
 Para rodar os testes unitários com Docker:
 
 ```bash
-docker compose exec app npm run teste
+docker compose exec app npm run test
 ```
 
 Atualizar code coverage
@@ -119,6 +113,5 @@ docker compose exec app npm run --coverage
 
 - [x] Segurança (middleware em rotas necessárias) um usuário não pode ver dados de outro usuário;
 - [x] Permissionamento (middleware em rotas necessárias) para verificar permissionamento, evita que usuários comuns faça tarefas que não são do seu papel;
-- [x] Não permitir compra de ingressos sem vaga ou com eventos finalizados.
 
 Todas essas funcionalidades adicionais, além dos requisitos obrigatórios, foram implementadas e estão cobertas por testes de unidade e integração.
