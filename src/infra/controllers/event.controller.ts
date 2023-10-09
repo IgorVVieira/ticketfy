@@ -2,7 +2,6 @@ import { findAllProps } from "../../domain/repositories/events/event.repository"
 import { EventService } from "../services/event.service";
 import { Request, Response } from "express";
 
-
 export class EventController {
   constructor(private readonly eventService: EventService) {
     this.create = this.create.bind(this);

@@ -5,6 +5,7 @@ export class EventPhotoController {
   constructor(private readonly eventPhotoService: EventPhotoService) {
     this.create = this.create.bind(this);
   }
+  
   async create(req: Request, res: Response) {
     try {
       const { id } = req.params;
