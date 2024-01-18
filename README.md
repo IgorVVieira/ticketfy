@@ -1,4 +1,4 @@
-# Desafio Backend MB Labs
+# Ticketfy
 
 ## 💻 Tencologias utilizadas
 
@@ -11,7 +11,7 @@
 - [JWT](https://jwt.io/)
 - [TypeORM](https://typeorm.io/)
 
-Resumidamente, este teste foi desenvolvido utilizando Node.js com banco de dados PostgreSQL, seguindo os princípios da clean architecture e do SOLID. O Docker foi utilizado para criar uma imagem padrão, facilitando os testes e garantindo consistência entre os ambientes. Para realizar os testes unitários, foi utilizado o Jest, enquanto o Swagger foi empregado para criar uma documentação e uma forma mais simples de testar a API.
+Resumidamente, esta API foi desenvolvido utilizando Node.js com banco de dados PostgreSQL, seguindo os princípios da clean architecture e do SOLID. O Docker foi utilizado para criar uma imagem padrão, facilitando os testes e garantindo consistência entre os ambientes. Para realizar os testes unitários, foi utilizado o Jest, enquanto o Swagger foi empregado para criar uma documentação e uma forma mais simples de testar a API.
 
 ## 🤔 Enunciado do desafio
 
@@ -28,13 +28,13 @@ Para rodar este projeto, precisa ter o node ou Docker instalado em sua máquina.
 1. Clone o repositório em sua máquina:
 
    ```bash
-   git clone https://github.com/IgorVVieira/desafio_mb.git
+   git clone https://github.com/IgorVVieira/ticketfy.git
    ```
 
 2. Mude para o diretório do projeto:
 
    ```bash
-   cd desafio_mb
+   cd ticketfy
    ```
 
 3. Rode o projeto utilizando Docker Compose:
