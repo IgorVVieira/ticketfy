@@ -21,8 +21,7 @@ export class UserAccountService {
   }
 
   async find(id: string): Promise<UserAccount | null> {
-    const userAccount = await this.findUserAccount.execute(id);
-    return userAccount;
+    return this.findUserAccount.execute(id);
   }
 
   async findAll(userId: string): Promise<UserAccount[]> {

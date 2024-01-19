@@ -42,17 +42,17 @@ export class PaymentService {
       quantity
     );
 
-    await this.userAccountService.decrementValue(
-      userAccount,
-      payment.getValue() * quantity
-    );
-
-    await this.ticketService.create(
-      { eventId: eventId, userId: userId, paymentId: payment.getId() },
-      quantity
-    );
-
-    await this.eventService.decrementAvailableTickets(eventId, quantity);
+    await Promise.all([
+      this.userAccountService.decrementValue(
+        userAccount,
+        payment.getValue() * quantity
+      ),
+      this.ticketService.create(
+        { eventId: eventId, userId: userId, paymentId: payment.getId() },
+        quantity
+      ),
+      this.eventService.decrementAvailableTickets(eventId, quantity),
+    ]);
 
     return payment;
   }

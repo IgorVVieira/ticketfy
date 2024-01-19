@@ -19,8 +19,10 @@ export class UserPermissionService {
     userId: string,
     permissionId: string
   ): Promise<UserPermission | null> {
-    const user = await this.userService.findById("id", userId);
-    const permission = await this.permissionService.find("id", permissionId);
+    const [user, permission] = await Promise.all([
+      this.userService.findById("id", userId),
+      this.permissionService.find("id", permissionId),
+    ]);
     return this.createUserPermission.execute(user, permission);
   }
 
