@@ -1,8 +1,8 @@
-import { CreateUserPermission } from "../../application/usecases/permission/create-user-permission";
-import { FindUserPermission } from "../../application/usecases/permission/find-user-permission";
-import { UserPermission } from "../../domain/entities/permissions/user-permission";
-import { PermissionService } from "./permission.service";
-import { UserService } from "./user.service";
+import { CreateUserPermission } from '../../application/usecases/permission/create-user-permission';
+import { FindUserPermission } from '../../application/usecases/permission/find-user-permission';
+import { UserPermission } from '../../domain/entities/permissions/user-permission';
+import { PermissionService } from './permission.service';
+import { UserService } from './user.service';
 
 export class UserPermissionService {
   constructor(
@@ -20,8 +20,8 @@ export class UserPermissionService {
     permissionId: string
   ): Promise<UserPermission | null> {
     const [user, permission] = await Promise.all([
-      this.userService.findById("id", userId),
-      this.permissionService.find("id", permissionId),
+      this.userService.findById('id', userId),
+      this.permissionService.find('id', permissionId)
     ]);
     return this.createUserPermission.execute(user, permission);
   }

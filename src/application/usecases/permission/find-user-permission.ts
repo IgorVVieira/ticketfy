@@ -1,10 +1,11 @@
-import { UserPermission } from "../../../domain/entities/permissions/user-permission";
-import { IUserPermissionRepository } from "../../../domain/repositories/users/user-permission.repository";
+import BusinessError from '../../../core/domain/business-error';
+import { UserPermission } from '../../../domain/entities/permissions/user-permission';
+import { IUserPermissionRepository } from '../../../domain/repositories/users/user-permission.repository';
 
 export class FindUserPermission {
   constructor(
     private readonly userPermissionRepository: IUserPermissionRepository
-  ) {}
+  ) { }
 
   async execute(userId: string, name: string): Promise<UserPermission> {
     const permission = await this.userPermissionRepository.findByUserIdAndName(
@@ -12,7 +13,7 @@ export class FindUserPermission {
       name
     );
     if (!permission) {
-      throw new Error("Permission not found");
+      throw new BusinessError('Permission not found');
     }
     return permission;
   }

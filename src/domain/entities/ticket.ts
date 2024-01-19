@@ -1,4 +1,4 @@
-import { Entity } from "../../core/domain/Entity";
+import { Entity } from '../../core/domain/Entity';
 
 export type TicketProps = {
   eventId: string;
@@ -17,7 +17,8 @@ export class Ticket extends Entity {
     super(id);
   }
 
-  static create({ eventId, userId, paymentId, id }: TicketProps): Ticket {
+  static create(ticketData: TicketProps): Ticket {
+    const { eventId, userId, paymentId, id } = ticketData;
     return new Ticket(eventId, userId, paymentId, id);
   }
 }

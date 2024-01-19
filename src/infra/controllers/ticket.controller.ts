@@ -1,5 +1,5 @@
-import { Request, Response } from "express";
-import { TicketService } from "../services/ticket.service";
+import { Request, Response } from 'express';
+import { TicketService } from '../services/ticket.service';
 
 export class TicketControler {
   constructor(private readonly ticketService: TicketService) {

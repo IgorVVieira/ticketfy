@@ -1,15 +1,15 @@
-import { Repository } from "typeorm";
-import { UserAccount } from "../../../domain/entities/users/user-account";
-import { IUserAccountRepository } from "../../../domain/repositories/users/user-account.repository";
-import { UserAccountDB } from "../entities/user-account";
-import { UserAccountMapper } from "../../mapper/user-account.mapper";
+import { Repository } from 'typeorm';
+import { UserAccount } from '../../../domain/entities/users/user-account';
+import { IUserAccountRepository } from '../../../domain/repositories/users/user-account.repository';
+import { UserAccountDB } from '../entities/user-account';
+import { UserAccountMapper } from '../../mapper/user-account.mapper';
 
 export class UserAccountRepository implements IUserAccountRepository {
-  constructor(private readonly repository: Repository<UserAccountDB>) {}
+  constructor(private readonly repository: Repository<UserAccountDB>) { }
 
   async findByUserId(userId: string): Promise<UserAccount | null> {
     const userAccountDB = await this.repository.findOne({
-      where: { userId },
+      where: { userId }
     });
     if (!userAccountDB) return null;
     return UserAccountMapper.toDomain(userAccountDB);
@@ -17,7 +17,7 @@ export class UserAccountRepository implements IUserAccountRepository {
 
   async findById(id: string): Promise<UserAccount | null> {
     const userAccountDB = await this.repository.findOne({
-      where: { id },
+      where: { id }
     });
     if (!userAccountDB) return null;
     return UserAccountMapper.toDomain(userAccountDB);
@@ -25,7 +25,7 @@ export class UserAccountRepository implements IUserAccountRepository {
 
   async findAll(userId: string): Promise<UserAccount[]> {
     const userAccountsDB = await this.repository.find({
-      where: { userId },
+      where: { userId }
     });
     return userAccountsDB.map(UserAccountMapper.toDomain);
   }

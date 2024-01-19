@@ -1,14 +1,14 @@
-import { User, UserType } from "../users/user";
+import { User, UserType } from '../users/user';
 
-describe("User", () => {
-  it("should create a user instance with valid properties", () => {
+describe('User', () => {
+  it('should create a user instance with valid properties', () => {
     const userProps = {
-      name: "John Doe",
-      email: "john@example.com",
-      password: "Password123",
-      picture: "profile.jpg",
+      name: 'John Doe',
+      email: 'john@example.com',
+      password: 'Password123',
+      picture: 'profile.jpg',
       type: UserType.COMPRADOR,
-      id: "user123",
+      id: 'user123'
     };
 
     const user = User.create(userProps);
@@ -22,37 +22,37 @@ describe("User", () => {
     expect(user.getId()).toBe(userProps.id);
   });
 
-  it("should throw an error when creating a user with an invalid email", () => {
+  it('should throw an error when creating a user with an invalid email', () => {
     const userProps = {
-      name: "John Doe",
-      email: "invalid-email",
-      password: "Password123",
+      name: 'John Doe',
+      email: 'invalid-email',
+      password: 'Password123'
     };
 
-    expect(() => User.create(userProps)).toThrow("Invalid email");
+    expect(() => User.create(userProps)).toThrow('Invalid email');
   });
 
-  it("should throw an error when creating a user with an invalid password", () => {
+  it('should throw an error when creating a user with an invalid password', () => {
     const userProps = {
-      name: "John Doe",
-      email: "john@example.com",
-      password: "weak",
+      name: 'John Doe',
+      email: 'john@example.com',
+      password: 'weak'
     };
 
-    expect(() => User.create(userProps)).toThrow("Invalid password");
+    expect(() => User.create(userProps)).toThrow('Invalid password');
   });
 
-  it("should update the user picture", () => {
+  it('should update the user picture', () => {
     const userProps = {
-      name: "John Doe",
-      email: "john@example.com",
-      password: "Password123",
-      picture: "profile.jpg",
+      name: 'John Doe',
+      email: 'john@example.com',
+      password: 'Password123',
+      picture: 'profile.jpg'
     };
 
     const user = User.create(userProps);
 
-    const newPicture = "new-profile.jpg";
+    const newPicture = 'new-profile.jpg';
     user.updatePicture(newPicture);
 
     expect(user.getPicture()).toBe(newPicture);

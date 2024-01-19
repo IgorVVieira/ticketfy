@@ -1,6 +1,6 @@
-import { findAllProps } from "../../domain/repositories/events/event.repository";
-import { EventService } from "../services/event.service";
-import { Request, Response } from "express";
+import { findAllProps } from '../../domain/repositories/events/event.repository';
+import { EventService } from '../services/event.service';
+import { Request, Response } from 'express';
 
 export class EventController {
   constructor(private readonly eventService: EventService) {
@@ -13,8 +13,8 @@ export class EventController {
     try {
       const event = await this.eventService.create(req.body);
       return res.status(201).json(event);
-    } catch (error: any) {
-      if (error.message === "User not found") {
+    } catch (error) {
+      if (error.message === 'User not found') {
         return res.status(404).json({ error: error.message });
       }
       return res.status(500).json({ error: error.message });
@@ -25,7 +25,7 @@ export class EventController {
     try {
       const event = await this.eventService.findById(req.params.id);
       return res.status(200).json(event);
-    } catch (error: any) {
+    } catch (error) {
       return res.status(500).json({ error: error.message });
     }
   }
@@ -36,7 +36,7 @@ export class EventController {
       name,
       type,
       datetime,
-      status,
+      status
     });
     return res.status(200).json(events);
   }

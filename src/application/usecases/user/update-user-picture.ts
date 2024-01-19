@@ -1,13 +1,14 @@
-import { User } from "../../../domain/entities/users/user";
-import { IUserRepository } from "../../../domain/repositories/users/user.repository";
+import BusinessError from '../../../core/domain/business-error';
+import { User } from '../../../domain/entities/users/user';
+import { IUserRepository } from '../../../domain/repositories/users/user.repository';
 
 export class UpdateUserPicture {
-  constructor(private readonly userRepository: IUserRepository) {}
+  constructor(private readonly userRepository: IUserRepository) { }
 
   async execute(userId: string, picture: string): Promise<User> {
-    let user = await this.userRepository.findBy("id", userId);
+    const user = await this.userRepository.findBy('id', userId);
     if (!user) {
-      throw new Error("User not found");
+      throw new BusinessError('User not found');
     }
 
     user.updatePicture(picture);

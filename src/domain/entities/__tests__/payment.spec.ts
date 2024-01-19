@@ -1,41 +1,41 @@
-import { Payment } from "../payment";
-import { PaymentEnum } from "../payment-enum";
+import { Payment } from '../payment';
+import { PaymentEnum } from '../payment-enum';
 
-describe("Payment", () => {
+describe('Payment', () => {
   const payment = Payment.create({
-    eventId: "1",
-    userAccountId: "1",
+    eventId: '1',
+    userAccountId: '1',
     value: 10,
-    type: PaymentEnum.CREDIT,
+    type: PaymentEnum.CREDIT
   });
-  it("should create a valid payment", () => {
+  it('should create a valid payment', () => {
     expect(payment).toBeTruthy();
 
-    expect(payment.eventId).toBe("1");
-    expect(payment.userAccountId).toBe("1");
+    expect(payment.eventId).toBe('1');
+    expect(payment.userAccountId).toBe('1');
     expect(payment.getValue()).toBe(10);
     expect(payment.type).toBe(PaymentEnum.CREDIT);
   });
 
-  it("should throw an error if value is negative", () => {
+  it('should throw an error if value is negative', () => {
     expect(() => payment.updateValue(-10)).toThrowError(
-      "Value cannot be negative"
+      'Value cannot be negative'
     );
   });
 
-  it("should update value", () => {
+  it('should update value', () => {
     payment.updateValue(20);
     expect(payment.getValue()).toBe(20);
   });
 
-  it("should throw an error if value is negative", () => {
+  it('should throw an error if value is negative', () => {
     expect(() =>
       Payment.create({
-        eventId: "1",
-        userAccountId: "1",
+        eventId: '1',
+        userAccountId: '1',
         value: -10,
-        type: PaymentEnum.CREDIT,
+        type: PaymentEnum.CREDIT
       })
-    ).toThrowError("Value cannot be negative");
+    ).toThrowError('Value cannot be negative');
   });
 });

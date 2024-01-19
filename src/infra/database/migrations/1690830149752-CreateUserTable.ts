@@ -1,55 +1,55 @@
-import { MigrationInterface, QueryRunner, Table } from "typeorm";
+import { MigrationInterface, QueryRunner, Table } from 'typeorm';
 
 export class CreateUserTable1690830149752 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.query(`CREATE EXTENSION IF NOT EXISTS "uuid-ossp"`);
+    await queryRunner.query('CREATE EXTENSION IF NOT EXISTS "uuid-ossp"');
 
     await queryRunner.createTable(
       new Table({
-        name: "users",
+        name: 'users',
         columns: [
           {
-            name: "id",
-            type: "uuid",
+            name: 'id',
+            type: 'uuid',
             isPrimary: true,
-            generationStrategy: "uuid",
-            default: "uuid_generate_v4()",
+            generationStrategy: 'uuid',
+            default: 'uuid_generate_v4()'
           },
           {
-            name: "name",
-            type: "varchar",
+            name: 'name',
+            type: 'varchar'
           },
           {
-            name: "email",
-            type: "varchar",
-            isUnique: true,
+            name: 'email',
+            type: 'varchar',
+            isUnique: true
           },
           {
-            name: "password",
-            type: "varchar",
+            name: 'password',
+            type: 'varchar'
           },
           {
-            name: "picture",
-            type: "varchar",
-            isNullable: true,
+            name: 'picture',
+            type: 'varchar',
+            isNullable: true
           },
           {
-            name: "created_at",
-            type: "timestamp",
-            default: "now()",
+            name: 'created_at',
+            type: 'timestamp',
+            default: 'now()'
           },
           {
-            name: "updated_at",
-            type: "timestamp",
-            default: "now()",
-          },
-        ],
+            name: 'updated_at',
+            type: 'timestamp',
+            default: 'now()'
+          }
+        ]
       })
     );
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.dropTable("users");
-    await queryRunner.query(`DROP EXTENSION "uuid-ossp"`);
+    await queryRunner.dropTable('users');
+    await queryRunner.query('DROP EXTENSION "uuid-ossp"');
   }
 }

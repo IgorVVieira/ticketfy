@@ -1,8 +1,8 @@
-import { CreateUser } from "../../application/usecases/user/create-user";
-import { FindUser } from "../../application/usecases/user/find-user";
-import { UpdateUserPicture } from "../../application/usecases/user/update-user-picture";
-import { User } from "../../domain/entities/users/user";
-import { CreateUserDto } from "../dto/create-user.dto";
+import { CreateUser } from '../../application/usecases/user/create-user';
+import { FindUser } from '../../application/usecases/user/find-user';
+import { UpdateUserPicture } from '../../application/usecases/user/update-user-picture';
+import { User } from '../../domain/entities/users/user';
+import { CreateUserDto } from '../dto/create-user.dto';
 
 export class UserService {
   constructor(

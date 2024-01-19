@@ -1,5 +1,5 @@
-import { Event } from "../../domain/entities/events/event";
-import { EventDB } from "../database/entities/event";
+import { Event } from '../../domain/entities/events/event';
+import { EventDB } from '../database/entities/event';
 
 export class EventMapper {
   static toDomain(eventDB: EventDB): Event {
@@ -14,7 +14,7 @@ export class EventMapper {
       unitary_price: eventDB.unitary_price,
       status: eventDB.eventStatus,
       avaliable_tickets: eventDB.avaliable_tickets,
-      photos: eventDB.photos ? eventDB.photos.map((photo) => photo.url) : [],
+      photos: eventDB.photos ? eventDB.photos.map((photo) => photo.url) : []
     });
   }
 

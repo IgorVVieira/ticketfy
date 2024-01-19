@@ -1,11 +1,11 @@
-import { Repository } from "typeorm";
-import { IEventPhotoRepository } from "../../../domain/repositories/events/event-photo.repository";
-import { EventPhotoDB } from "../entities/event-photo";
-import { EventPhoto } from "../../../domain/entities/events/event-photo";
-import { EventPhotoMapper } from "../../mapper/event-photo.mapper";
+import { Repository } from 'typeorm';
+import { IEventPhotoRepository } from '../../../domain/repositories/events/event-photo.repository';
+import { EventPhotoDB } from '../entities/event-photo';
+import { EventPhoto } from '../../../domain/entities/events/event-photo';
+import { EventPhotoMapper } from '../../mapper/event-photo.mapper';
 
 export class EventPhotoRepository implements IEventPhotoRepository {
-  constructor(private readonly repository: Repository<EventPhotoDB>) {}
+  constructor(private readonly repository: Repository<EventPhotoDB>) { }
 
   async createMany(eventPhoto: EventPhoto[]): Promise<void> {
     const eventPhotosDB = eventPhoto.map((eventPhoto) =>

@@ -1,5 +1,5 @@
-import { UserPermissionService } from "../services/user-permission.service";
-import { Request, Response } from "express";
+import { UserPermissionService } from '../services/user-permission.service';
+import { Request, Response } from 'express';
 
 export class UserPermissionController {
   constructor(private readonly userPermissionService: UserPermissionService) {
@@ -14,8 +14,8 @@ export class UserPermissionController {
         permissionId
       );
       return res.status(201).json(userPermission);
-    } catch (error: any) {
-      if (error.message === "User permission already exists") {
+    } catch (error) {
+      if (error.message === 'User permission already exists') {
         return res.status(409).json({ message: error.message });
       }
       return res.status(500).json({ message: error.message });

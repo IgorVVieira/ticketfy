@@ -1,5 +1,5 @@
-import { UserAccount } from "../../domain/entities/users/user-account";
-import { UserAccountDB } from "../database/entities/user-account";
+import { UserAccount } from '../../domain/entities/users/user-account';
+import { UserAccountDB } from '../database/entities/user-account';
 
 export class UserAccountMapper {
   static toDomain(userAccountDB: UserAccountDB): UserAccount {
@@ -8,7 +8,7 @@ export class UserAccountMapper {
       userId: userAccountDB.userId,
       amount: userAccountDB.amount,
       name: userAccountDB.name,
-      type: userAccountDB.paymentType,
+      type: userAccountDB.paymentType
     });
   }
 

@@ -1,5 +1,5 @@
-import { UserAccount } from "../../entities/users/user-account";
-import { IGenericCreateRepository } from "../generic-create.repository";
+import { UserAccount } from '../../entities/users/user-account';
+import { IGenericCreateRepository } from '../generic-create.repository';
 
 export interface IUserAccountRepository
   extends IGenericCreateRepository<UserAccount> {

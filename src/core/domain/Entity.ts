@@ -1,4 +1,4 @@
-import crypto from "crypto";
+import crypto from 'crypto';
 
 export abstract class Entity {
   protected readonly id: string;

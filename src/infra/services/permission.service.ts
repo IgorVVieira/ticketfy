@@ -1,6 +1,6 @@
-import { CreatePermission } from "../../application/usecases/permission/create-permission";
-import { FindPermission } from "../../application/usecases/permission/find-permission";
-import { Permission } from "../../domain/entities/permissions/permission";
+import { CreatePermission } from '../../application/usecases/permission/create-permission';
+import { FindPermission } from '../../application/usecases/permission/find-permission';
+import { Permission } from '../../domain/entities/permissions/permission';
 
 export class PermissionService {
   constructor(

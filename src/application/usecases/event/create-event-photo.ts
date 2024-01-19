@@ -1,12 +1,12 @@
-import { Event } from "../../../domain/entities/events/event";
+import { Event } from '../../../domain/entities/events/event';
 import {
   EventPhoto,
-  EventPhotoProps,
-} from "../../../domain/entities/events/event-photo";
-import { IEventPhotoRepository } from "../../../domain/repositories/events/event-photo.repository";
+  EventPhotoProps
+} from '../../../domain/entities/events/event-photo';
+import { IEventPhotoRepository } from '../../../domain/repositories/events/event-photo.repository';
 
 export class CreateEventPhoto {
-  constructor(private readonly eventPhotoRepository: IEventPhotoRepository) {}
+  constructor(private readonly eventPhotoRepository: IEventPhotoRepository) { }
 
   async execute(
     event: Event,
@@ -20,7 +20,7 @@ export class CreateEventPhoto {
       eventPhotos.push(
         EventPhoto.create({
           ...input[i],
-          eventId: eventId,
+          eventId: eventId
         })
       );
     }

@@ -1,10 +1,11 @@
-import { CreatePayment } from "../../application/usecases/payment/create-payment";
-import { Payment } from "../../domain/entities/payment";
-import { CreatePaymentDto } from "../dto/create-payment.dto";
-import { EventService } from "./event.service";
-import { TicketService } from "./ticket.service";
-import { UserAccountService } from "./user-account.service";
-import { UserService } from "./user.service";
+import { CreatePayment } from '../../application/usecases/payment/create-payment';
+import BusinessError from '../../core/domain/business-error';
+import { Payment } from '../../domain/entities/payment';
+import { CreatePaymentDto } from '../dto/create-payment.dto';
+import { EventService } from './event.service';
+import { TicketService } from './ticket.service';
+import { UserAccountService } from './user-account.service';
+import { UserService } from './user.service';
 
 export class PaymentService {
   constructor(
@@ -22,17 +23,17 @@ export class PaymentService {
     createPaymentDto: CreatePaymentDto,
     quantity: number
   ): Promise<Payment | null> {
-    const user = await this.userService.findById("id", userId);
+    const user = await this.userService.findById('id', userId);
 
-    if (!user) throw new Error("User not found");
+    if (!user) throw new BusinessError('User not found');
 
     const event = await this.eventService.findById(createPaymentDto.eventId);
-    if (!event) throw new Error("Event not found");
+    if (!event) throw new BusinessError('Event not found');
 
     const userAccount = await this.userAccountService.find(
       createPaymentDto.userAccountId
     );
-    if (!userAccount) throw new Error("User account not found");
+    if (!userAccount) throw new BusinessError('User account not found');
 
     const eventId = event.getId();
 
@@ -51,7 +52,7 @@ export class PaymentService {
         { eventId: eventId, userId: userId, paymentId: payment.getId() },
         quantity
       ),
-      this.eventService.decrementAvailableTickets(eventId, quantity),
+      this.eventService.decrementAvailableTickets(eventId, quantity)
     ]);
 
     return payment;

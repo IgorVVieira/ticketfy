@@ -5,14 +5,14 @@ import {
   JoinTable,
   OneToMany,
   PrimaryGeneratedColumn,
-  UpdateDateColumn,
-} from "typeorm";
-import { EventStatus } from "../../../domain/entities/events/event";
-import { EventPhotoDB } from "./event-photo";
+  UpdateDateColumn
+} from 'typeorm';
+import { EventStatus } from '../../../domain/entities/events/event';
+import { EventPhotoDB } from './event-photo';
 
-@Entity("events")
+@Entity('events')
 export class EventDB {
-  @PrimaryGeneratedColumn("uuid")
+  @PrimaryGeneratedColumn('uuid')
   id: string;
 
   @Column()
@@ -21,7 +21,7 @@ export class EventDB {
   @Column()
   name: string;
 
-  @Column("timestamp")
+  @Column('timestamp')
   datetime: string;
 
   @Column({ nullable: true })
@@ -30,25 +30,25 @@ export class EventDB {
   @Column()
   location: string;
 
-  @Column("int", { default: 0 })
+  @Column('int', { default: 0 })
   participants_limit: number;
 
-  @Column("decimal", { default: 0 })
+  @Column('decimal', { default: 0 })
   unitary_price: number;
 
   @Column()
   status: string;
 
-  @Column("int", { default: 0 })
+  @Column('int', { default: 0 })
   avaliable_tickets: number;
 
-  @CreateDateColumn({ type: "timestamp" })
+  @CreateDateColumn({ type: 'timestamp' })
   created_at: Date;
 
-  @UpdateDateColumn({ type: "timestamp" })
+  @UpdateDateColumn({ type: 'timestamp' })
   updated_at: Date;
 
-  @JoinTable({ name: "events_event_photos" })
+  @JoinTable({ name: 'events_event_photos' })
   @OneToMany(() => EventPhotoDB, (eventPhoto) => eventPhoto.event)
   photos?: EventPhotoDB[];
 

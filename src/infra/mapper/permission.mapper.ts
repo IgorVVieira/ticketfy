@@ -1,12 +1,12 @@
-import { Permission } from "../../domain/entities/permissions/permission";
-import { PermissionDB } from "../database/entities/permission";
+import { Permission } from '../../domain/entities/permissions/permission';
+import { PermissionDB } from '../database/entities/permission';
 
 export class PermissionMapper {
   static toDomain(permissionDB: PermissionDB): Permission {
     return Permission.create({
       id: permissionDB.id,
       name: permissionDB.name,
-      description: permissionDB.description,
+      description: permissionDB.description
     });
   }
 

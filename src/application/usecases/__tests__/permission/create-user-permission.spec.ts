@@ -1,16 +1,16 @@
-import { IUserPermissionRepository } from "../../../../domain/repositories/users/user-permission.repository";
-import { User } from "../../../../domain/entities/users/user";
-import { Permission } from "../../../../domain/entities/permissions/permission";
-import { UserPermission } from "../../../../domain/entities/permissions/user-permission";
-import { CreateUserPermission } from "../../permission/create-user-permission";
+import { IUserPermissionRepository } from '../../../../domain/repositories/users/user-permission.repository';
+import { User } from '../../../../domain/entities/users/user';
+import { Permission } from '../../../../domain/entities/permissions/permission';
+import { UserPermission } from '../../../../domain/entities/permissions/user-permission';
+import { CreateUserPermission } from '../../permission/create-user-permission';
 
 const mockUserPermissionRepository: IUserPermissionRepository = {
   create: jest.fn(),
   findByUseridAndPermissionId: jest.fn(),
-  findByUserIdAndName: jest.fn(),
+  findByUserIdAndName: jest.fn()
 };
 
-describe("CreateUserPermission", () => {
+describe('CreateUserPermission', () => {
   let createUserPermission: CreateUserPermission;
 
   beforeEach(() => {
@@ -23,16 +23,16 @@ describe("CreateUserPermission", () => {
     jest.clearAllMocks();
   });
 
-  it("should create a new user permission successfully", async () => {
+  it('should create a new user permission successfully', async () => {
     const user = User.create({
-      name: "John Doe",
-      email: "johndoe@example.com",
-      password: "SecurePasswor!d123",
+      name: 'John Doe',
+      email: 'johndoe@example.com',
+      password: 'SecurePasswor!d123'
     });
 
     const permission = Permission.create({
-      name: "admin",
-      description: "Admin permission",
+      name: 'admin',
+      description: 'Admin permission'
     });
 
     (
@@ -40,9 +40,9 @@ describe("CreateUserPermission", () => {
     ).mockResolvedValueOnce(null);
 
     const mockCreatedUserPermission = UserPermission.create({
-      id: "mockId",
+      id: 'mockId',
       userId: user.getId(),
-      permissionId: permission.getId(),
+      permissionId: permission.getId()
     });
 
     (mockUserPermissionRepository.create as jest.Mock).mockResolvedValueOnce(
@@ -58,27 +58,27 @@ describe("CreateUserPermission", () => {
     const userPermissionWithoutId = { ...userPermission, id: undefined };
     const mockCreatedUserPermissionWithoutId = {
       ...mockCreatedUserPermission,
-      id: undefined,
+      id: undefined
     };
 
     expect(userPermissionWithoutId).toEqual(mockCreatedUserPermissionWithoutId);
   });
 
-  it("should throw an error when user permission already exists", async () => {
+  it('should throw an error when user permission already exists', async () => {
     const user = User.create({
-      name: "John Doe",
-      email: "johndoe@example.com",
-      password: "SecurePassword123",
+      name: 'John Doe',
+      email: 'johndoe@example.com',
+      password: 'SecurePassword123'
     });
 
     const permission = Permission.create({
-      name: "read",
-      description: "Read permission",
+      name: 'read',
+      description: 'Read permission'
     });
 
     const existingUserPermission = UserPermission.create({
       userId: user.getId(),
-      permissionId: permission.getId(),
+      permissionId: permission.getId()
     });
 
     (
@@ -87,7 +87,7 @@ describe("CreateUserPermission", () => {
 
     await expect(
       createUserPermission.execute(user, permission)
-    ).rejects.toThrowError("Permission already exists");
+    ).rejects.toThrowError('Permission already exists');
 
     expect(
       mockUserPermissionRepository.findByUseridAndPermissionId

@@ -1,9 +1,10 @@
-import { ITicketRepository } from "../../../domain/repositories/ticket.repository";
-import { Ticket, TicketProps } from "../../../domain/entities/ticket";
-import { Event } from "../../../domain/entities/events/event";
+import { ITicketRepository } from '../../../domain/repositories/ticket.repository';
+import { Ticket, TicketProps } from '../../../domain/entities/ticket';
+import { Event } from '../../../domain/entities/events/event';
+import BusinessError from '../../../core/domain/business-error';
 
 export class CreateTicket {
-  constructor(private readonly ticketRepository: ITicketRepository) {}
+  constructor(private readonly ticketRepository: ITicketRepository) { }
 
   async execute(
     input: TicketProps,
@@ -12,7 +13,7 @@ export class CreateTicket {
   ): Promise<void> {
     const avaliableTickets = event.hasAvailableTickets(quantity);
     if (!avaliableTickets) {
-      throw new Error("Not enough tickets available");
+      throw new BusinessError('Not enough tickets available');
     }
 
     const tickets = [];

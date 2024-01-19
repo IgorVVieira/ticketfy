@@ -3,13 +3,13 @@ import {
   CreateDateColumn,
   Entity,
   PrimaryGeneratedColumn,
-  UpdateDateColumn,
-} from "typeorm";
-import { PaymentEnum } from "../../../domain/entities/payment-enum";
+  UpdateDateColumn
+} from 'typeorm';
+import { PaymentEnum } from '../../../domain/entities/payment-enum';
 
-@Entity("payments")
+@Entity('payments')
 export class PaymentDB {
-  @PrimaryGeneratedColumn("uuid")
+  @PrimaryGeneratedColumn('uuid')
   id: string;
 
   @Column()
@@ -18,16 +18,16 @@ export class PaymentDB {
   @Column()
   userAccountId: string;
 
-  @Column("decimal", { default: 0 })
+  @Column('decimal', { default: 0 })
   value: number;
 
   @Column()
   type: string;
 
-  @CreateDateColumn({ type: "timestamp" })
+  @CreateDateColumn({ type: 'timestamp' })
   created_at: Date;
 
-  @UpdateDateColumn({ type: "timestamp" })
+  @UpdateDateColumn({ type: 'timestamp' })
   updated_at: Date;
 
   get paymentType(): PaymentEnum {

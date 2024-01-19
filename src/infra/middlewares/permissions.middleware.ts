@@ -1,5 +1,5 @@
-import { NextFunction, Request, Response } from "express";
-import { userPermissionService } from "../shared/container/injection";
+import { NextFunction, Request, Response } from 'express';
+import { userPermissionService } from '../shared/container/injection';
 
 export function can(permission: string) {
   return async (request: Request, response: Response, next: NextFunction) => {
@@ -11,11 +11,11 @@ export function can(permission: string) {
         permission
       );
       if (!userPermission) {
-        return response.status(401).json({ message: "Permission denied" });
+        return response.status(401).json({ message: 'Permission denied' });
       }
       return next();
     } catch (error) {
-      return response.status(401).json({ message: "Permission denied" });
+      return response.status(401).json({ message: 'Permission denied' });
     }
   };
 }

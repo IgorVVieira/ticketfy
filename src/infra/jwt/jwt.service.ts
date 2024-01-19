@@ -1,11 +1,12 @@
-import { IAuthRepository } from "../../domain/repositories/auth.repository";
-import jwt from "jsonwebtoken";
-import bcryptjs from "bcryptjs";
+import { IAuthRepository } from '../../domain/repositories/auth.repository';
+import jwt from 'jsonwebtoken';
+import bcryptjs from 'bcryptjs';
+import BusinessError from '../../core/domain/business-error';
 
 export class JwtService implements IAuthRepository {
   generateToken(userId: string): string {
-    return jwt.sign({ id: userId }, "secret", {
-      expiresIn: "1d",
+    return jwt.sign({ id: userId }, 'secret', {
+      expiresIn: '1d'
     });
   }
 
@@ -14,6 +15,6 @@ export class JwtService implements IAuthRepository {
   }
 
   logout(): void {
-    throw new Error("Method not implemented.");
+    throw new BusinessError('Method not implemented.');
   }
 }

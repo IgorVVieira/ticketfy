@@ -1,7 +1,7 @@
-import { PaymentEnum } from "../../domain/entities/payment-enum";
-import { EventService } from "../services/event.service";
-import { PaymentService } from "../services/payment.service";
-import { Request, Response } from "express";
+import { PaymentEnum } from '../../domain/entities/payment-enum';
+import { EventService } from '../services/event.service';
+import { PaymentService } from '../services/payment.service';
+import { Request, Response } from 'express';
 
 export class PaymentController {
   constructor(
@@ -18,7 +18,7 @@ export class PaymentController {
 
       const event = await this.eventService.findById(eventId);
       if (!event) {
-        return res.status(404).json({ message: "Event not found" });
+        return res.status(404).json({ message: 'Event not found' });
       }
 
       const payment = await this.paymentService.create(
@@ -27,13 +27,13 @@ export class PaymentController {
           eventId,
           userAccountId,
           value: event.unitaryPrice,
-          type: type as PaymentEnum,
+          type: type as PaymentEnum
         },
         quantity
       );
       return res.status(201).json(payment);
-    } catch (error: any) {
-      if (error.message === "Not enough tickets available") {
+    } catch (error) {
+      if (error.message === 'Not enough tickets available') {
         return res.status(400).json({ message: error.message });
       }
       return res.status(500).json({ message: error.message });

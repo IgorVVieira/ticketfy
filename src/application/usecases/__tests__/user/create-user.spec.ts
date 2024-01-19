@@ -1,6 +1,6 @@
-import { User, UserProps } from "../../../../domain/entities/users/user";
-import { IUserRepository } from "../../../../domain/repositories/users/user.repository";
-import { CreateUser } from "../../user/create-user";
+import { User, UserProps } from '../../../../domain/entities/users/user';
+import { IUserRepository } from '../../../../domain/repositories/users/user.repository';
+import { CreateUser } from '../../user/create-user';
 
 class MockUserRepository implements IUserRepository {
   private users: User[] = [];
@@ -25,7 +25,7 @@ class MockUserRepository implements IUserRepository {
   }
 }
 
-describe("CreateUser", () => {
+describe('CreateUser', () => {
   let userRepository: IUserRepository;
   let createUser: CreateUser;
 
@@ -34,11 +34,11 @@ describe("CreateUser", () => {
     createUser = new CreateUser(userRepository);
   });
 
-  it("should create a new user when the email is not in use", async () => {
+  it('should create a new user when the email is not in use', async () => {
     const userData: UserProps = {
-      name: "John Doe",
-      email: "john.doe@example.com",
-      password: "SecurePass123",
+      name: 'John Doe',
+      email: 'john.doe@example.com',
+      password: 'SecurePass123'
     };
 
     const user = await createUser.execute(userData);
@@ -48,45 +48,45 @@ describe("CreateUser", () => {
     expect(user.getEmail()).toBe(userData.email);
   });
 
-  it("should throw an error when the email is already in use", async () => {
+  it('should throw an error when the email is already in use', async () => {
     const existingUser: UserProps = {
-      name: "Existing User",
-      email: "existing.user@example.com",
-      password: "ExistingPass123",
+      name: 'Existing User',
+      email: 'existing.user@example.com',
+      password: 'ExistingPass123'
     };
 
     userRepository.create(User.create(existingUser));
 
     const userData: UserProps = {
-      name: "John Doe",
+      name: 'John Doe',
       email: existingUser.email,
-      password: "SecurePass123",
+      password: 'SecurePass123'
     };
 
     await expect(createUser.execute(userData)).rejects.toThrow(
-      "Email already in use"
+      'Email already in use'
     );
   });
 
-  it("should throw an error when the email is invalid", async () => {
+  it('should throw an error when the email is invalid', async () => {
     const userData: UserProps = {
-      name: "John Doe",
-      email: "invalid-email",
-      password: "SecurePass123",
+      name: 'John Doe',
+      email: 'invalid-email',
+      password: 'SecurePass123'
     };
 
-    await expect(createUser.execute(userData)).rejects.toThrow("Invalid email");
+    await expect(createUser.execute(userData)).rejects.toThrow('Invalid email');
   });
 
-  it("should throw an error when the password is invalid", async () => {
+  it('should throw an error when the password is invalid', async () => {
     const userData: UserProps = {
-      name: "John Doe",
-      email: "john.doe@example.com",
-      password: "weak",
+      name: 'John Doe',
+      email: 'john.doe@example.com',
+      password: 'weak'
     };
 
     await expect(createUser.execute(userData)).rejects.toThrow(
-      "Invalid password"
+      'Invalid password'
     );
   });
 });

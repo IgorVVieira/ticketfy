@@ -1,4 +1,4 @@
-import { PaymentEnum } from "../../domain/entities/payment-enum";
+import { PaymentEnum } from '../../domain/entities/payment-enum';
 
 export class CreatePaymentDto {
   readonly eventId: string;

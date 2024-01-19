@@ -5,13 +5,13 @@ import {
   JoinTable,
   ManyToOne,
   PrimaryGeneratedColumn,
-  UpdateDateColumn,
-} from "typeorm";
-import { PermissionDB } from "./permission";
+  UpdateDateColumn
+} from 'typeorm';
+import { PermissionDB } from './permission';
 
-@Entity("user_permissions")
+@Entity('user_permissions')
 export class UserPermissionDB {
-  @PrimaryGeneratedColumn("uuid")
+  @PrimaryGeneratedColumn('uuid')
   id: string;
 
   @Column()
@@ -20,13 +20,13 @@ export class UserPermissionDB {
   @Column()
   permissionId: string;
 
-  @CreateDateColumn({ type: "timestamp" })
+  @CreateDateColumn({ type: 'timestamp' })
   created_at: Date;
 
-  @UpdateDateColumn({ type: "timestamp" })
+  @UpdateDateColumn({ type: 'timestamp' })
   updated_at: Date;
 
-  @JoinTable({ name: "user_permissions_permissions" })
+  @JoinTable({ name: 'user_permissions_permissions' })
   @ManyToOne(() => PermissionDB)
   permission: PermissionDB;
 }

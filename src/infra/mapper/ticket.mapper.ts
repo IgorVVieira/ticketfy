@@ -1,5 +1,5 @@
-import { Ticket } from "../../domain/entities/ticket";
-import { TicketDB } from "../database/entities/ticket";
+import { Ticket } from '../../domain/entities/ticket';
+import { TicketDB } from '../database/entities/ticket';
 
 export class TicketMapper {
   static toDomain(ticketDB: TicketDB): Ticket {
@@ -7,7 +7,7 @@ export class TicketMapper {
       id: ticketDB.id,
       eventId: ticketDB.eventId,
       userId: ticketDB.userId,
-      paymentId: ticketDB.paymentId,
+      paymentId: ticketDB.paymentId
     });
   }
 

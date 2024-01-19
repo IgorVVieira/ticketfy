@@ -1,15 +1,15 @@
-import { Repository } from "typeorm";
-import { IPermissionRepository } from "../../../domain/repositories/permission.repository";
-import { PermissionDB } from "../entities/permission";
-import { Permission } from "../../../domain/entities/permissions/permission";
-import { PermissionMapper } from "../../mapper/permission.mapper";
+import { Repository } from 'typeorm';
+import { IPermissionRepository } from '../../../domain/repositories/permission.repository';
+import { PermissionDB } from '../entities/permission';
+import { Permission } from '../../../domain/entities/permissions/permission';
+import { PermissionMapper } from '../../mapper/permission.mapper';
 
 export class PermissionRepository implements IPermissionRepository {
-  constructor(private readonly repository: Repository<PermissionDB>) {}
+  constructor(private readonly repository: Repository<PermissionDB>) { }
 
   async findBy(key: string, value: string): Promise<Permission | null> {
     const permissionDB = await this.repository.findOne({
-      where: { [key]: value },
+      where: { [key]: value }
     });
     if (!permissionDB) return null;
     return PermissionMapper.toDomain(permissionDB);

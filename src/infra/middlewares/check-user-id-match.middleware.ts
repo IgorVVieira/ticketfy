@@ -1,4 +1,4 @@
-import { Request, Response, NextFunction } from "express";
+import { Request, Response, NextFunction } from 'express';
 
 export function checkUserIdMatch(
   req: Request,
@@ -10,10 +10,10 @@ export function checkUserIdMatch(
 
   try {
     if (userId !== paramUserId) {
-      return res.status(403).json({ message: "Forbidden access" });
+      return res.status(403).json({ message: 'Forbidden access' });
     }
     return next();
-  } catch (error: any) {
-    return res.status(402).json({ message: "Invalid token" });
+  } catch (error) {
+    return res.status(402).json({ message: 'Invalid token' });
   }
 }
