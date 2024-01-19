@@ -21,7 +21,7 @@ const s3 = new S3Client({
 
 const storageTypes: StorageTypes = {
   local: multer.diskStorage({
-    destination: (req, file, cb) => {
+    destination: (_req, file, cb) => {
       cb(null, path.resolve(__dirname, '..', '..', 'tmp', 'uploads'));
     },
     filename: (req, file, cb) => {
@@ -37,7 +37,7 @@ const storageTypes: StorageTypes = {
     bucket: process.env.AWS_BUCKET_NAME || '',
     contentType: multerS3.AUTO_CONTENT_TYPE,
     acl: 'public-read',
-    key: (req, file, cb) => {
+    key: (_req, file, cb) => {
       crypto.randomBytes(16, (error, hash) => {
         if (error) cb(error, file.filename);
         file.filename = `${hash.toString('hex')}-${file.originalname}`;
@@ -53,7 +53,8 @@ export default {
   limits: {
     fileSize: MAX_SIZE_TWO_MEGABYTES
   },
-  fileFilter: (_req: Request, file: Express.Multer.File, cb: multer.FileFilterCallback) => {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  fileFilter: (_req: any, file: any, cb: any) => {
     const allowedMimes = [
       'image/jpeg',
       'image/pjpeg',
