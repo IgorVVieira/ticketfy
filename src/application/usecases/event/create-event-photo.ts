@@ -13,7 +13,7 @@ export class CreateEventPhoto {
     input: EventPhotoProps[],
     quantity: number
   ): Promise<void> {
-    const eventPhotos = [];
+    const eventPhotos: EventPhoto[] = [];
 
     for (let i = 0; i < quantity; i++) {
       const eventId = event.getId();

@@ -10,7 +10,7 @@ export class EventPhotoService {
     this.execute = this.execute.bind(this);
   }
 
-  async execute(eventId: string, files: Express.Multer.File[]) {
+  async execute(eventId: string, files: Express.Multer.File[]): Promise<void> {
     const event = await this.eventService.findById(eventId);
     if (!event) {
       throw new Error("Event not found");
