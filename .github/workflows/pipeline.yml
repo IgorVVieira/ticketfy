@@ -21,7 +21,7 @@ jobs:
       - name: Build project
         run: npm run build
 
-   es-lint:
+   es_lint:
     runs-on: ubuntu-latest
 
     steps:
@@ -39,7 +39,7 @@ jobs:
       - name: Run lint
         run: npm run lint
 
-  unit-tests:
+  unit_tests:
     runs-on: ubuntu-latest
 
     steps:
