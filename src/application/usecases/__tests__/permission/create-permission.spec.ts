@@ -1,13 +1,13 @@
-import { Permission } from "../../../../domain/entities/permissions/permission";
-import { IPermissionRepository } from "../../../../domain/repositories/permission.repository";
-import { CreatePermission } from "../../permission/create-permission";
+import { Permission } from '../../../../domain/entities/permissions/permission';
+import { IPermissionRepository } from '../../../../domain/repositories/permission.repository';
+import { CreatePermission } from '../../permission/create-permission';
 
 const mockPermissionRepository: IPermissionRepository = {
   create: jest.fn(),
-  findBy: jest.fn(),
+  findBy: jest.fn()
 };
 
-describe("CreatePermission", () => {
+describe('CreatePermission', () => {
   let createPermission: CreatePermission;
 
   beforeEach(() => {
@@ -18,11 +18,11 @@ describe("CreatePermission", () => {
     jest.clearAllMocks();
   });
 
-  it("should create a new permission successfully", async () => {
+  it('should create a new permission successfully', async () => {
     const permissionInput = {
-      id: "1",
-      name: "admin",
-      description: "Admin permission",
+      id: '1',
+      name: 'admin',
+      description: 'Admin permission'
     };
 
     (mockPermissionRepository.findBy as jest.Mock).mockResolvedValueOnce(null);
@@ -36,8 +36,8 @@ describe("CreatePermission", () => {
     const permission = await createPermission.execute(permissionInput);
 
     expect(mockPermissionRepository.findBy).toHaveBeenCalledWith(
-      "name",
-      "admin"
+      'name',
+      'admin'
     );
 
     expect(mockPermissionRepository.create).toHaveBeenCalledWith(
@@ -47,10 +47,10 @@ describe("CreatePermission", () => {
     expect(permission).toEqual(mockCreatedPermission);
   });
 
-  it("should throw an error when permission already exists", async () => {
+  it('should throw an error when permission already exists', async () => {
     const permissionInput = {
-      name: "read",
-      description: "Read permission",
+      name: 'read',
+      description: 'Read permission'
     };
 
     const existingPermission = Permission.create(permissionInput);
@@ -61,11 +61,11 @@ describe("CreatePermission", () => {
 
     await expect(
       createPermission.execute(permissionInput)
-    ).rejects.toThrowError("Permission already exists");
+    ).rejects.toThrowError('Permission already exists');
 
     expect(mockPermissionRepository.findBy).toHaveBeenCalledWith(
-      "name",
-      "read"
+      'name',
+      'read'
     );
 
     expect(mockPermissionRepository.create).not.toHaveBeenCalled();

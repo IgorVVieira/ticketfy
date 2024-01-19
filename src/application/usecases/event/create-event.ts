@@ -1,9 +1,9 @@
-import { Event, EventProps } from "../../../domain/entities/events/event";
-import { User } from "../../../domain/entities/users/user";
-import { IEventRepository } from "../../../domain/repositories/events/event.repository";
+import { Event, EventProps } from '../../../domain/entities/events/event';
+import { User } from '../../../domain/entities/users/user';
+import { IEventRepository } from '../../../domain/repositories/events/event.repository';
 
 export class CreateEvent {
-  constructor(private readonly eventRepository: IEventRepository) {}
+  constructor(private readonly eventRepository: IEventRepository) { }
 
   async execute(user: User, input: EventProps): Promise<Event> {
     input.userId = user.getId();

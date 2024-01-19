@@ -1,5 +1,5 @@
-import { User } from "../../domain/entities/users/user";
-import { UserDB } from "../database/entities/user";
+import { User } from '../../domain/entities/users/user';
+import { UserDB } from '../database/entities/user';
 
 export class UserMapper {
   static toDomain(userDB: UserDB): User {
@@ -8,7 +8,7 @@ export class UserMapper {
       name: userDB.name,
       email: userDB.email,
       password: userDB.password,
-      picture: userDB.picture,
+      picture: userDB.picture
     });
   }
 

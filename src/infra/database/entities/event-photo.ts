@@ -5,13 +5,13 @@ import {
   JoinTable,
   ManyToOne,
   PrimaryGeneratedColumn,
-  UpdateDateColumn,
-} from "typeorm";
-import { EventDB } from "./event";
+  UpdateDateColumn
+} from 'typeorm';
+import { EventDB } from './event';
 
-@Entity("event_photos")
+@Entity('event_photos')
 export class EventPhotoDB {
-  @PrimaryGeneratedColumn("uuid")
+  @PrimaryGeneratedColumn('uuid')
   id: string;
 
   @Column()
@@ -20,13 +20,13 @@ export class EventPhotoDB {
   @Column()
   url: string;
 
-  @CreateDateColumn({ type: "timestamp" })
+  @CreateDateColumn({ type: 'timestamp' })
   created_at: Date;
 
-  @UpdateDateColumn({ type: "timestamp" })
+  @UpdateDateColumn({ type: 'timestamp' })
   updated_at: Date;
 
-  @JoinTable({ name: "event_photos_events" })
+  @JoinTable({ name: 'event_photos_events' })
   @ManyToOne(() => EventDB)
   event: EventDB;
 }

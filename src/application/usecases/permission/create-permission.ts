@@ -1,19 +1,20 @@
+import BusinessError from '../../../core/domain/business-error';
 import {
   Permission,
-  PermissionProps,
-} from "../../../domain/entities/permissions/permission";
-import { IPermissionRepository } from "../../../domain/repositories/permission.repository";
+  PermissionProps
+} from '../../../domain/entities/permissions/permission';
+import { IPermissionRepository } from '../../../domain/repositories/permission.repository';
 
 export class CreatePermission {
-  constructor(private readonly permissionRepository: IPermissionRepository) {}
+  constructor(private readonly permissionRepository: IPermissionRepository) { }
 
   async execute(input: PermissionProps): Promise<Permission> {
     const permissionExists = await this.permissionRepository.findBy(
-      "name",
+      'name',
       input.name
     );
     if (permissionExists) {
-      throw new Error("Permission already exists");
+      throw new BusinessError('Permission already exists');
     }
     const permission = Permission.create(input);
     return this.permissionRepository.create(permission);

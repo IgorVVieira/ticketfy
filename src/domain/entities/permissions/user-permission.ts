@@ -1,4 +1,4 @@
-import { Entity } from "../../../core/domain/Entity";
+import { Entity } from '../../../core/domain/Entity';
 
 export type UserPermissionProps = {
   userId: string;
@@ -15,11 +15,8 @@ export class UserPermission extends Entity {
     super(id);
   }
 
-  static create({
-    userId,
-    permissionId,
-    id,
-  }: UserPermissionProps): UserPermission {
+  static create(userPermissionData: UserPermissionProps): UserPermission {
+    const { userId, permissionId, id } = userPermissionData;
     return new UserPermission(userId, permissionId, id);
   }
 }

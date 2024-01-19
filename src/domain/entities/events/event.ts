@@ -1,10 +1,11 @@
-import { Entity } from "../../../core/domain/Entity";
+import { Entity } from '../../../core/domain/Entity';
+import BusinessError from '../../../core/domain/business-error';
 
 export enum EventStatus {
-  CANCELED = "CANCELED",
-  FINISHED = "FINISHED",
-  OPEN = "OPEN",
-  SOLD_OUT = "SOLD_OUT",
+  CANCELED = 'CANCELED',
+  FINISHED = 'FINISHED',
+  OPEN = 'OPEN',
+  SOLD_OUT = 'SOLD_OUT',
 }
 
 export type EventProps = {
@@ -38,19 +39,20 @@ export class Event extends Entity {
     super(id);
   }
 
-  static create({
-    userId,
-    name,
-    datetime,
-    description,
-    location,
-    participants_limit: participantsLimit,
-    unitary_price: unitaryPrice,
-    status,
-    avaliable_tickets: avaliableTickets,
-    id,
-    photos,
-  }: EventProps): Event {
+  static create(eventData: EventProps): Event {
+    const {
+      userId,
+      name,
+      datetime,
+      location,
+      participants_limit: participantsLimit,
+      unitary_price: unitaryPrice,
+      status,
+      avaliable_tickets: avaliableTickets,
+      description,
+      id,
+      photos
+    } = eventData;
     return new Event(
       userId,
       name,
@@ -69,14 +71,14 @@ export class Event extends Entity {
   hasAvailableTickets(quantity?: number): boolean {
     return Boolean(
       this.avaliableTickets >= quantity! &&
-        this.status === EventStatus.OPEN &&
-        this.participantsLimit >= quantity!
+      this.status === EventStatus.OPEN &&
+      this.participantsLimit >= quantity!
     );
   }
 
   decrementAvailableTickets(quantity: number): void {
     if (!this.hasAvailableTickets(quantity)) {
-      throw new Error("Event has no available tickets");
+      throw new BusinessError('Event has no available tickets');
     }
     this.avaliableTickets -= quantity;
   }

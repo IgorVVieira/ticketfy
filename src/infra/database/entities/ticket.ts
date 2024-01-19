@@ -5,15 +5,15 @@ import {
   JoinTable,
   ManyToOne,
   PrimaryGeneratedColumn,
-  UpdateDateColumn,
-} from "typeorm";
-import { EventDB } from "./event";
-import { UserDB } from "./user";
-import { PaymentDB } from "./payment";
+  UpdateDateColumn
+} from 'typeorm';
+import { EventDB } from './event';
+import { UserDB } from './user';
+import { PaymentDB } from './payment';
 
-@Entity("tickets")
+@Entity('tickets')
 export class TicketDB {
-  @PrimaryGeneratedColumn("uuid")
+  @PrimaryGeneratedColumn('uuid')
   id: string;
 
   @Column()
@@ -25,21 +25,21 @@ export class TicketDB {
   @Column()
   paymentId: string;
 
-  @CreateDateColumn({ type: "timestamp" })
+  @CreateDateColumn({ type: 'timestamp' })
   created_at: Date;
 
-  @UpdateDateColumn({ type: "timestamp" })
+  @UpdateDateColumn({ type: 'timestamp' })
   updated_at: Date;
 
-  @JoinTable({ name: "tickets_events" })
+  @JoinTable({ name: 'tickets_events' })
   @ManyToOne(() => EventDB)
   event: EventDB;
 
-  @JoinTable({ name: "tickets_users" })
+  @JoinTable({ name: 'tickets_users' })
   @ManyToOne(() => UserDB)
   user: UserDB;
 
-  @JoinTable({ name: "tickets_payments" })
+  @JoinTable({ name: 'tickets_payments' })
   @ManyToOne(() => PaymentDB)
   payment: PaymentDB;
 }

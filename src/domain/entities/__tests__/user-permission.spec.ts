@@ -1,14 +1,14 @@
-import { UserPermission } from "../permissions/user-permission";
+import { UserPermission } from '../permissions/user-permission';
 
-describe("UserPermission", () => {
-  it("should create a valid user permission", () => {
+describe('UserPermission', () => {
+  it('should create a valid user permission', () => {
     const userPermission = UserPermission.create({
-      userId: "1",
-      permissionId: "1",
+      userId: '1',
+      permissionId: '1'
     });
 
     expect(userPermission).toBeTruthy();
-    expect(userPermission.userId).toBe("1");
-    expect(userPermission.permissionId).toBe("1");
+    expect(userPermission.userId).toBe('1');
+    expect(userPermission.permissionId).toBe('1');
   });
 });

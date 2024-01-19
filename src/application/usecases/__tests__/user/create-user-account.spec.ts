@@ -1,8 +1,8 @@
-import { IUserAccountRepository } from "../../../../domain/repositories/users/user-account.repository";
-import { User } from "../../../../domain/entities/users/user";
-import { CreateUserAccount } from "../../user/create-user-account";
-import { PaymentEnum } from "../../../../domain/entities/payment-enum";
-import { UserAccount } from "../../../../domain/entities/users/user-account";
+import { IUserAccountRepository } from '../../../../domain/repositories/users/user-account.repository';
+import { User } from '../../../../domain/entities/users/user';
+import { CreateUserAccount } from '../../user/create-user-account';
+import { PaymentEnum } from '../../../../domain/entities/payment-enum';
+import { UserAccount } from '../../../../domain/entities/users/user-account';
 
 // Mock the user account repository
 const mockUserAccountRepository: IUserAccountRepository = {
@@ -10,10 +10,10 @@ const mockUserAccountRepository: IUserAccountRepository = {
   findByUserId: jest.fn(),
   findById: jest.fn(),
   findAll: jest.fn(),
-  update: jest.fn(),
+  update: jest.fn()
 };
 
-describe("CreateUserAccount", () => {
+describe('CreateUserAccount', () => {
   let createUserAccount: CreateUserAccount;
 
   beforeEach(() => {
@@ -24,23 +24,23 @@ describe("CreateUserAccount", () => {
     jest.clearAllMocks();
   });
 
-  it("should create a new user account successfully", async () => {
+  it('should create a new user account successfully', async () => {
     const user = User.create({
-      name: "John Doe",
-      email: "johndoe@example.com",
-      password: "SecurePassword123",
+      name: 'John Doe',
+      email: 'johndoe@example.com',
+      password: 'SecurePassword123'
     });
 
     const userInput = {
-      id: "1",
+      id: '1',
       userId: user.getId(),
-      name: "Savings Account",
+      name: 'Savings Account',
       amount: 1000,
-      type: PaymentEnum.CREDIT,
+      type: PaymentEnum.CREDIT
     };
 
     const mockCreatedUserAccount = UserAccount.create({
-      ...userInput,
+      ...userInput
     });
 
     (mockUserAccountRepository.create as jest.Mock).mockResolvedValueOnce(
@@ -56,23 +56,23 @@ describe("CreateUserAccount", () => {
     expect(userAccount).toEqual(mockCreatedUserAccount);
   });
 
-  it("should throw an error when amount is negative", async () => {
+  it('should throw an error when amount is negative', async () => {
     const user = User.create({
-      name: "John Doe",
-      email: "johndoe@example.com",
-      password: "SecurePassword123",
+      name: 'John Doe',
+      email: 'johndoe@example.com',
+      password: 'SecurePassword123'
     });
 
     const userInput = {
       userId: user.getId(),
-      name: "Savings Account",
+      name: 'Savings Account',
       amount: -500,
-      type: PaymentEnum.CREDIT,
+      type: PaymentEnum.CREDIT
     };
 
     await expect(
       createUserAccount.execute(user, userInput)
-    ).rejects.toThrowError("Amount cannot be negative");
+    ).rejects.toThrowError('Amount cannot be negative');
 
     expect(mockUserAccountRepository.create).not.toHaveBeenCalled();
   });

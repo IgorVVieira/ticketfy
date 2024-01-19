@@ -1,11 +1,12 @@
-import { CreateEvent } from "../../application/usecases/event/create-event";
-import { DecrementAvaliableTickets } from "../../application/usecases/event/decrement-avaliable-tickets";
-import { FindAllEvents } from "../../application/usecases/event/find-all-events";
-import { FindEvent } from "../../application/usecases/event/find-event";
-import { Event } from "../../domain/entities/events/event";
-import { findAllProps } from "../../domain/repositories/events/event.repository";
-import { CreateEventDto } from "../dto/create-event-dto";
-import { UserService } from "./user.service";
+import { CreateEvent } from '../../application/usecases/event/create-event';
+import { DecrementAvaliableTickets } from '../../application/usecases/event/decrement-avaliable-tickets';
+import { FindAllEvents } from '../../application/usecases/event/find-all-events';
+import { FindEvent } from '../../application/usecases/event/find-event';
+import BusinessError from '../../core/domain/business-error';
+import { Event } from '../../domain/entities/events/event';
+import { findAllProps } from '../../domain/repositories/events/event.repository';
+import { CreateEventDto } from '../dto/create-event-dto';
+import { UserService } from './user.service';
 
 export class EventService {
   constructor(
@@ -22,7 +23,7 @@ export class EventService {
   }
 
   async create(createEventDto: CreateEventDto): Promise<Event> {
-    const user = await this.userService.findById("id", createEventDto.userId);
+    const user = await this.userService.findById('id', createEventDto.userId);
     return this.createEvent.execute(user, createEventDto);
   }
 
@@ -32,7 +33,7 @@ export class EventService {
 
   async decrementAvailableTickets(id: string, quantity: number): Promise<void> {
     const event = await this.findEvent.execute(id);
-    if (!event) throw new Error("Event not found");
+    if (!event) throw new BusinessError('Event not found');
     return this.decrementAvaliableTickets.execute(event, quantity);
   }
 

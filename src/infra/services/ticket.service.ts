@@ -1,9 +1,10 @@
-import { CreateTicket } from "../../application/usecases/ticket/create-ticket";
-import { GetUserTickets } from "../../application/usecases/ticket/get-user-tickets";
-import { Ticket } from "../../domain/entities/ticket";
-import { CreateTicketDto } from "../dto/create-ticket.dto";
-import { EventService } from "./event.service";
-import { UserService } from "./user.service";
+import { CreateTicket } from '../../application/usecases/ticket/create-ticket';
+import { GetUserTickets } from '../../application/usecases/ticket/get-user-tickets';
+import BusinessError from '../../core/domain/business-error';
+import { Ticket } from '../../domain/entities/ticket';
+import { CreateTicketDto } from '../dto/create-ticket.dto';
+import { EventService } from './event.service';
+import { UserService } from './user.service';
 
 export class TicketService {
   constructor(
@@ -22,10 +23,10 @@ export class TicketService {
   ): Promise<void> {
     const [event, user] = await Promise.all([
       this.eventService.findById(createTicketDto.eventId),
-      this.userService.findById("id", createTicketDto.userId),
+      this.userService.findById('id', createTicketDto.userId)
     ]);
-    if (!event) throw new Error("Event not found");
-    if (!user) throw new Error("User not found");
+    if (!event) throw new BusinessError('Event not found');
+    if (!user) throw new BusinessError('User not found');
 
     await this.createTicket.execute(createTicketDto, quantity, event);
   }

@@ -1,11 +1,11 @@
-import { Repository } from "typeorm";
-import { User } from "../../../domain/entities/users/user";
-import { IUserRepository } from "../../../domain/repositories/users/user.repository";
-import { UserMapper } from "../../mapper/user.mapper";
-import { UserDB } from "../entities/user";
+import { Repository } from 'typeorm';
+import { User } from '../../../domain/entities/users/user';
+import { IUserRepository } from '../../../domain/repositories/users/user.repository';
+import { UserMapper } from '../../mapper/user.mapper';
+import { UserDB } from '../entities/user';
 
 export class UserRepository implements IUserRepository {
-  constructor(private readonly repository: Repository<UserDB>) {}
+  constructor(private readonly repository: Repository<UserDB>) { }
 
   async findBy(key: string, value: string): Promise<User | null> {
     const userDB = await this.repository.findOne({ where: { [key]: value } });

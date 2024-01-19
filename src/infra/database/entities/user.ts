@@ -5,14 +5,14 @@ import {
   CreateDateColumn,
   Entity,
   PrimaryGeneratedColumn,
-  UpdateDateColumn,
-} from "typeorm";
+  UpdateDateColumn
+} from 'typeorm';
 
-import bcrypt from "bcryptjs";
+import bcrypt from 'bcryptjs';
 
-@Entity("users")
+@Entity('users')
 export class UserDB {
-  @PrimaryGeneratedColumn("uuid")
+  @PrimaryGeneratedColumn('uuid')
   id: string;
 
   @Column()
@@ -27,10 +27,10 @@ export class UserDB {
   @Column({ nullable: true })
   picture?: string;
 
-  @CreateDateColumn({ type: "timestamp" })
+  @CreateDateColumn({ type: 'timestamp' })
   created_at: Date;
 
-  @UpdateDateColumn({ type: "timestamp" })
+  @UpdateDateColumn({ type: 'timestamp' })
   updated_at: Date;
 
   @BeforeInsert()

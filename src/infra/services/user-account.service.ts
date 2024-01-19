@@ -1,10 +1,11 @@
-import { CreateUserAccount } from "../../application/usecases/user/create-user-account";
-import { DecrementUserAccountValue } from "../../application/usecases/user/decrement-user-account-value";
-import { FindUserAccount } from "../../application/usecases/user/find-user-account";
-import { GetAllUserAccounts } from "../../application/usecases/user/get-all-user-accounts";
-import { UserAccount } from "../../domain/entities/users/user-account";
-import { CreateUserAccountDto } from "../dto/create-user-account.dto";
-import { UserService } from "./user.service";
+import { CreateUserAccount } from '../../application/usecases/user/create-user-account';
+import { DecrementUserAccountValue } from '../../application/usecases/user/decrement-user-account-value';
+import { FindUserAccount } from '../../application/usecases/user/find-user-account';
+import { GetAllUserAccounts } from '../../application/usecases/user/get-all-user-accounts';
+import BusinessError from '../../core/domain/business-error';
+import { UserAccount } from '../../domain/entities/users/user-account';
+import { CreateUserAccountDto } from '../dto/create-user-account.dto';
+import { UserService } from './user.service';
 
 export class UserAccountService {
   constructor(
@@ -29,8 +30,8 @@ export class UserAccountService {
   }
 
   async create(userDto: CreateUserAccountDto): Promise<UserAccount> {
-    const user = await this.userService.findById("id", userDto.userId);
-    if (!user) throw new Error("User not found");
+    const user = await this.userService.findById('id', userDto.userId);
+    if (!user) throw new BusinessError('User not found');
     return this.createUserAccount.execute(user, userDto);
   }
 

@@ -1,4 +1,4 @@
-import { Ticket } from "../entities/ticket";
+import { Ticket } from '../entities/ticket';
 
 export interface ITicketRepository {
   createMany(tickets: Ticket[]): Promise<void>;

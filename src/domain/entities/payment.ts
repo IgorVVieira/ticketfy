@@ -1,5 +1,6 @@
-import { Entity } from "../../core/domain/Entity";
-import { PaymentEnum } from "./payment-enum";
+import { Entity } from '../../core/domain/Entity';
+import BusinessError from '../../core/domain/business-error';
+import { PaymentEnum } from './payment-enum';
 
 export type PaymentProps = {
   eventId: string;
@@ -20,17 +21,12 @@ export class Payment extends Entity {
     super(id);
 
     if (!this.isValidValue(value)) {
-      throw new Error("Value cannot be negative");
+      throw new BusinessError('Value cannot be negative');
     }
   }
 
-  static create({
-    eventId,
-    userAccountId,
-    value,
-    type,
-    id,
-  }: PaymentProps): Payment {
+  static create(paymentData: PaymentProps): Payment {
+    const { eventId, userAccountId, value, type, id } = paymentData;
     return new Payment(eventId, userAccountId, value, type, id);
   }
 
@@ -40,7 +36,7 @@ export class Payment extends Entity {
 
   public updateValue(value: number): void {
     if (!this.isValidValue(value)) {
-      throw new Error("Value cannot be negative");
+      throw new BusinessError('Value cannot be negative');
     }
     this.value = value;
   }

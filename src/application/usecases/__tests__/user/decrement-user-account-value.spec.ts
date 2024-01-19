@@ -1,17 +1,17 @@
-import { PaymentEnum } from "../../../../domain/entities/payment-enum";
-import { UserAccount } from "../../../../domain/entities/users/user-account";
-import { IUserAccountRepository } from "../../../../domain/repositories/users/user-account.repository";
-import { DecrementUserAccountValue } from "../../user/decrement-user-account-value";
+import { PaymentEnum } from '../../../../domain/entities/payment-enum';
+import { UserAccount } from '../../../../domain/entities/users/user-account';
+import { IUserAccountRepository } from '../../../../domain/repositories/users/user-account.repository';
+import { DecrementUserAccountValue } from '../../user/decrement-user-account-value';
 
 const mockUserAccountRepository: IUserAccountRepository = {
   findByUserId: jest.fn(),
   findById: jest.fn(),
   findAll: jest.fn(),
   create: jest.fn(),
-  update: jest.fn(),
+  update: jest.fn()
 };
 
-describe("DecrementUserAccountValue", () => {
+describe('DecrementUserAccountValue', () => {
   let decrementUserAccountValue: DecrementUserAccountValue;
 
   beforeEach(() => {
@@ -24,12 +24,12 @@ describe("DecrementUserAccountValue", () => {
     jest.clearAllMocks();
   });
 
-  it("should decrement the amount of an existing user account", async () => {
+  it('should decrement the amount of an existing user account', async () => {
     const existingUserAccount = UserAccount.create({
-      userId: "user123",
-      name: "Sample User Account",
+      userId: 'user123',
+      name: 'Sample User Account',
       amount: 100,
-      type: PaymentEnum.CREDIT,
+      type: PaymentEnum.CREDIT
     });
 
     (mockUserAccountRepository.findById as jest.Mock).mockResolvedValueOnce(

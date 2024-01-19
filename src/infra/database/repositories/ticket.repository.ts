@@ -1,11 +1,11 @@
-import { Repository } from "typeorm";
-import { ITicketRepository } from "../../../domain/repositories/ticket.repository";
-import { TicketDB } from "../entities/ticket";
-import { Ticket } from "../../../domain/entities/ticket";
-import { TicketMapper } from "../../mapper/ticket.mapper";
+import { Repository } from 'typeorm';
+import { ITicketRepository } from '../../../domain/repositories/ticket.repository';
+import { TicketDB } from '../entities/ticket';
+import { Ticket } from '../../../domain/entities/ticket';
+import { TicketMapper } from '../../mapper/ticket.mapper';
 
 export class TicketRepository implements ITicketRepository {
-  constructor(private readonly repository: Repository<TicketDB>) {}
+  constructor(private readonly repository: Repository<TicketDB>) { }
 
   async createMany(tickets: Ticket[]): Promise<void> {
     const ticketsDB = tickets.map((ticket) =>
@@ -17,14 +17,14 @@ export class TicketRepository implements ITicketRepository {
 
   async getByUserId(userId: string): Promise<Ticket[]> {
     const ticketsDB = await this.repository.find({
-      where: { userId },
+      where: { userId }
     });
     return ticketsDB.map((ticketDB) => TicketMapper.toDomain(ticketDB));
   }
 
   async getByEventId(eventId: string): Promise<Ticket[]> {
     const ticketsDB = await this.repository.find({
-      where: { eventId },
+      where: { eventId }
     });
     return ticketsDB.map((ticketDB) => TicketMapper.toDomain(ticketDB));
   }

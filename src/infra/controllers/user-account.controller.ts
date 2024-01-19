@@ -1,5 +1,5 @@
-import { Request, Response } from "express";
-import { UserAccountService } from "../services/user-account.service";
+import { Request, Response } from 'express';
+import { UserAccountService } from '../services/user-account.service';
 
 export class UserAccountController {
   constructor(private readonly userAccountService: UserAccountService) {
@@ -12,7 +12,7 @@ export class UserAccountController {
     try {
       const userAccount = await this.userAccountService.find(req.params.userId);
       return res.status(200).json(userAccount);
-    } catch (error: any) {
+    } catch (error) {
       return res.status(500).json({ error: error.message });
     }
   }
@@ -21,7 +21,7 @@ export class UserAccountController {
     try {
       const userAccounts = await this.userAccountService.findAll(req.userId);
       return res.status(200).json(userAccounts);
-    } catch (error: any) {
+    } catch (error) {
       return res.status(500).json({ error: error.message });
     }
   }
@@ -30,8 +30,8 @@ export class UserAccountController {
     try {
       const userAccount = await this.userAccountService.create(req.body);
       return res.status(201).json(userAccount);
-    } catch (error: any) {
-      if (error.message === "User not found") {
+    } catch (error) {
+      if (error.message === 'User not found') {
         return res.status(404).json({ error: error.message });
       }
       return res.status(500).json({ error: error.message });

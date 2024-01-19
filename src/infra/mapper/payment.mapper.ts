@@ -1,5 +1,5 @@
-import { Payment } from "../../domain/entities/payment";
-import { PaymentDB } from "../database/entities/payment";
+import { Payment } from '../../domain/entities/payment';
+import { PaymentDB } from '../database/entities/payment';
 
 export class PaymentMapper {
   static toDomain(paymentDB: PaymentDB): Payment {
@@ -8,7 +8,7 @@ export class PaymentMapper {
       eventId: paymentDB.eventId,
       userAccountId: paymentDB.userAccountId,
       value: paymentDB.value,
-      type: paymentDB.paymentType,
+      type: paymentDB.paymentType
     });
   }
 

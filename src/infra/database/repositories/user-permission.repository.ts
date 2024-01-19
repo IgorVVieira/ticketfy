@@ -1,18 +1,18 @@
-import { Repository } from "typeorm";
-import { IUserPermissionRepository } from "../../../domain/repositories/users/user-permission.repository";
-import { UserPermissionDB } from "../entities/user-permission";
-import { UserPermission } from "../../../domain/entities/permissions/user-permission";
-import { UserPermissionMapper } from "../../mapper/user-permission.mapper";
+import { Repository } from 'typeorm';
+import { IUserPermissionRepository } from '../../../domain/repositories/users/user-permission.repository';
+import { UserPermissionDB } from '../entities/user-permission';
+import { UserPermission } from '../../../domain/entities/permissions/user-permission';
+import { UserPermissionMapper } from '../../mapper/user-permission.mapper';
 
 export class UserPermissionRepository implements IUserPermissionRepository {
-  constructor(private readonly repository: Repository<UserPermissionDB>) {}
+  constructor(private readonly repository: Repository<UserPermissionDB>) { }
 
   async findByUseridAndPermissionId(
     userId: string,
     permissionId: string
   ): Promise<UserPermission | null> {
     const userPermissionDB = await this.repository.findOne({
-      where: { userId, permissionId },
+      where: { userId, permissionId }
     });
     if (!userPermissionDB) return null;
     return UserPermissionMapper.toDomain(userPermissionDB);
@@ -23,7 +23,7 @@ export class UserPermissionRepository implements IUserPermissionRepository {
     name: string
   ): Promise<UserPermission | null> {
     const userPermissionDB = await this.repository.findOne({
-      where: { userId, permission: { name } },
+      where: { userId, permission: { name } }
     });
     if (!userPermissionDB) return null;
     return UserPermissionMapper.toDomain(userPermissionDB);

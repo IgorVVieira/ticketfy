@@ -1,52 +1,52 @@
-import { MigrationInterface, QueryRunner, Table } from "typeorm";
+import { MigrationInterface, QueryRunner, Table } from 'typeorm';
 
 export class CreateEventPhotosTable1690831759219 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.query(`CREATE EXTENSION IF NOT EXISTS "uuid-ossp"`);
+    await queryRunner.query('CREATE EXTENSION IF NOT EXISTS "uuid-ossp"');
     await queryRunner.createTable(
       new Table({
-        name: "event_photos",
+        name: 'event_photos',
         columns: [
           {
-            name: "id",
-            type: "uuid",
+            name: 'id',
+            type: 'uuid',
             isPrimary: true,
-            generationStrategy: "uuid",
-            default: "uuid_generate_v4()",
+            generationStrategy: 'uuid',
+            default: 'uuid_generate_v4()'
           },
           {
-            name: "eventId",
-            type: "uuid",
+            name: 'eventId',
+            type: 'uuid'
           },
           {
-            name: "url",
-            type: "varchar",
+            name: 'url',
+            type: 'varchar'
           },
           {
-            name: "created_at",
-            type: "timestamp",
-            default: "now()",
+            name: 'created_at',
+            type: 'timestamp',
+            default: 'now()'
           },
           {
-            name: "updated_at",
-            type: "timestamp",
-            default: "now()",
-          },
+            name: 'updated_at',
+            type: 'timestamp',
+            default: 'now()'
+          }
         ],
         foreignKeys: [
           {
-            name: "event_photos_events",
-            referencedTableName: "events",
-            referencedColumnNames: ["id"],
-            columnNames: ["eventId"],
-          },
-        ],
+            name: 'event_photos_events',
+            referencedTableName: 'events',
+            referencedColumnNames: ['id'],
+            columnNames: ['eventId']
+          }
+        ]
       })
     );
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.dropTable("event_photos");
-    await queryRunner.query(`DROP EXTENSION "uuid-ossp"`);
+    await queryRunner.dropTable('event_photos');
+    await queryRunner.query('DROP EXTENSION "uuid-ossp"');
   }
 }

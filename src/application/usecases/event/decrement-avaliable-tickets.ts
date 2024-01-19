@@ -1,8 +1,8 @@
-import { Event } from "../../../domain/entities/events/event";
-import { IEventRepository } from "../../../domain/repositories/events/event.repository";
+import { Event } from '../../../domain/entities/events/event';
+import { IEventRepository } from '../../../domain/repositories/events/event.repository';
 
 export class DecrementAvaliableTickets {
-  constructor(private readonly eventRepository: IEventRepository) {}
+  constructor(private readonly eventRepository: IEventRepository) { }
 
   async execute(event: Event, quantity: number): Promise<void> {
     event.decrementAvailableTickets(quantity);

@@ -1,4 +1,5 @@
-import { Entity } from "../../../core/domain/Entity";
+import { Entity } from '../../../core/domain/Entity';
+import BusinessError from '../../../core/domain/business-error';
 
 export type UserProps = {
   name: string;
@@ -10,9 +11,9 @@ export type UserProps = {
 };
 
 export enum UserType {
-  EMPRESA = "empresa",
-  UNIVERSIDADE = "universidade",
-  COMPRADOR = "comprador",
+  EMPRESA = 'empresa',
+  UNIVERSIDADE = 'universidade',
+  COMPRADOR = 'comprador',
 }
 
 const EMAIL_REGEX = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
@@ -29,15 +30,16 @@ export class User extends Entity {
     super(id);
 
     if (!this.isvalidEmail(email)) {
-      throw new Error("Invalid email");
+      throw new BusinessError('Invalid email');
     }
 
     if (!this.isvalidPassword(password)) {
-      throw new Error("Invalid password");
+      throw new BusinessError('Invalid password');
     }
   }
 
-  static create({ name, email, password, picture, type, id }: UserProps): User {
+  static create(userData: UserProps): User {
+    const { name, email, password, picture, type, id } = userData;
     return new User(name, email, password, picture, type, id);
   }
 

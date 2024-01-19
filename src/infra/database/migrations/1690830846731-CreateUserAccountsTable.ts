@@ -1,66 +1,65 @@
-import { MigrationInterface, QueryRunner, Table } from "typeorm";
+import { MigrationInterface, QueryRunner, Table } from 'typeorm';
 
 export class CreateUserAccountsTable1690830846731
-  implements MigrationInterface
-{
+  implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.query(`CREATE EXTENSION IF NOT EXISTS "uuid-ossp"`);
+    await queryRunner.query('CREATE EXTENSION IF NOT EXISTS "uuid-ossp"');
     await queryRunner.createTable(
       new Table({
-        name: "user_accounts",
+        name: 'user_accounts',
         columns: [
           {
-            name: "id",
-            type: "uuid",
+            name: 'id',
+            type: 'uuid',
             isPrimary: true,
-            generationStrategy: "uuid",
-            default: "uuid_generate_v4()",
+            generationStrategy: 'uuid',
+            default: 'uuid_generate_v4()'
           },
           {
-            name: "userId",
-            type: "uuid",
+            name: 'userId',
+            type: 'uuid'
           },
           {
-            name: "name",
-            type: "varchar",
+            name: 'name',
+            type: 'varchar'
           },
           {
-            name: "amount",
-            type: "decimal",
+            name: 'amount',
+            type: 'decimal',
             precision: 10,
             scale: 2,
-            default: 0,
+            default: 0
           },
           {
-            name: "type",
-            type: "enum",
-            enum: ["credit", "debit", "pix", "boleto"],
+            name: 'type',
+            type: 'enum',
+            enum: ['credit', 'debit', 'pix', 'boleto']
           },
           {
-            name: "created_at",
-            type: "timestamp",
-            default: "now()",
+            name: 'created_at',
+            type: 'timestamp',
+            default: 'now()'
           },
           {
-            name: "updated_at",
-            type: "timestamp",
-            default: "now()",
-          },
+            name: 'updated_at',
+            type: 'timestamp',
+            default: 'now()'
+          }
         ],
         foreignKeys: [
           {
-            name: "user_accounts_user",
-            referencedTableName: "users",
-            referencedColumnNames: ["id"],
-            columnNames: ["userId"],
-          },
-        ],
+            name: 'user_accounts_user',
+            referencedTableName: 'users',
+            referencedColumnNames: ['id'],
+            columnNames: ['userId']
+          }
+        ]
       })
     );
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.dropTable("user_accounts");
-    await queryRunner.query(`DROP EXTENSION "uuid-ossp"`);
+    await queryRunner.dropTable('user_accounts');
+    await queryRunner.query('DROP EXTENSION "uuid-ossp"');
   }
 }

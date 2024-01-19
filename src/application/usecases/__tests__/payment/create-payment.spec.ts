@@ -1,14 +1,14 @@
-import { Event, EventProps } from "../../../../domain/entities/events/event";
-import { Payment, PaymentProps } from "../../../../domain/entities/payment";
-import { PaymentEnum } from "../../../../domain/entities/payment-enum";
-import { IPaymentRepository } from "../../../../domain/repositories/payment.repository";
-import { CreatePayment } from "../../payment/create-payment";
+import { Event, EventProps } from '../../../../domain/entities/events/event';
+import { Payment, PaymentProps } from '../../../../domain/entities/payment';
+import { PaymentEnum } from '../../../../domain/entities/payment-enum';
+import { IPaymentRepository } from '../../../../domain/repositories/payment.repository';
+import { CreatePayment } from '../../payment/create-payment';
 
 const mockPaymentRepository: IPaymentRepository = {
-  create: jest.fn(),
+  create: jest.fn()
 };
 
-describe("CreatePayment", () => {
+describe('CreatePayment', () => {
   let createPayment: CreatePayment;
 
   beforeEach(() => {
@@ -19,25 +19,25 @@ describe("CreatePayment", () => {
     jest.clearAllMocks();
   });
 
-  it("should create a new payment", async () => {
+  it('should create a new payment', async () => {
     const eventProps: EventProps = {
-      id: "event123",
-      userId: "user123",
-      name: "Event Name",
-      datetime: "2023-08-15T18:00:00",
-      location: "Event Location",
+      id: 'event123',
+      userId: 'user123',
+      name: 'Event Name',
+      datetime: '2023-08-15T18:00:00',
+      location: 'Event Location',
       participants_limit: 100,
       unitary_price: 50,
-      avaliable_tickets: 100,
+      avaliable_tickets: 100
     };
 
     const event = Event.create(eventProps);
     const paymentProps: PaymentProps = {
-      id: "payment123",
+      id: 'payment123',
       eventId: event.getId(),
-      userAccountId: "account123",
+      userAccountId: 'account123',
       value: 100,
-      type: "CREDIT" as PaymentEnum,
+      type: 'CREDIT' as PaymentEnum
     };
 
     const payment = Payment.create(paymentProps);
@@ -52,30 +52,30 @@ describe("CreatePayment", () => {
     expect(mockPaymentRepository.create).toHaveBeenCalledTimes(1);
   });
 
-  it("should throw an error when there are not enough available tickets", async () => {
+  it('should throw an error when there are not enough available tickets', async () => {
     const eventProps: EventProps = {
-      userId: "user123",
-      name: "Event Name",
-      datetime: "2023-08-15T18:00:00",
-      location: "Event Location",
+      userId: 'user123',
+      name: 'Event Name',
+      datetime: '2023-08-15T18:00:00',
+      location: 'Event Location',
       participants_limit: 100,
       unitary_price: 50,
-      avaliable_tickets: 0,
+      avaliable_tickets: 0
     };
 
     const event = Event.create(eventProps);
     const paymentProps: PaymentProps = {
       eventId: event.getId(),
-      userAccountId: "account123",
+      userAccountId: 'account123',
       value: 100,
-      type: "CREDIT" as PaymentEnum,
+      type: 'CREDIT' as PaymentEnum
     };
 
     const quantity = 1;
 
     await expect(
       createPayment.execute(paymentProps, event, quantity)
-    ).rejects.toThrowError("Not enough tickets avaliable");
+    ).rejects.toThrowError('Not enough tickets avaliable');
     expect(mockPaymentRepository.create).not.toHaveBeenCalled();
   });
 });

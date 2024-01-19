@@ -1,14 +1,14 @@
-import { UserPermission } from "../../../../domain/entities/permissions/user-permission";
-import { IUserPermissionRepository } from "../../../../domain/repositories/users/user-permission.repository";
-import { FindUserPermission } from "../../permission/find-user-permission";
+import { UserPermission } from '../../../../domain/entities/permissions/user-permission';
+import { IUserPermissionRepository } from '../../../../domain/repositories/users/user-permission.repository';
+import { FindUserPermission } from '../../permission/find-user-permission';
 
 const mockUserPermissionRepository: IUserPermissionRepository = {
   create: jest.fn(),
   findByUseridAndPermissionId: jest.fn(),
-  findByUserIdAndName: jest.fn(),
+  findByUserIdAndName: jest.fn()
 };
 
-describe("FindUserPermission", () => {
+describe('FindUserPermission', () => {
   let findUserPermission: FindUserPermission;
 
   beforeEach(() => {
@@ -19,14 +19,14 @@ describe("FindUserPermission", () => {
     jest.clearAllMocks();
   });
 
-  it("should return the user permission when found by user ID and name", async () => {
-    const userId = "user123";
-    const name = "permission_name";
+  it('should return the user permission when found by user ID and name', async () => {
+    const userId = 'user123';
+    const name = 'permission_name';
 
     const mockUserPermission = UserPermission.create({
-      id: "1",
+      id: '1',
       userId: userId,
-      permissionId: "permission123",
+      permissionId: 'permission123'
     });
 
     (
@@ -44,16 +44,16 @@ describe("FindUserPermission", () => {
     ).toHaveBeenCalledTimes(1);
   });
 
-  it("should throw an error when the user permission is not found by user ID and name", async () => {
-    const userId = "user123";
-    const name = "permission_name";
+  it('should throw an error when the user permission is not found by user ID and name', async () => {
+    const userId = 'user123';
+    const name = 'permission_name';
 
     (
       mockUserPermissionRepository.findByUserIdAndName as jest.Mock
     ).mockResolvedValue(null);
 
     await expect(findUserPermission.execute(userId, name)).rejects.toThrowError(
-      "Permission not found"
+      'Permission not found'
     );
     expect(
       mockUserPermissionRepository.findByUserIdAndName
