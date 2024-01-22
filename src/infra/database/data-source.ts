@@ -22,11 +22,6 @@ function getDataBaseCredentials(): DatabaseCredentials {
 
 const credentials = getDataBaseCredentials();
 
-// function getDataBaseUrl(credentials: DatabaseCredentials): string {
-//   console.log(`postgres://${credentials.user}:${credentials.password}@${credentials.host}:${credentials.port}`)
-//   return `postgres://${credentials.user}:${credentials.password}@${credentials.host}:${credentials.port}`;
-// }
-
 export const AppDataSource = new DataSource({
   type: 'postgres',
   host: credentials.host,
@@ -34,7 +29,6 @@ export const AppDataSource = new DataSource({
   username: credentials.user,
   password: credentials.password,
   database: credentials.database,
-  // url: getDataBaseUrl(getDataBaseCredentials()),
   logging: true,
   entities: [__dirname + '/entities/*{.ts,.js}'],
   migrations: [__dirname + '/migrations/*{.ts,.js}']
