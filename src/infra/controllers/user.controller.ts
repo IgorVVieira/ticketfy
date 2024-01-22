@@ -1,17 +1,24 @@
 import { Request, Response } from 'express';
-import { UserService } from '../services/user.service';
+import { interfaces, controller, httpPost, httpPatch, httpGet, response, requestBody, queryParam, BaseHttpController } from 'inversify-express-utils';
+import { inject } from 'inversify';
+import multer from 'multer';
 
-export class UserController {
-  constructor(private readonly userService: UserService) {
-    this.create = this.create.bind(this);
-    this.update = this.update.bind(this);
-    this.findById = this.findById.bind(this);
+import { UserService } from '../services/user.service';
+import { TYPES } from '../shared/types';
+import { authMiddleware } from '../middlewares/auth.middleware';
+import multerConfig from '../config/multer';
+import { CreateUserDto } from '../dto/create-user.dto';
+
+@controller('/users')
+export class UserController extends BaseHttpController implements interfaces.Controller {
+  constructor(@inject(TYPES.UserService) private readonly userService: UserService) {
+    super();
   }
 
-  async create(req: Request, res: Response): Promise<Response> {
+  @httpPost('/')
+  async create(@requestBody() userDTO: CreateUserDto, @response() res: Response): Promise<Response> {
     try {
-      const { name, email, password } = req.body;
-      const user = await this.userService.create({ name, email, password });
+      const user = await this.userService.create(userDTO);
       return res.status(201).json(user);
     } catch (error) {
       if (error.message === 'Email already in use') {
@@ -21,16 +28,16 @@ export class UserController {
     }
   }
 
-  async update(req: Request, res: Response): Promise<Response> {
-    const { id } = req.params;
+  @httpPatch('/:id/picture', multer(multerConfig).single('file'), authMiddleware)
+  async update(@queryParam('id') id: string, req: Request, @response() res: Response): Promise<Response> {
     const location = req?.file?.location;
     const user = await this.userService.update(id, location as string);
     return res.status(200).json(user);
   }
 
-  async findById(req: Request, res: Response): Promise<Response> {
+  @httpGet('/:id', authMiddleware)
+  async findById(@queryParam('id') id: string, @response() res: Response): Promise<Response> {
     try {
-      const { id } = req.params;
       const user = await this.userService.findById('id', id);
       return res.status(200).json(user);
     } catch (error) {

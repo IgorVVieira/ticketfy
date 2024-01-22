@@ -1,3 +1,5 @@
+import { inject, injectable } from 'inversify';
+
 import { CreateEvent } from '../../application/usecases/event/create-event';
 import { DecrementAvaliableTickets } from '../../application/usecases/event/decrement-avaliable-tickets';
 import { FindAllEvents } from '../../application/usecases/event/find-all-events';
@@ -6,20 +8,19 @@ import BusinessError from '../../core/domain/business-error';
 import { Event } from '../../domain/entities/events/event';
 import { findAllProps } from '../../domain/repositories/events/event.repository';
 import { CreateEventDto } from '../dto/create-event-dto';
+import { IEventServiceInterface } from './interfaces/event.service.interface';
 import { UserService } from './user.service';
+import { TYPES } from '../shared/types';
 
-export class EventService {
+@injectable()
+export class EventService implements IEventServiceInterface {
   constructor(
     private readonly createEvent: CreateEvent,
     private readonly findEvent: FindEvent,
     private readonly decrementAvaliableTickets: DecrementAvaliableTickets,
     private readonly findAllEvents: FindAllEvents,
-    private readonly userService: UserService
+    @inject(TYPES.UserService) private readonly userService: UserService
   ) {
-    this.create = this.create.bind(this);
-    this.findById = this.findById.bind(this);
-    this.decrementAvailableTickets = this.decrementAvailableTickets.bind(this);
-    this.findAll = this.findAll.bind(this);
   }
 
   async create(createEventDto: CreateEventDto): Promise<Event> {

@@ -1,22 +1,28 @@
-import express from 'express';
-import swaggerUi from 'swagger-ui-express';
-import routes from './routes';
 import 'reflect-metadata';
-import './infra/database/connect';
-import 'dotenv/config';
+import * as bodyParser from 'body-parser';
+import swaggerUi from 'swagger-ui-express';
 import cors from 'cors';
+import { InversifyExpressServer } from 'inversify-express-utils';
+import 'dotenv/config';
+import './infra/controllers/index';
 
 import swaggerDocs from './swagger.json';
+import './infra/database/connect';
+import { myContainer } from './infra/shared/container/inversify.container';
 
 const PORT = process.env.PORT || 3000;
 
-const app = express();
-app.use(cors());
+const server = new InversifyExpressServer(myContainer, null, { rootPath: '/api' });
+server.setConfig((app) => {
+  app.use(bodyParser.urlencoded({
+    extended: true
+  }));
+  app.use(bodyParser.json());
+});
 
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+const app = server.build();
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
-app.use('/api', routes);
+app.use(cors());
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);

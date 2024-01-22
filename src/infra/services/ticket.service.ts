@@ -1,20 +1,23 @@
+import { inject, injectable } from 'inversify';
+
 import { CreateTicket } from '../../application/usecases/ticket/create-ticket';
 import { GetUserTickets } from '../../application/usecases/ticket/get-user-tickets';
 import BusinessError from '../../core/domain/business-error';
 import { Ticket } from '../../domain/entities/ticket';
 import { CreateTicketDto } from '../dto/create-ticket.dto';
 import { EventService } from './event.service';
+import { ITicketServiceInterface } from './interfaces/ticket.service.interface';
 import { UserService } from './user.service';
+import { TYPES } from '../shared/types';
 
-export class TicketService {
+@injectable()
+export class TicketService implements ITicketServiceInterface {
   constructor(
     private readonly createTicket: CreateTicket,
     private readonly getUserTickets: GetUserTickets,
-    private readonly eventService: EventService,
-    private readonly userService: UserService
+    @inject(TYPES.EventService) private readonly eventService: EventService,
+    @inject(TYPES.UserService) private readonly userService: UserService
   ) {
-    this.create = this.create.bind(this);
-    this.get = this.get.bind(this);
   }
 
   async create(

@@ -11,7 +11,8 @@ export class EventRepository implements IEventRepository {
   constructor(private readonly repository: Repository<EventDB>) { }
 
   async findAll(props?: findAllProps): Promise<Event[]> {
-    const queryBuilder = this.repository.createQueryBuilder('event');
+    const queryBuilder = this.repository.createQueryBuilder('events');
+    console.log(queryBuilder);
 
     if (props?.name) {
       queryBuilder.where('event.name LIKE :name', { name: `%${props.name}%` });

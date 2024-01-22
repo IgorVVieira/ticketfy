@@ -1,20 +1,28 @@
+import { Request, Response } from 'express';
+import { inject } from 'inversify';
+import { BaseHttpController, controller, httpPost, interfaces, request, requestBody, response } from 'inversify-express-utils';
+
 import { PaymentEnum } from '../../domain/entities/payment-enum';
 import { EventService } from '../services/event.service';
 import { PaymentService } from '../services/payment.service';
-import { Request, Response } from 'express';
+import { TYPES } from '../shared/types';
+import { authMiddleware } from '../middlewares/auth.middleware';
+import { FindEventDTO } from '../dto/find-event.dto';
 
-export class PaymentController {
+@controller('/payments', authMiddleware)
+export class PaymentController extends BaseHttpController implements interfaces.Controller {
   constructor(
-    private readonly paymentService: PaymentService,
-    private readonly eventService: EventService
+    @inject(TYPES.PaymentService) private readonly paymentService: PaymentService,
+    @inject(TYPES.EventService) private readonly eventService: EventService
   ) {
-    this.create = this.create.bind(this);
+    super();
   }
 
-  async create(req: Request, res: Response): Promise<Response> {
+  @httpPost('/')
+  async create(@requestBody() findEVentDTO: FindEventDTO, @request() req: Request, @response() res: Response): Promise<Response> {
     try {
-      const userId = req.userId;
-      const { eventId, userAccountId, type, quantity } = req.body;
+      const { userId } = req;
+      const { eventId, userAccountId, type, quantity } = findEVentDTO;
 
       const event = await this.eventService.findById(eventId);
       if (!event) {

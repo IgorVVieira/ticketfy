@@ -2,14 +2,40 @@ import 'reflect-metadata';
 import { DataSource } from 'typeorm';
 import 'dotenv/config';
 
-const port = parseInt(process.env.DB_PORT || '5432');
+type DatabaseCredentials = {
+  user: string;
+  password: string;
+  host: string;
+  port: number;
+  database: string;
+}
+
+function getDataBaseCredentials(): DatabaseCredentials {
+  return {
+    user: process.env.POSTGRES_USER || 'postgres',
+    password: process.env.POSTGRES_PASSWORD || 'postgres',
+    host: process.env.DATABASE_HOST || 'localhost',
+    port: parseInt(process.env.DB_PORT || '5432'),
+    database: process.env.POSTGRES_DB || 'postgres'
+  };
+}
+
+const credentials = getDataBaseCredentials();
+
+// function getDataBaseUrl(credentials: DatabaseCredentials): string {
+//   console.log(`postgres://${credentials.user}:${credentials.password}@${credentials.host}:${credentials.port}`)
+//   return `postgres://${credentials.user}:${credentials.password}@${credentials.host}:${credentials.port}`;
+// }
 
 export const AppDataSource = new DataSource({
   type: 'postgres',
-  url:
-    process.env.DATABASE_URL ||
-    `postgres://postgres:postgres@localhost:${port}/postgres`,
-  logging: false,
+  host: credentials.host,
+  port: credentials.port,
+  username: credentials.user,
+  password: credentials.password,
+  database: credentials.database,
+  // url: getDataBaseUrl(getDataBaseCredentials()),
+  logging: true,
   entities: [__dirname + '/entities/*{.ts,.js}'],
   migrations: [__dirname + '/migrations/*{.ts,.js}']
 });

@@ -1,21 +1,25 @@
+import { inject, injectable } from 'inversify';
+
 import { CreatePayment } from '../../application/usecases/payment/create-payment';
 import BusinessError from '../../core/domain/business-error';
 import { Payment } from '../../domain/entities/payment';
 import { CreatePaymentDto } from '../dto/create-payment.dto';
 import { EventService } from './event.service';
+import { IPaymentServiceInterface } from './interfaces/payment.service.interface';
 import { TicketService } from './ticket.service';
 import { UserAccountService } from './user-account.service';
 import { UserService } from './user.service';
+import { TYPES } from '../shared/types';
 
-export class PaymentService {
+@injectable()
+export class PaymentService implements IPaymentServiceInterface {
   constructor(
     private readonly createPayment: CreatePayment,
-    private readonly userService: UserService,
-    private readonly userAccountService: UserAccountService,
-    private readonly eventService: EventService,
-    private readonly ticketService: TicketService
+    @inject(TYPES.UserService) private readonly userService: UserService,
+    @inject(TYPES.UserAccountService) private readonly userAccountService: UserAccountService,
+    @inject(TYPES.EventService) private readonly eventService: EventService,
+    @inject(TYPES.TicketService) private readonly ticketService: TicketService
   ) {
-    this.create = this.create.bind(this);
   }
 
   async create(

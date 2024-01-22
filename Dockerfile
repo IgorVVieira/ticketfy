@@ -1,4 +1,4 @@
-FROM node:alpine
+FROM node:20-alpine
 
 WORKDIR /app
 
@@ -11,8 +11,10 @@ RUN npm install
 COPY . .
 RUN cp .env.example .env
 
-RUN git clone https://github.com/vishnubob/wait-for-it.git
+ENV PORT=3000
 
-EXPOSE 3000
+EXPOSE ${PORT}
+
+RUN git clone https://github.com/vishnubob/wait-for-it.git
 
 CMD [ "npm", "run", "start:docker" ]

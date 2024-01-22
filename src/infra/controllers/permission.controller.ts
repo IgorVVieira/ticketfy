@@ -1,12 +1,19 @@
-import { PermissionService } from '../services/permission.service';
 import { Request, Response } from 'express';
+import { BaseHttpController, controller, httpPost, interfaces, response } from 'inversify-express-utils';
 
-export class PermissionController {
-  constructor(private readonly permissionService: PermissionService) {
-    this.create = this.create.bind(this);
+import { PermissionService } from '../services/permission.service';
+import { inject } from 'inversify';
+import { TYPES } from '../shared/types';
+import { authMiddleware } from '../middlewares/auth.middleware';
+
+@controller('/permissions', authMiddleware)
+export class PermissionController extends BaseHttpController implements interfaces.Controller {
+  constructor(@inject(TYPES.PermissionService) private readonly permissionService: PermissionService) {
+    super();
   }
 
-  async create(req: Request, res: Response): Promise<Response> {
+  @httpPost('/')
+  async create(req: Request, @response() res: Response): Promise<Response> {
     try {
       const { name, description } = req.body;
       const permission = await this.permissionService.create(name, description);
